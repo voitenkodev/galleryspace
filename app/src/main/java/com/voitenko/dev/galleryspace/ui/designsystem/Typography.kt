@@ -48,7 +48,7 @@ fun GallerySpaceTypography() = AppTypography(
         fontSize = 14.sp,
         fontFamily = TheSeasons,
         fontWeight = FontWeight.Normal,
-        fontStyle = FontStyle.Normal,
+        fontStyle = FontStyle.Italic,
         color = Color.Black
     ), TextStyle(
         fontSize = 18.sp,

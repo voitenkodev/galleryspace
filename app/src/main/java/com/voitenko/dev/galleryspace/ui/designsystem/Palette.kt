@@ -38,9 +38,10 @@ data class GallerySpaceColor(
 )
 
 val white = Color(0xFFFFFFFF)
-val gray = Color(236, 234, 235)
 val gray2 = Color(0xFFEEEEEE)
 val gray3 = Color(0xFF888888)
+
+val crystal = Color(0xFFD0DBE5)
 
 val lightPurple = Color(0xFF5622E5)
 val darkPurple = Color(0xFF4119AF)
@@ -55,5 +56,3 @@ val cyan1shadow1 = Color(0xFF81E4C6)
 val cyan1 = Color(0xFF28D8A3)
 val cyan2 = Color(0xFF00BEB2)
 val cyan2shadow2 = Color(0xFF06948B)
-
-val crystal = Color(0xFFD0DBE5)

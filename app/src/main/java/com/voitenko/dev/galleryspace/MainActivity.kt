@@ -24,6 +24,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.voitenko.dev.galleryspace.ui.designsystem.*
 import com.voitenko.dev.galleryspace.ui.designsystem.components.BODY2Text
+import com.voitenko.dev.galleryspace.ui.designsystem.components.BODY3Text
 import com.voitenko.dev.galleryspace.ui.designsystem.components.H1Text
 import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.neumorph
 import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.rotator
@@ -53,7 +54,7 @@ fun Greeting() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(white)
+            .background(crystal)
             .padding(top = 40.dp)
             .padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
@@ -67,7 +68,7 @@ fun Greeting() {
                     radius = 16.dp,
                     pressed = true,
                     shadow1 = gray3,
-                    shadow2 = gray,
+                    shadow2 = white,
                 ), contentAlignment = Alignment.Center
         ) {
             val width = maxWidth.value / 1.5
@@ -96,6 +97,12 @@ fun Greeting() {
                         .clip(RoundedCornerShape(16.dp))
                 )
             }
+            BODY3Text(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(end = 16.dp, bottom = 8.dp),
+                text = "by Max"
+            )
         }
 
         H1Text(text = "Van Gogh")
