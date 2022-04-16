@@ -1,0 +1,31 @@
+[versions]
+android-gradle-vers = "7.3.0-alpha07"
+kotlin-vers = "1.6.10"
+
+coroutines-vers = "1.6.0"
+datetime-vers = "0.3.0"
+lifecycle-runtime-vers = "2.5.0-alpha04"
+compose-vers = "1.2.0-alpha05"
+compose-activity-vers = "1.5.0-alpha03"
+compose-navigation-vers = "2.4.1"
+coil-vers = "2.0.0-rc03"
+
+[libraries]
+kotlinx-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-vers" }
+kotlinx-kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin-vers" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime-vers" }
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-vers" }
+kotlinx-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-vers" }
+
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-vers" }
+compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-vers" }
+compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-vers" }
+compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity-vers" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "compose-navigation-vers" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose-vers" }
+
+coil-core = { module = "io.coil-kt:coil-compose", version.ref = "coil-vers" }
+
+[plugins]
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-vers" }
+android-app = { id = "com.android.application", version.ref = "android-gradle-vers" }

@@ -13,4 +13,10 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Gallery Space"
-include ':app'
+include(":app")
+
+enableFeaturePreview("VERSION_CATALOGS")
+@Suppress("UnstableApiUsage")
+dependencyResolutionManagement {
+    versionCatalogs { create("libs") { from(files("gradle/wrapper/libs.versions.toml")) } }
+}
