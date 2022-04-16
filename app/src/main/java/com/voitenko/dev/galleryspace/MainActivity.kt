@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,13 +16,14 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter
+import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import coil.size.Size.Companion.ORIGINAL
 import com.voitenko.dev.galleryspace.ui.designsystem.*
 import com.voitenko.dev.galleryspace.ui.designsystem.components.BODY2Text
 import com.voitenko.dev.galleryspace.ui.designsystem.components.BODY3Text
@@ -51,6 +53,15 @@ class MainActivity : ComponentActivity() {
 @ExperimentalAnimationApi
 @Composable
 fun Greeting() {
+
+    val painter = rememberAsyncImagePainter(
+        model = ImageRequest.Builder(LocalContext.current)
+            .data("https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/Q3MPgXlouXWPujS8AxihDXlwqbw=/1660x934/smart/filters:no_upscale()/cloudfront-us-east-1.images.arcpublishing.com/dmn/BR2GB24AWVFYXA5EDFM4YPSWQ4.jpg")
+//            .data("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTY5VRkGXGr6oUsXdApP-UdtVeBikwHjCl6Q&usqp=CAU")
+            .size(ORIGINAL)
+            .build()
+    )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -71,32 +82,42 @@ fun Greeting() {
                     shadow2 = white,
                 ), contentAlignment = Alignment.Center
         ) {
-            val width = maxWidth.value / 1.5
 
-            Box(
-                modifier = Modifier
-                    .size(width.dp)
-                    .rotator()
-                    .neumorph(
-                        radius = 16.dp,
-                        pressed = false,
-                        shadow1 = gray3,
-                        shadow2 = gray3,
-                        elevation = 6.dp
-                    )
-                    .background(Color.White, RoundedCornerShape(16.dp)),
-            ) {
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data("https://zimamagazine.com/wp-content/uploads/2019/05/zvezdnaya-noch-nad-ronoi-600x400.jpg")
-                        .crossfade(true).build(),
-                    contentDescription = "",
-                    contentScale = ContentScale.Crop,
+
+            (painter.state as? AsyncImagePainter.State.Success)?.result?.drawable?.let {
+
+                val imageHeight = it.intrinsicHeight.toFloat()
+                val imageWidth = it.intrinsicWidth.toFloat()
+                val percentK = 1.5
+                val height = if (imageHeight > imageWidth) maxHeight.value / percentK
+                else maxHeight.value / (imageWidth / imageHeight) / percentK
+                val width = if (imageHeight < imageWidth) maxWidth.value / percentK
+                else maxWidth.value / (imageHeight / imageWidth) / percentK
+
+                Box(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(16.dp))
-                )
+                        .size(width = width.dp, height = height.dp)
+                        .rotator()
+                        .neumorph(
+                            radius = 16.dp,
+                            pressed = false,
+                            shadow1 = gray3,
+                            shadow2 = gray3,
+                            elevation = 6.dp
+                        )
+                        .background(Color.White, RoundedCornerShape(16.dp)),
+                ) {
+
+                    Image(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(16.dp)),
+                        painter = painter,
+                        contentDescription = ""
+                    )
+                }
             }
+
             BODY3Text(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
