@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.voitenko.dev.galleryspace.ui.designsystem.*
+import com.voitenko.dev.galleryspace.ui.designsystem.components.BODY2Text
+import com.voitenko.dev.galleryspace.ui.designsystem.components.H1Text
 import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.neumorph
 import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.rotator
 
@@ -35,8 +37,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             GallerySpaceTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
                     Greeting()
                 }
@@ -87,8 +88,7 @@ fun Greeting() {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
                         .data("https://zimamagazine.com/wp-content/uploads/2019/05/zvezdnaya-noch-nad-ronoi-600x400.jpg")
-                        .crossfade(true)
-                        .build(),
+                        .crossfade(true).build(),
                     contentDescription = "",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -97,6 +97,10 @@ fun Greeting() {
                 )
             }
         }
+
+        H1Text(text = "Van Gogh")
+
+        BODY2Text(text = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.")
     }
 }
 
