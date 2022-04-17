@@ -8,6 +8,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -15,7 +16,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
@@ -56,10 +56,9 @@ fun Greeting() {
 
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .data("https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/Q3MPgXlouXWPujS8AxihDXlwqbw=/1660x934/smart/filters:no_upscale()/cloudfront-us-east-1.images.arcpublishing.com/dmn/BR2GB24AWVFYXA5EDFM4YPSWQ4.jpg")
-//            .data("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTY5VRkGXGr6oUsXdApP-UdtVeBikwHjCl6Q&usqp=CAU")
-            .size(ORIGINAL)
-            .build()
+//            .data("https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/Q3MPgXlouXWPujS8AxihDXlwqbw=/1660x934/smart/filters:no_upscale()/cloudfront-us-east-1.images.arcpublishing.com/dmn/BR2GB24AWVFYXA5EDFM4YPSWQ4.jpg")
+            .data("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTY5VRkGXGr6oUsXdApP-UdtVeBikwHjCl6Q&usqp=CAU")
+            .size(ORIGINAL).build()
     )
 
     Column(
@@ -94,24 +93,19 @@ fun Greeting() {
                 val width = if (imageHeight < imageWidth) maxWidth.value / percentK
                 else maxWidth.value / (imageHeight / imageWidth) / percentK
 
-                Box(
+                Card(
                     modifier = Modifier
                         .size(width = width.dp, height = height.dp)
-                        .rotator()
-                        .neumorph(
-                            radius = 16.dp,
-                            pressed = false,
-                            shadow1 = gray3,
-                            shadow2 = gray3,
-                            elevation = 6.dp
-                        )
-                        .background(Color.White, RoundedCornerShape(16.dp)),
+                        .rotator(),
+                    backgroundColor = white,
+                    shape = RoundedCornerShape(4.dp),
+                    elevation = 0.dp
                 ) {
 
                     Image(
                         modifier = Modifier
                             .fillMaxSize()
-                            .clip(RoundedCornerShape(16.dp)),
+                            .clip(RoundedCornerShape(4.dp)),
                         painter = painter,
                         contentDescription = ""
                     )

@@ -7,6 +7,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.sp
 import com.voitenko.dev.galleryspace.R
@@ -34,13 +35,13 @@ fun GallerySpaceTypography() = AppTypography(
         color = Color.Black
     ), BODY1 = TextStyle(
         fontSize = 24.sp,
-        fontFamily = TheSeasons,
+        fontFamily = PtSans,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal,
         color = Color.Black
     ), BODY2 = TextStyle(
         fontSize = 18.sp,
-        fontFamily = TheSeasons,
+        fontFamily = PtSans,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal,
         color = Color.Black
@@ -49,16 +50,17 @@ fun GallerySpaceTypography() = AppTypography(
         fontFamily = TheSeasons,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Italic,
-        color = Color.Black
+        color = Color.Black,
+        textDecoration = TextDecoration.combine(listOf(TextDecoration.Underline))
     ), TextStyle(
         fontSize = 18.sp,
-        fontFamily = TheSeasons,
+        fontFamily = PtSans,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Italic,
         color = Color.Black
     ), BUTTON2 = TextStyle(
         fontSize = 18.sp,
-        fontFamily = TheSeasons,
+        fontFamily = PtSans,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Italic,
         color = Color.Black
@@ -83,4 +85,10 @@ private val TheSeasons = FontFamily(
     Font(R.font.the_seasons_light, FontWeight.Light, FontStyle.Normal),
     Font(R.font.the_seasons_light_italic, FontWeight.Light, FontStyle.Italic),
     Font(R.font.the_seasons_regular, FontWeight.Normal, FontStyle.Normal)
+)
+private val PtSans = FontFamily(
+    Font(R.font.pt_sans_bold, FontWeight.Bold, FontStyle.Normal),
+    Font(R.font.pt_sans_bold_italic, FontWeight.Bold, FontStyle.Italic),
+    Font(R.font.pt_sans_italic, FontWeight.Normal, FontStyle.Italic),
+    Font(R.font.pt_sans_regular, FontWeight.Normal, FontStyle.Normal),
 )
