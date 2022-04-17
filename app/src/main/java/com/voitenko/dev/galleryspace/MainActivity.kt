@@ -28,7 +28,7 @@ import com.voitenko.dev.galleryspace.ui.designsystem.components.BODY2Text
 import com.voitenko.dev.galleryspace.ui.designsystem.components.BODY3Text
 import com.voitenko.dev.galleryspace.ui.designsystem.components.H1Text
 import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.neumorph
-import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.parallelepiped
+import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.rolling
 
 @ExperimentalComposeUiApi
 @ExperimentalUnitApi
@@ -55,8 +55,8 @@ fun Greeting() {
 
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-//            .data("https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/Q3MPgXlouXWPujS8AxihDXlwqbw=/1660x934/smart/filters:no_upscale()/cloudfront-us-east-1.images.arcpublishing.com/dmn/BR2GB24AWVFYXA5EDFM4YPSWQ4.jpg")
-            .data("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTY5VRkGXGr6oUsXdApP-UdtVeBikwHjCl6Q&usqp=CAU")
+            .data("https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/Q3MPgXlouXWPujS8AxihDXlwqbw=/1660x934/smart/filters:no_upscale()/cloudfront-us-east-1.images.arcpublishing.com/dmn/BR2GB24AWVFYXA5EDFM4YPSWQ4.jpg")
+//            .data("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTY5VRkGXGr6oUsXdApP-UdtVeBikwHjCl6Q&usqp=CAU")
             .size(ORIGINAL).build()
     )
 
@@ -94,7 +94,7 @@ fun Greeting() {
 
                 Image(
                     modifier = Modifier
-                        .parallelepiped()
+                        .rolling()
                         .size(width = width.dp, height = height.dp)
                         .clip(RoundedCornerShape(0.dp)),
                     painter = painter,
