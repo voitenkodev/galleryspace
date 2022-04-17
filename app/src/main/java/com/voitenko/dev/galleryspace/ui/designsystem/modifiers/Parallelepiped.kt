@@ -10,8 +10,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -19,7 +24,10 @@ import androidx.compose.ui.unit.dp
 
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
-fun Modifier.rotator(): Modifier = composed {
+fun Modifier.parallelepiped(): Modifier = composed {
+
+    val fillColor = Color(0xFF4D2300)
+    val strokeColor = Color(0xFF421F02)
 
     var angle by remember { mutableStateOf(Pair(0f, 0f)) }
     var start by remember { mutableStateOf(Pair(-1f, -1f)) }
@@ -62,7 +70,70 @@ fun Modifier.rotator(): Modifier = composed {
             rotationY = animateFloatAsState(-angle.first).value,
             rotationX = animateFloatAsState(angle.second).value,
             cameraDistance = 16.dp.value
-        ))
+        )
+        .drawWithContent {
+            drawContent()
+
+            fun Path.draw3d() {
+                drawPath(
+                    path = this, color = fillColor, style = Fill
+                )
+                drawPath(
+                    path = this, color = strokeColor, style = Stroke(width = 2F)
+                )
+            }
+
+            val k = 1F
+            val angleFirst = angle.first * k
+            val angleSecond = angle.second * k
+            val constWidth = this.size.width
+            val constHeight = this.size.height
+
+            // TOP
+            if (angle.second < 0f) Path()
+                .apply {
+                    this.moveTo(0f, 0f)
+                    this.lineTo(x = angleFirst, y = angleSecond)
+                    this.lineTo(x = constWidth + angleFirst, y = angleSecond)
+                    this.lineTo(x = constWidth, y = 0f)
+                    this.lineTo(x = 0f, y = 0f)
+                }
+                .draw3d()
+
+            // BOTTOM
+            if (angle.second > 0f) Path()
+                .apply {
+                    this.moveTo(0f, constHeight)
+                    this.lineTo(x = angleFirst, y = constHeight + angleSecond)
+                    this.lineTo(x = constWidth + angleFirst, y = constHeight + angleSecond)
+                    this.lineTo(x = constWidth, y = constHeight)
+                    this.lineTo(x = 0f, y = constHeight)
+                }
+                .draw3d()
+
+            // LEFT
+            if (angle.first < 0f) Path()
+                .apply {
+                    this.moveTo(0f, 0f)
+                    this.lineTo(x = angleFirst, y = angleSecond)
+                    this.lineTo(x = angleFirst, y = constHeight + angleSecond)
+                    this.lineTo(x = 0f, y = constHeight)
+                    this.lineTo(x = 0f, y = 0f)
+                }
+                .draw3d()
+
+            // RIGHT
+            if (angle.first > 0f) Path()
+                .apply {
+                    this.moveTo(constWidth, 0f)
+                    this.lineTo(x = constWidth + angleFirst, y = angleSecond)
+                    this.lineTo(x = constWidth + angleFirst, y = constHeight + angleSecond)
+                    this.lineTo(x = constWidth, y = constHeight)
+                    this.lineTo(x = constWidth, y = 0f)
+                }
+                .draw3d()
+
+        })
 }
 
 private fun getRotationAngles(

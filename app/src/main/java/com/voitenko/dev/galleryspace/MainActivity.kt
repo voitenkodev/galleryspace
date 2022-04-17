@@ -8,7 +8,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -29,7 +28,7 @@ import com.voitenko.dev.galleryspace.ui.designsystem.components.BODY2Text
 import com.voitenko.dev.galleryspace.ui.designsystem.components.BODY3Text
 import com.voitenko.dev.galleryspace.ui.designsystem.components.H1Text
 import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.neumorph
-import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.rotator
+import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.parallelepiped
 
 @ExperimentalComposeUiApi
 @ExperimentalUnitApi
@@ -93,23 +92,14 @@ fun Greeting() {
                 val width = if (imageHeight < imageWidth) maxWidth.value / percentK
                 else maxWidth.value / (imageHeight / imageWidth) / percentK
 
-                Card(
+                Image(
                     modifier = Modifier
+                        .parallelepiped()
                         .size(width = width.dp, height = height.dp)
-                        .rotator(),
-                    backgroundColor = white,
-                    shape = RoundedCornerShape(4.dp),
-                    elevation = 0.dp
-                ) {
-
-                    Image(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .clip(RoundedCornerShape(4.dp)),
-                        painter = painter,
-                        contentDescription = ""
-                    )
-                }
+                        .clip(RoundedCornerShape(0.dp)),
+                    painter = painter,
+                    contentDescription = ""
+                )
             }
 
             BODY3Text(
