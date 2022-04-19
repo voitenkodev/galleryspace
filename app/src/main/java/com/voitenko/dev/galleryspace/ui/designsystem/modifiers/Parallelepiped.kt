@@ -8,7 +8,6 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
-import com.voitenko.dev.galleryspace.ui.designsystem.crystal
 
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
@@ -31,70 +30,71 @@ fun Modifier.parallelepiped(
         val contentWidth = size.width
         val contentHeight = size.height
 
-        val coef = 0.2f
-
-        val coefSize = 1f
+        val coefProportion = 0.5f
+        val coefSize = 0.5f
+        val _angleFirst = angleFirst * coefSize
+        val _angleSecond = angleSecond * coefSize
 
         val rightPerspectiveOut =
-            if (angleFirst < 0) kotlin.math.abs(angleFirst * coef) else 0f
+            if (_angleFirst < 0) kotlin.math.abs(_angleFirst * coefProportion) else 0f
         val leftPerspectiveOut =
-            if (angleFirst > 0) kotlin.math.abs(angleFirst * coef) else 0f
+            if (_angleFirst > 0) kotlin.math.abs(_angleFirst * coefProportion) else 0f
         val topPerspectiveOut =
-            if (angleSecond < 0) kotlin.math.abs(angleSecond * coef) else 0f
+            if (_angleSecond < 0) kotlin.math.abs(_angleSecond * coefProportion) else 0f
         val bottomPerspectiveOut =
-            if (angleSecond > 0) kotlin.math.abs(angleSecond * coef) else 0f
+            if (_angleSecond > 0) kotlin.math.abs(_angleSecond * coefProportion) else 0f
 
         // TOP
-        if (angleSecond < 0f) {
+        if (_angleSecond < 0f) {
             Path().apply {
-                val leftHeight = (angleSecond + leftPerspectiveOut) * coefSize
-                val rightHeight = (angleSecond + rightPerspectiveOut) * coefSize
+                val leftHeight = (_angleSecond + leftPerspectiveOut)
+                val rightHeight = (_angleSecond + rightPerspectiveOut)
 
                 moveTo(x = 0f, y = 0f)
-                lineTo(x = angleFirst, y = leftHeight)
-                lineTo(x = contentWidth + angleFirst, y = rightHeight)
+                lineTo(x = _angleFirst, y = leftHeight)
+                lineTo(x = contentWidth + _angleFirst, y = rightHeight)
                 lineTo(x = contentWidth, y = 0f)
                 lineTo(x = 0f, y = 0f)
             }.draw3d(color.copy(alpha = 0.6f))
         }
 
         // BOTTOM
-        if (angleSecond > 0f) {
+        if (_angleSecond > 0f) {
             Path().apply {
-                val leftHeight = (contentHeight + angleSecond - leftPerspectiveOut) * coefSize
-                val rightHeight = (contentHeight + angleSecond - rightPerspectiveOut) * coefSize
+                val leftHeight = (contentHeight + _angleSecond - leftPerspectiveOut)
+                val rightHeight = (contentHeight + _angleSecond - rightPerspectiveOut)
 
                 moveTo(0f, contentHeight)
-                lineTo(x = angleFirst, y = leftHeight)
-                lineTo(x = contentWidth + angleFirst, y = rightHeight)
+                lineTo(x = _angleFirst, y = leftHeight)
+                lineTo(x = contentWidth + _angleFirst, y = rightHeight)
                 lineTo(x = contentWidth, y = contentHeight)
                 lineTo(x = 0f, y = contentHeight)
             }.draw3d(color.copy(alpha = 0.6f))
         }
 
         // LEFT
-        if (angleFirst < 0f) {
+        if (_angleFirst < 0f) {
             Path().apply {
-                val topWidth = (angleFirst + bottomPerspectiveOut) * coefSize
-                val bottomWidth = (angleFirst + topPerspectiveOut) * coefSize
+                val topWidth = (_angleFirst + bottomPerspectiveOut)
+                val bottomWidth = (_angleFirst + topPerspectiveOut)
 
                 moveTo(0f, 0f)
-                lineTo(x = topWidth, y = angleSecond)
-                lineTo(x = bottomWidth, y = contentHeight + angleSecond)
+                lineTo(x = topWidth, y = _angleSecond)
+                lineTo(x = bottomWidth, y = contentHeight + _angleSecond)
                 lineTo(x = 0f, y = contentHeight)
                 lineTo(x = 0f, y = 0f)
             }.draw3d(color)
         }
 
         // RIGHT
-        if (angleFirst > 0f) {
+        if (_angleFirst > 0f) {
             Path().apply {
-                val topWidth = (contentWidth + angleFirst - bottomPerspectiveOut) * coefSize
-                val bottomWidth = (contentWidth + angleFirst - topPerspectiveOut) * coefSize
+                val topWidth = (contentWidth + _angleFirst - bottomPerspectiveOut)
+                val bottomWidth = (contentWidth + _angleFirst - topPerspectiveOut)
 
                 moveTo(contentWidth, 0f)
-                lineTo(x = topWidth, y = angleSecond)
-                lineTo(x = bottomWidth, y = contentHeight + angleSecond)
+                lineTo(x = topWidth, y = _angleSecond)
+                lineTo(x = bottomWidth, y = contentHeight + _angleSecond)
                 lineTo(x = contentWidth, y = contentHeight)
                 lineTo(x = contentWidth, y = 0f)
             }.draw3d(color)
