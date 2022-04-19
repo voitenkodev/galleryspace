@@ -1,8 +1,11 @@
 package com.voitenko.dev.galleryspace.ui.designsystem.modifiers
 
+import android.util.Log
 import android.view.MotionEvent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,13 +20,19 @@ import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.dp
 
+@ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
-fun Modifier.rolling(): Modifier = composed {
+fun Modifier.rolling(
+    initialX: Float = 12f,
+    initialY: Float = -12f
+): Modifier = composed {
 
-    var angle by remember { mutableStateOf(Pair(0f, 0f)) }
+    var angle by remember { mutableStateOf(Pair(initialX, initialY)) }
     var start by remember { mutableStateOf(Pair(-1f, -1f)) }
     var viewSize by remember { mutableStateOf(Size.Zero) }
+
+    Log.d("rolling", "size = $viewSize")
 
     this.then(Modifier
         .onGloballyPositioned { coordinates ->
@@ -61,9 +70,16 @@ fun Modifier.rolling(): Modifier = composed {
             transformOrigin = TransformOrigin(0.5f, 0.5f),
             rotationY = animateFloatAsState(-angle.first).value,
             rotationX = animateFloatAsState(angle.second).value,
-            cameraDistance = 16.dp.value
+            cameraDistance = 12.dp.value
         )
-        .parallelepiped(angleX = angle.first, angleY = angle.second))
+        .parallelepiped(
+            angleX = angle.first,
+            angleY = angle.second,
+        )
+        .combinedClickable(
+            onDoubleClick = { angle =Pair(0f, 0f) },
+            onClick = {}
+        ))
 }
 
 private fun getRotationAngles(
@@ -82,4 +98,4 @@ private fun getDistances(p1: Pair<Float, Float>, p2: Pair<Float, Float>): Pair<F
     )
 }
 
-private const val maxAngle = 20f
+private const val maxAngle = 30f

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -30,6 +31,7 @@ import com.voitenko.dev.galleryspace.ui.designsystem.components.H1Text
 import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.neumorph
 import com.voitenko.dev.galleryspace.ui.designsystem.modifiers.rolling
 
+@ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @ExperimentalUnitApi
 @ExperimentalAnimationApi
@@ -48,6 +50,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @Composable
@@ -55,8 +58,8 @@ fun Greeting() {
 
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .data("https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/Q3MPgXlouXWPujS8AxihDXlwqbw=/1660x934/smart/filters:no_upscale()/cloudfront-us-east-1.images.arcpublishing.com/dmn/BR2GB24AWVFYXA5EDFM4YPSWQ4.jpg")
-//            .data("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTY5VRkGXGr6oUsXdApP-UdtVeBikwHjCl6Q&usqp=CAU")
+//            .data("https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/Q3MPgXlouXWPujS8AxihDXlwqbw=/1660x934/smart/filters:no_upscale()/cloudfront-us-east-1.images.arcpublishing.com/dmn/BR2GB24AWVFYXA5EDFM4YPSWQ4.jpg")
+            .data("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTY5VRkGXGr6oUsXdApP-UdtVeBikwHjCl6Q&usqp=CAU")
             .size(ORIGINAL).build()
     )
 
@@ -80,7 +83,6 @@ fun Greeting() {
                     shadow2 = white,
                 ), contentAlignment = Alignment.Center
         ) {
-
 
             (painter.state as? AsyncImagePainter.State.Success)?.result?.drawable?.let {
 
@@ -116,13 +118,12 @@ fun Greeting() {
     }
 }
 
+@ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @ExperimentalUnitApi
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    GallerySpaceTheme {
-        Greeting()
-    }
+    GallerySpaceTheme { Greeting() }
 }
