@@ -1,4 +1,4 @@
-package com.voitenko.dev.galleryspace.designsystem.components
+package com.voitenko.dev.galleryspace.designsystem
 
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
