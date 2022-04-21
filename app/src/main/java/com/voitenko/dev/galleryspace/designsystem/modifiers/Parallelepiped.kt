@@ -1,4 +1,4 @@
-package com.voitenko.dev.galleryspace.ui.designsystem.modifiers
+package com.voitenko.dev.galleryspace.designsystem.modifiers
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.ExperimentalComposeUiApi

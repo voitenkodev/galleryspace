@@ -1,11 +1,9 @@
-package com.voitenko.dev.galleryspace.ui.designsystem.modifiers
+package com.voitenko.dev.galleryspace.designsystem.modifiers
 
-import android.util.Log
 import android.view.MotionEvent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,22 +22,15 @@ import androidx.compose.ui.unit.dp
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 fun Modifier.rolling(
-    initialX: Float = 12f,
-    initialY: Float = -12f
+    initialX: Float = 12f, initialY: Float = -12f, maxAngle: Float = 35f
 ): Modifier = composed {
-
     var angle by remember { mutableStateOf(Pair(initialX, initialY)) }
     var start by remember { mutableStateOf(Pair(-1f, -1f)) }
     var viewSize by remember { mutableStateOf(Size.Zero) }
 
-    Log.d("rolling", "size = $viewSize")
-
     this.then(Modifier
         .onGloballyPositioned { coordinates ->
-            viewSize = Size(
-                width = coordinates.size.width.toFloat(),
-                height = coordinates.size.height.toFloat()
-            )
+            viewSize = Size(coordinates.size.width.toFloat(), coordinates.size.height.toFloat())
         }
         .pointerInteropFilter { m ->
             when (m.action) {
@@ -52,9 +43,13 @@ fun Modifier.rolling(
                 MotionEvent.ACTION_MOVE -> {
                     if (viewSize != Size.Zero) {
                         val end = Pair(m.rawX, m.rawY)
-                        val newAngle = getRotationAngles(start, end, viewSize)
-                        var x: Float = angle.first + newAngle.first
-                        var y: Float = angle.second + newAngle.second
+                        val acceleration = 3
+                        val distances = Pair(start.first - end.first, start.second - end.second)
+                        val rotationX = (distances.first / viewSize.width) * maxAngle * acceleration
+                        val rotationY =
+                            (distances.second / viewSize.height) * maxAngle * acceleration
+                        var x: Float = angle.first + rotationX
+                        var y: Float = angle.second + rotationY
                         if (x > maxAngle) x = maxAngle
                         else if (x < -maxAngle) x = -maxAngle
                         if (y > maxAngle) y = maxAngle
@@ -76,26 +71,5 @@ fun Modifier.rolling(
             angleX = angle.first,
             angleY = angle.second,
         )
-        .combinedClickable(
-            onDoubleClick = { angle =Pair(0f, 0f) },
-            onClick = {}
-        ))
-}
-
-private fun getRotationAngles(
-    start: Pair<Float, Float>, end: Pair<Float, Float>, size: Size
-): Pair<Float, Float> {
-    val acceleration = 3
-    val distances = getDistances(end, start)
-    val rotationX = (distances.first / size.width) * maxAngle * acceleration
-    val rotationY = (distances.second / size.height) * maxAngle * acceleration
-    return Pair(rotationX, rotationY)
-}
-
-private fun getDistances(p1: Pair<Float, Float>, p2: Pair<Float, Float>): Pair<Float, Float> {
-    return Pair(
-        p2.first - p1.first, p2.second - p1.second
     )
 }
-
-private const val maxAngle = 30f

@@ -1,4 +1,4 @@
-package com.voitenko.dev.galleryspace.ui.designsystem.components
+package com.voitenko.dev.galleryspace.designsystem.components
 
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.ProvideTextStyle
@@ -11,8 +11,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
-import com.voitenko.dev.galleryspace.ui.designsystem.GallerySpaceComponent
-import com.voitenko.dev.galleryspace.ui.designsystem.GallerySpaceTheme
+import com.voitenko.dev.galleryspace.designsystem.GallerySpaceComponent
+import com.voitenko.dev.galleryspace.designsystem.GallerySpaceTheme
 
 @Composable
 fun H1Text(

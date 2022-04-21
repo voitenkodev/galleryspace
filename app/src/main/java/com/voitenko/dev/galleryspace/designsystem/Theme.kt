@@ -1,4 +1,4 @@
-package com.voitenko.dev.galleryspace.ui.designsystem
+package com.voitenko.dev.galleryspace.designsystem
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable

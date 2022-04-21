@@ -1,4 +1,4 @@
-package com.voitenko.dev.galleryspace.ui.designsystem.modifiers
+package com.voitenko.dev.galleryspace.designsystem.modifiers
 
 import android.graphics.BlurMaskFilter
 import androidx.compose.ui.Modifier
@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-fun Modifier.neumorph(
+fun Modifier.neu(
     radius: Dp = 0.dp,
     pressed: Boolean = false,
     shadow1: Color = Color.Gray,
@@ -23,20 +23,17 @@ fun Modifier.neumorph(
 ) = this.then(object : DrawModifier {
 
     override fun ContentDrawScope.draw() {
-        val lightSource = LightSource.LEFT_TOP
-        if (pressed) drawForeground(lightSource, radius, shadow1, shadow2, elevation)
-        else drawBackground(lightSource, radius, shadow1, shadow2, elevation)
+        if (pressed) drawForeground(radius, shadow1, shadow2, elevation)
+        else drawBackground(radius, shadow1, shadow2, elevation)
         drawContent()
     }
 
     fun ContentDrawScope.drawBackground(
-        lightSource: LightSource,
         radius: Dp,
         shadow1: Color,
         shadow2: Color,
         elevation: Dp
     ) = drawIntoCanvas { canvas ->
-
         val elevationPx = elevation.toPx()
         val blurRadius = elevationPx * .95f
         val displacement = elevationPx * .6f
@@ -60,18 +57,8 @@ fun Modifier.neumorph(
                 it.maskFilter = BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.NORMAL)
             }
         }
-        val backgroundDarkOffset = when (lightSource.opposite()) {
-            LightSource.LEFT_TOP -> Offset(-displacement, -displacement)
-            LightSource.RIGHT_TOP -> Offset(displacement, -displacement)
-            LightSource.LEFT_BOTTOM -> Offset(-displacement, displacement)
-            LightSource.RIGHT_BOTTOM -> Offset(displacement, displacement)
-        }
-        val backgroundLightOffset = when (lightSource) {
-            LightSource.LEFT_TOP -> Offset(-displacement, -displacement)
-            LightSource.RIGHT_TOP -> Offset(displacement, -displacement)
-            LightSource.LEFT_BOTTOM -> Offset(-displacement, displacement)
-            LightSource.RIGHT_BOTTOM -> Offset(displacement, displacement)
-        }
+        val backgroundDarkOffset = Offset(displacement, displacement)
+        val backgroundLightOffset = Offset(-displacement, -displacement)
 
         canvas.save()
         canvas.translate(backgroundLightOffset.x, backgroundLightOffset.y)
@@ -88,7 +75,7 @@ fun Modifier.neumorph(
     }
 
     private fun ContentDrawScope.drawForeground(
-        lightSource: LightSource, radius: Dp, shadow1: Color, shadow2: Color, elevation: Dp
+        radius: Dp, shadow1: Color, shadow2: Color, elevation: Dp
     ) = drawIntoCanvas { canvas ->
         val elevationPx = elevation.toPx()
         val dark = shadow1.toArgb()
@@ -115,18 +102,8 @@ fun Modifier.neumorph(
                 nativePaint.maskFilter = BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.NORMAL)
             }
         }
-        val backgroundDarkOffset = when (lightSource) {
-            LightSource.LEFT_TOP -> Offset(strokeWidth, strokeWidth)
-            LightSource.RIGHT_TOP -> Offset(-strokeWidth, strokeWidth)
-            LightSource.LEFT_BOTTOM -> Offset(strokeWidth, -strokeWidth)
-            LightSource.RIGHT_BOTTOM -> Offset(-strokeWidth, -strokeWidth)
-        }
-        val backgroundLightOffset = when (lightSource.opposite()) {
-            LightSource.LEFT_TOP -> Offset(strokeWidth, strokeWidth)
-            LightSource.RIGHT_TOP -> Offset(-strokeWidth, strokeWidth)
-            LightSource.LEFT_BOTTOM -> Offset(strokeWidth, -strokeWidth)
-            LightSource.RIGHT_BOTTOM -> Offset(-strokeWidth, -strokeWidth)
-        }
+        val backgroundDarkOffset = Offset(strokeWidth, strokeWidth)
+        val backgroundLightOffset = Offset(-strokeWidth, -strokeWidth)
 
         canvas.save()
 
@@ -173,16 +150,3 @@ fun Modifier.neumorph(
         canvas.restore()
     }
 })
-
-private enum class LightSource {
-    LEFT_TOP, RIGHT_TOP, LEFT_BOTTOM, RIGHT_BOTTOM;
-
-    fun opposite(): LightSource {
-        return when (this) {
-            LEFT_TOP -> RIGHT_BOTTOM
-            RIGHT_TOP -> LEFT_BOTTOM
-            LEFT_BOTTOM -> RIGHT_TOP
-            RIGHT_BOTTOM -> LEFT_TOP
-        }
-    }
-}
