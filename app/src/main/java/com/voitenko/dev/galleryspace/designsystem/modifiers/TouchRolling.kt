@@ -2,12 +2,9 @@ package com.voitenko.dev.galleryspace.designsystem.modifiers
 
 import android.view.MotionEvent
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -70,6 +67,5 @@ fun Modifier.rolling(
         .parallelepiped(
             angleX = angle.first,
             angleY = angle.second,
-        )
-    )
+        ))
 }

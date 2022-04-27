@@ -17,8 +17,8 @@ fun RatingBar(
     modifier: Modifier = Modifier,
     rating: Float = 0.0f,
     maxRating: Int = 5,
-    colorEnabled: Color = Color.Yellow,
-    colorDisabled: Color = Color.LightGray
+    colorEnabled: Color,
+    colorDisabled: Color
 ) = Row(modifier = modifier.wrapContentSize()) {
     (1..maxRating).forEach { step ->
         val stepRating = when {

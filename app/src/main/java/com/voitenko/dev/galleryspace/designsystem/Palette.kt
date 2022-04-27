@@ -37,11 +37,12 @@ data class GallerySpaceColor(
     val hint: Color,
 )
 
-val white = Color(0xFFFFFFFF)
-val gray2 = Color(0xFFEEEEEE)
-val gray3 = Color(0xFF888888)
-
 val crystal = Color(0xFFD0DBE5)
+
+val white = Color(0xFFFFFFFF)
+val gray1 = Color(0xFFEEEEEE)
+val gray2 = Color(0xFFD5D5D5)
+val gray3 = Color(0xFF888888)
 
 val lightPurple = Color(0xFF5622E5)
 val darkPurple = Color(0xFF4119AF)
