@@ -16,7 +16,7 @@ import com.voitenko.dev.galleryspace.R
 @Composable
 fun GallerySpaceTypography() = AppTypography(
     H1 = TextStyle(
-        fontSize = 34.sp,
+        fontSize = 36.sp,
         fontFamily = TheSeasons,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
@@ -40,7 +40,7 @@ fun GallerySpaceTypography() = AppTypography(
         fontStyle = FontStyle.Normal,
         color = Color.Black
     ), BODY2 = TextStyle(
-        fontSize = 18.sp,
+        fontSize = 16.sp,
         fontFamily = PtSans,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal,

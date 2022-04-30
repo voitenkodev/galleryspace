@@ -1,21 +1,27 @@
 package com.voitenko.dev.galleryspace.presentpicture
 
-import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -23,120 +29,167 @@ import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
-import com.voitenko.dev.galleryspace.designsystem.*
-import com.voitenko.dev.galleryspace.designsystem.components.*
+import com.voitenko.dev.galleryspace.designsystem.components.AdaptiveImage
+import com.voitenko.dev.galleryspace.designsystem.components.BODY2Text
+import com.voitenko.dev.galleryspace.designsystem.components.BODY3Text
+import com.voitenko.dev.galleryspace.designsystem.components.H1Text
+import com.voitenko.dev.galleryspace.designsystem.crystal
+import com.voitenko.dev.galleryspace.designsystem.crystalDark
+import com.voitenko.dev.galleryspace.designsystem.gray3
 import com.voitenko.dev.galleryspace.designsystem.modifiers.neu
 import com.voitenko.dev.galleryspace.designsystem.modifiers.shimmer
-import kotlin.math.min
+import com.voitenko.dev.galleryspace.designsystem.white
 
+@OptIn(ExperimentalMaterialApi::class)
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @Composable
 fun PresentPictureScreen() {
-    val painter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current)
-            .data("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/%D0%A7%D1%91%D1%80%D0%BD%D1%8B%D0%B9_%D1%81%D1%83%D0%BF%D1%80%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%B0%D1%82._1915._%D0%93%D0%A2%D0%93.png/350px-%D0%A7%D1%91%D1%80%D0%BD%D1%8B%D0%B9_%D1%81%D1%83%D0%BF%D1%80%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%B0%D1%82._1915._%D0%93%D0%A2%D0%93.png".toUri())
-            .size(Size.ORIGINAL).build()
-    )
-    val title = "Van Gogh"
+
+    val title = "La persistencia de la memoria"
+    val sign = "by Salvador Dalí"
     val description =
         "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam."
-    val sign = "by Maximilian II"
+    val image =
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Apotheosis.jpg/1200px-Apotheosis.jpg"
 
-    val scrollState = rememberLazyListState()
-
-    val scrollOffset = min(1f, (scrollState.firstVisibleItemScrollOffset / 50f))
-
-    Log.d("mLog", "scrollOffset = ${scrollOffset}")
-    Log.d("mLog", "scrollState.firstVisibleItemIndex = ${scrollState.firstVisibleItemIndex}")
-    Log.d(
-        "mLog",
-        "scrollState.firstVisibleItemScrollOffset = ${scrollState.firstVisibleItemScrollOffset}"
+    val scaffoldState = rememberBottomSheetScaffoldState(
+        bottomSheetState = rememberBottomSheetState(BottomSheetValue.Collapsed)
     )
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(crystal)
-            .padding(top = 24.dp),
+
+    val fraction = animateFloatAsState(
+        targetValue = if (scaffoldState.bottomSheetState.targetValue == BottomSheetValue.Collapsed) 1.0f else 0.5f,
+        animationSpec = spring(stiffness = Spring.StiffnessLow)
+    )
+    val color = animateColorAsState(
+        targetValue = if (scaffoldState.bottomSheetState.targetValue == BottomSheetValue.Collapsed) crystal else crystalDark,
+        animationSpec = spring(stiffness = Spring.StiffnessLow)
+    )
+
+    val elevation = animateDpAsState(
+        targetValue = if (scaffoldState.bottomSheetState.targetValue == BottomSheetValue.Collapsed) 0.dp else 2.dp,
+        animationSpec = spring(stiffness = Spring.StiffnessLow)
+    )
+
+    BoxWithConstraints(
+        modifier = Modifier.fillMaxSize()
     ) {
-        BoxWithConstraints(
+        val spacer = 24.dp
+        val collapsedBottomSheetHeight = this.maxHeight - this.maxWidth - spacer
+        val expandedBottomSheetHeight = this.maxHeight - (this.maxWidth / 2) - spacer
+
+        BottomSheetScaffold(scaffoldState = scaffoldState,
+            backgroundColor = color.value,
+            sheetBackgroundColor = crystal,
+            sheetPeekHeight = collapsedBottomSheetHeight,
+            sheetElevation = elevation.value,
+            sheetContent = {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(expandedBottomSheetHeight)
+                ) {
+                    Column {
+                        H1Text(
+                            modifier = Modifier.padding(bottom = 6.dp),
+                            text = title,
+                        )
+
+                        BODY2Text(
+                            modifier = Modifier.padding(vertical = 16.dp),
+                            text = description,
+                        )
+                    }
+                }
+            },
+            content = {
+                ArtPresentation(
+                    modifier = Modifier.padding(16.dp),
+                    url = image,
+                    sign = sign,
+                    fraction = fraction.value
+                )
+            })
+    }
+}
+
+@ExperimentalFoundationApi
+@ExperimentalComposeUiApi
+@ExperimentalAnimationApi
+@Composable
+private fun ArtPresentation(
+    modifier: Modifier = Modifier,
+    url: String,
+    sign: String,
+    fraction: Float = 1f,
+) {
+
+    val image = rememberAsyncImagePainter(
+        model = ImageRequest.Builder(LocalContext.current).data(url.toUri()).size(Size.ORIGINAL)
+            .build()
+    )
+
+    BoxWithConstraints(
+        modifier = modifier
+            .fillMaxWidth(fraction = fraction)
+            .padding(top = 8.dp, bottom = 8.dp)
+            .aspectRatio(1f), contentAlignment = Alignment.Center
+    ) {
+
+        Image(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .aspectRatio(1f)
-                .shadow(elevation = scrollOffset.dp)
-                .padding(bottom = 24.dp)
-                .padding(horizontal = 24.dp)
-                .background(color = gray1, shape = RoundedCornerShape(16.dp))
+                .clip(RoundedCornerShape(16.dp))
+                .alpha(0.4f),
+            painter = image,
+            contentDescription = "",
+            contentScale = ContentScale.Crop
+        )
+
+        (image.state as? AsyncImagePainter.State.Loading)?.let {
+            Spacer(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(3.dp)
+                    .shimmer()
+                    .background(color = crystal, shape = RoundedCornerShape(16.dp))
+            )
+        }
+
+        Spacer(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = Color.Transparent, shape = RoundedCornerShape(16.dp))
                 .neu(
                     radius = 16.dp,
                     pressed = true,
                     shadow1 = gray3,
                     shadow2 = white,
-                ), contentAlignment = Alignment.Center
-        ) {
-
-            (painter.state as? AsyncImagePainter.State.Loading)?.let {
-                Spacer(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(3.dp)
-                        .shimmer()
-                        .background(color = crystal, shape = RoundedCornerShape(16.dp))
                 )
-            }
+        )
 
-            (painter.state as? AsyncImagePainter.State.Success)?.result?.drawable?.let {
-                AdaptiveImage(
-                    drawable = it,
-                    paddingCoefficient = 1.5
-                )
-            }
-
-            (painter.state as? AsyncImagePainter.State.Error)?.let {
-                Icon(
-                    imageVector = Icons.Filled.LocationOn,
-                    modifier = Modifier.size(56.dp),
-                    contentDescription = "",
-                    tint = gray3
-                )
-            }
-
-            BODY3Text(
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(end = 16.dp, bottom = 8.dp), text = sign
+        (image.state as? AsyncImagePainter.State.Success)?.result?.drawable?.let {
+            AdaptiveImage(
+                drawable = it, paddingCoefficient = 1.2
             )
         }
-        LazyColumn(
-            modifier = Modifier.padding(horizontal = 24.dp),
-            state = scrollState,
-            verticalArrangement = Arrangement.spacedBy(24.dp)
-        ) {
-            item {
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-
-                    H1Text(text = title)
-
-                    RatingBar(
-                        modifier = Modifier.height(20.dp),
-                        rating = 2.7f,
-                        colorEnabled = darkYellow,
-                        colorDisabled = gray3
-                    )
-                }
-
-                BODY2Text(text = description)
-            }
+        (image.state as? AsyncImagePainter.State.Error)?.let {
+            Icon(
+                imageVector = Icons.Filled.LocationOn,
+                modifier = Modifier.size(56.dp),
+                contentDescription = "",
+                tint = gray3
+            )
         }
+
+        BODY3Text(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(end = 16.dp, bottom = 8.dp),
+            text = sign
+        )
     }
-}
-
-@Composable
-private fun Header() {
-
 }

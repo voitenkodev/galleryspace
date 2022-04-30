@@ -32,6 +32,7 @@ dependencies {
     implementation(libs.compose.activity)
     implementation(libs.compose.navigation)
     implementation(libs.compose.material)
+//    implementation(libs.compose.accompansit.system)
 
 //    implementation("io.github.voitenkodev:mvi-core:1.0.6")
 }

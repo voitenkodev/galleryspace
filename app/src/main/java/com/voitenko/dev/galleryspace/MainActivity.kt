@@ -5,17 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
-import com.voitenko.dev.galleryspace.designsystem.*
-import com.voitenko.dev.galleryspace.designsystem.modifiers.neu
-import com.voitenko.dev.galleryspace.designsystem.modifiers.rolling
+import com.voitenko.dev.galleryspace.designsystem.GallerySpaceTheme
+import com.voitenko.dev.galleryspace.designsystem.crystal
 import com.voitenko.dev.galleryspace.presentpicture.PresentPictureScreen
 
 @ExperimentalFoundationApi
@@ -26,24 +22,25 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+//            val systemUiController = rememberSystemUiController()
+//            val useDarkIcons = MaterialTheme.colors.isLight
+//
+//            SideEffect {
+//                systemUiController.setSystemBarsColor(
+//                    color = Color.Black,
+//                    darkIcons = useDarkIcons
+//                )
+//                // setStatusBarsColor()
+//                // setNavigationBarColor()
+//            }
+
             GallerySpaceTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxSize(), color = crystal
                 ) {
                     PresentPictureScreen()
                 }
             }
         }
     }
-}
-
-
-
-@ExperimentalFoundationApi
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
-@ExperimentalUnitApi
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
 }
