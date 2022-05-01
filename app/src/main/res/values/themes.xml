@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.GallerySpace" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">#FFB3C1CE</item>
-        <item name="android:navigationBarColor">#FFB3C1CE</item>
+        <item name="android:statusBarColor">#FF151515</item>
+        <item name="android:navigationBarColor">#FF151515</item>
     </style>
 </resources>

@@ -37,6 +37,11 @@ data class GallerySpaceColor(
     val hint: Color,
 )
 
+val primary = Color(0xFF000000)
+val secondary = Color(0xFF151515)
+val third = Color(0xFFBFA077)
+val fourth = Color(0xFF707070)
+
 val crystal = Color(0xFFD0DBE5)
 val crystalDark = Color(0xFFB3C1CE)
 

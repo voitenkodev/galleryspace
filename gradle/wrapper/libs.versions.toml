@@ -25,8 +25,7 @@ compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.r
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity-vers" }
 compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "compose-navigation-vers" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose-vers" }
-compose-accompansit = { module = "androidx.compose.material:material", version.ref = "compose-vers" }
-compose-accompansit-system = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist-system" }
+compose-accompansit = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist-system" }
 
 coil-core = { module = "io.coil-kt:coil-compose", version.ref = "coil-vers" }
 
