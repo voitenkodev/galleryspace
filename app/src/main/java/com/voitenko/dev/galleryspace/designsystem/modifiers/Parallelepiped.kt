@@ -29,8 +29,8 @@ fun Modifier.parallelepiped(
         val contentWidth = size.width
         val contentHeight = size.height
 
-        val coefProportion = 0.5f
-        val coefSize = 0.5f
+        val coefProportion = 0.35f
+        val coefSize = 0.4f
         val _angleFirst = angleFirst * coefSize
         val _angleSecond = angleSecond * coefSize
 

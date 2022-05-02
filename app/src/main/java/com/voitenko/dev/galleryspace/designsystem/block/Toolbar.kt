@@ -11,9 +11,9 @@ import androidx.compose.ui.unit.dp
 import com.voitenko.dev.galleryspace.designsystem.third
 
 @Composable
-fun Toolbar() {
+fun Toolbar(modifier: Modifier = Modifier) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(44.dp)
             .padding(horizontal = 8.dp),

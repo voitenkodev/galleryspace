@@ -31,38 +31,6 @@ fun H1Text(
 )
 
 @Composable
-fun H2Text(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color? = null,
-    textAlign: TextAlign? = null,
-    maxLines: Int = Int.MAX_VALUE,
-) = Text(
-    modifier = modifier,
-    text = text,
-    textStyle = GallerySpaceComponent.typography.H2,
-    maxLines = maxLines,
-    color = color,
-    textAlign = textAlign,
-)
-
-@Composable
-fun H3Text(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color? = null,
-    textAlign: TextAlign? = null,
-    maxLines: Int = Int.MAX_VALUE,
-) = Text(
-    modifier = modifier,
-    text = text,
-    textStyle = GallerySpaceComponent.typography.H2,
-    maxLines = maxLines,
-    color = color,
-    textAlign = textAlign,
-)
-
-@Composable
 fun BODY1Text(
     modifier: Modifier = Modifier,
     text: String,
@@ -95,7 +63,7 @@ fun BODY2Text(
 )
 
 @Composable
-fun BODY3Text(
+fun CAPTIONText(
     modifier: Modifier = Modifier,
     text: String,
     color: Color? = null,
@@ -104,39 +72,7 @@ fun BODY3Text(
 ) = Text(
     modifier = modifier,
     text = text,
-    textStyle = GallerySpaceComponent.typography.BODY3,
-    maxLines = maxLines,
-    color = color,
-    textAlign = textAlign,
-)
-
-@Composable
-fun BUTTON1Text(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color? = null,
-    textAlign: TextAlign? = null,
-    maxLines: Int = Int.MAX_VALUE,
-) = Text(
-    modifier = modifier,
-    text = text,
-    textStyle = GallerySpaceComponent.typography.BUTTON1,
-    maxLines = maxLines,
-    color = color,
-    textAlign = textAlign,
-)
-
-@Composable
-fun BUTTON2Text(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color? = null,
-    textAlign: TextAlign? = null,
-    maxLines: Int = Int.MAX_VALUE,
-) = Text(
-    modifier = modifier,
-    text = text,
-    textStyle = GallerySpaceComponent.typography.BUTTON1,
+    textStyle = GallerySpaceComponent.typography.CAPTION,
     maxLines = maxLines,
     color = color,
     textAlign = textAlign,
@@ -148,24 +84,6 @@ fun BUTTON2Text(
 private fun H1_Preview() {
     GallerySpaceTheme {
         H1Text(text = "Text Helper")
-    }
-}
-
-@ExperimentalUnitApi
-@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, name = "H2")
-@Composable
-private fun H2_Preview() {
-    GallerySpaceTheme {
-        H2Text(text = "Text Helper")
-    }
-}
-
-@ExperimentalUnitApi
-@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, name = "H3")
-@Composable
-private fun H3_Preview() {
-    GallerySpaceTheme {
-        H3Text(text = "Text Helper")
     }
 }
 
@@ -188,29 +106,11 @@ private fun BODY2_Preview() {
 }
 
 @ExperimentalUnitApi
-@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, name = "BODY3")
-@Composable
-private fun BODY3_Preview() {
-    GallerySpaceTheme {
-        BODY3Text(text = "Text Helper")
-    }
-}
-
-@ExperimentalUnitApi
-@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, name = "BUTTON1")
-@Composable
-private fun BUTTON1_Preview() {
-    GallerySpaceTheme {
-        BUTTON1Text(text = "Text Helper")
-    }
-}
-
-@ExperimentalUnitApi
 @Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, name = "BUTTON2")
 @Composable
-private fun BUTTON2_Preview() {
+private fun CAPTION2_Preview() {
     GallerySpaceTheme {
-        BUTTON2Text(text = "Text Helper")
+        CAPTIONText(text = "Text Helper")
     }
 }
 
@@ -238,7 +138,6 @@ private fun Text(
         maxLines = maxLines,
         onTextLayout = { tl: TextLayoutResult -> })
 }
-
 
 @Composable
 private fun Inner(style: TextStyle, text: String) = ProvideTextStyle(value = style) {

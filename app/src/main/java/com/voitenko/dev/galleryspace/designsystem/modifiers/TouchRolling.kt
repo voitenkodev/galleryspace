@@ -22,8 +22,8 @@ import androidx.compose.ui.unit.dp
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 fun Modifier.rolling(
-    initialX: Float = 12f,
-    initialY: Float = -12f,
+    initialX: Float = 0f,
+    initialY: Float = 0f,
     maxAngle: Float = 35f
 ): Modifier = composed {
     var angle by remember { mutableStateOf(Pair(initialX, initialY)) }

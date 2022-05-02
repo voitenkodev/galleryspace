@@ -64,7 +64,7 @@ fun Exhibit(
         (image.state as? AsyncImagePainter.State.Success)?.result?.drawable?.let {
             AdaptiveImage(
                 drawable = it,
-                paddingCoefficient = 1.5
+                paddingCoefficient = 1.3
             )
         }
 

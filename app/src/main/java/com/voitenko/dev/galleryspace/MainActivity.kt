@@ -10,8 +10,8 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.ExperimentalUnitApi
+import androidx.core.view.WindowCompat
 import com.voitenko.dev.galleryspace.designsystem.GallerySpaceTheme
-import com.voitenko.dev.galleryspace.designsystem.crystal
 import com.voitenko.dev.galleryspace.presentpicture.PresentPictureScreen
 
 @ExperimentalFoundationApi
@@ -19,25 +19,16 @@ import com.voitenko.dev.galleryspace.presentpicture.PresentPictureScreen
 @ExperimentalUnitApi
 @ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-//            val systemUiController = rememberSystemUiController()
-//            val useDarkIcons = MaterialTheme.colors.isLight
-//
-//            SideEffect {
-//                systemUiController.setSystemBarsColor(
-//                    color = Color.Black,
-//                    darkIcons = useDarkIcons
-//                )
-//                // setStatusBarsColor()
-//                // setNavigationBarColor()
-//            }
 
+        // This app draws behind the system bars, so we want to handle fitting system windows
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        setContent {
             GallerySpaceTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(), color = crystal
-                ) {
+                Surface(modifier = Modifier.fillMaxSize()) {
                     PresentPictureScreen()
                 }
             }

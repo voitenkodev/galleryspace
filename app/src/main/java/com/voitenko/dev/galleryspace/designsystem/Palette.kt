@@ -41,11 +41,13 @@ val primary = Color(0xFF000000)
 val secondary = Color(0xFF151515)
 val third = Color(0xFFBFA077)
 val fourth = Color(0xFF707070)
+val sixteen = Color(0xFF228D57)
+val white = Color(0xFFFFFFFF)
+
 
 val crystal = Color(0xFFD0DBE5)
 val crystalDark = Color(0xFFB3C1CE)
 
-val white = Color(0xFFFFFFFF)
 val gray1 = Color(0xFFEEEEEE)
 val gray2 = Color(0xFFD5D5D5)
 val gray3 = Color(0xFF525252)

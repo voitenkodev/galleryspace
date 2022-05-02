@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.GallerySpace" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">#FF151515</item>
-        <item name="android:navigationBarColor">#FF151515</item>
+    <style name="Theme.GallerySpace" parent="android:Theme.Material.NoActionBar">
+        <item name="android:colorPrimary">#ff00ff</item>
+        <item name="android:colorAccent">#ff00ff</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 </resources>
