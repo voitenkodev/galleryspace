@@ -11,16 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import coil.compose.AsyncImagePainter
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
-import coil.size.Size
 import com.voitenko.dev.galleryspace.designsystem.components.AdaptiveImage
 import com.voitenko.dev.galleryspace.designsystem.crystal
 import com.voitenko.dev.galleryspace.designsystem.gray3
+import com.voitenko.dev.galleryspace.designsystem.modifiers.rolling
 import com.voitenko.dev.galleryspace.designsystem.modifiers.shimmer
 
 
@@ -48,6 +44,7 @@ fun Exhibit(
 
         (image.state as? AsyncImagePainter.State.Success)?.result?.drawable?.let {
             AdaptiveImage(
+                modifier = Modifier.rolling(),
                 drawable = it,
                 paddingCoefficient = 1.3
             )

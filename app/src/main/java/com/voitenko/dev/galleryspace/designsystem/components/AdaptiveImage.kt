@@ -19,6 +19,7 @@ import com.voitenko.dev.galleryspace.designsystem.modifiers.rolling
 @ExperimentalFoundationApi
 @Composable
 fun BoxWithConstraintsScope.AdaptiveImage(
+    modifier: Modifier = Modifier,
     drawable: Drawable, paddingCoefficient: Double = 1.5
 ) {
     val imageHeight = drawable.intrinsicHeight.toFloat()
@@ -30,9 +31,7 @@ fun BoxWithConstraintsScope.AdaptiveImage(
 
     Image(
         bitmap = drawable.toBitmap().asImageBitmap(),
-        modifier = Modifier
-            .rolling()
-            .size(width = width.dp, height = height.dp),
+        modifier = modifier.size(width = width.dp, height = height.dp),
         contentDescription = ""
     )
 }
