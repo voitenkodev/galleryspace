@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.core.view.WindowCompat
 import com.voitenko.dev.galleryspace.designsystem.GallerySpaceTheme
-import com.voitenko.dev.galleryspace.presentpicture.PresentPictureScreen
+import com.voitenko.dev.galleryspace.presentation.PresentPictureScreen
 
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi

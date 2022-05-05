@@ -1,7 +1,6 @@
-package com.voitenko.dev.galleryspace.presentpicture
+package com.voitenko.dev.galleryspace.presentation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -31,7 +30,6 @@ import com.voitenko.dev.galleryspace.designsystem.block.Toolbar
 import com.voitenko.dev.galleryspace.designsystem.components.BODY1Text
 import com.voitenko.dev.galleryspace.designsystem.components.H1Text
 import com.voitenko.dev.galleryspace.designsystem.primary
-import com.voitenko.dev.galleryspace.designsystem.secondary
 
 @OptIn(ExperimentalMaterialApi::class)
 @ExperimentalFoundationApi
