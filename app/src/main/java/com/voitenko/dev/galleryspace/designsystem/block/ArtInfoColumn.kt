@@ -39,17 +39,17 @@ fun ArtInfoColumn(modifier: Modifier = Modifier, visibility: Boolean) {
                 )
             }
 
-            Field(caption = "Created at:") {
-                BODY2Text(
-                    text = "16 May, 22",
-                    color = white,
-                )
-            }
-
             Field(caption = "Price:") {
                 BODY2Text(
                     text = "200$",
                     color = sixteen,
+                )
+            }
+
+            Field(caption = "Created at:") {
+                BODY2Text(
+                    text = "16 May, 22",
+                    color = white,
                 )
             }
 
@@ -63,13 +63,13 @@ fun ArtInfoColumn(modifier: Modifier = Modifier, visibility: Boolean) {
 }
 
 @Composable
-private fun Field(caption: String, value: @Composable () -> Unit) {
+private fun Field(modifier: Modifier = Modifier, caption: String, value: @Composable () -> Unit) {
     Row(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         CAPTIONText(text = caption)
         value.invoke()
     }
-
 }

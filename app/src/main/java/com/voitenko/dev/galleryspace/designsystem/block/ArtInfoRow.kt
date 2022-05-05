@@ -30,7 +30,10 @@ fun ArtInfoRow(modifier: Modifier = Modifier, visibility: Boolean) {
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Field(caption = "Rating:") {
+            Field(
+                modifier = Modifier.weight(1f),
+                caption = "Rating"
+            ) {
                 RatingBar(
                     modifier = Modifier.height(height = 16.dp),
                     rating = 3.2f,
@@ -39,23 +42,23 @@ fun ArtInfoRow(modifier: Modifier = Modifier, visibility: Boolean) {
                 )
             }
 
-            Field(caption = "Created at:") {
+            Field(
+                modifier = Modifier.weight(1f),
+                caption = "Price"
+            ) {
                 BODY2Text(
-                    text = "16 May, 22",
-                    color = white,
-                )
-            }
-
-            Field(caption = "Price:") {
-                BODY2Text(
-                    text = "200$",
+                    text = "1999$",
                     color = sixteen,
                 )
             }
 
-            Field(caption = "Sign:") {
+            Field(
+                modifier = Modifier.weight(1f),
+                caption = "Created at"
+            ) {
                 BODY2Text(
-                    text = "by Maxim"
+                    text = "16 May, 22",
+                    color = white,
                 )
             }
         }
@@ -63,15 +66,18 @@ fun ArtInfoRow(modifier: Modifier = Modifier, visibility: Boolean) {
 }
 
 @Composable
-private fun Field(caption: String, value: @Composable () -> Unit) {
+private fun Field(modifier: Modifier = Modifier, caption: String, value: @Composable () -> Unit) {
     Column(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
 
         value.invoke()
 
-        CAPTIONText(text = caption)
+        CAPTIONText(
+            text = caption
+        )
     }
 
 }

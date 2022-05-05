@@ -30,21 +30,6 @@ import com.voitenko.dev.galleryspace.designsystem.modifiers.shimmer
 @Composable
 fun Exhibit(
     modifier: Modifier = Modifier,
-    url: String
-) {
-    val image = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(url.toUri()).size(Size.ORIGINAL)
-            .build()
-    )
-    Exhibit(modifier, image)
-}
-
-@ExperimentalFoundationApi
-@ExperimentalComposeUiApi
-@ExperimentalAnimationApi
-@Composable
-fun Exhibit(
-    modifier: Modifier = Modifier,
     image: AsyncImagePainter
 ) {
     BoxWithConstraints(
