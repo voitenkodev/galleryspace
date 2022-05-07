@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.core.view.WindowCompat
 import com.voitenko.dev.galleryspace.designsystem.GallerySpaceTheme
+import com.voitenko.dev.galleryspace.gallery.GalleryScreen
 import com.voitenko.dev.galleryspace.presentation.PresentPictureScreen
 
 @ExperimentalFoundationApi
@@ -29,6 +30,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             GallerySpaceTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
+//                    GalleryScreen()
                     PresentPictureScreen()
                 }
             }
