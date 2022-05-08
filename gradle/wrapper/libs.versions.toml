@@ -32,3 +32,4 @@ coil-core = { module = "io.coil-kt:coil-compose", version.ref = "coil-vers" }
 [plugins]
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-vers" }
 android-app = { id = "com.android.application", version.ref = "android-gradle-vers" }
+android-library = { id = "com.android.library", version.ref = "android-gradle-vers" }

@@ -13,7 +13,11 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Gallery Space"
-include(":app")
+
+include(
+    ":app",
+    ":designsystem"
+)
 
 enableFeaturePreview("VERSION_CATALOGS")
 @Suppress("UnstableApiUsage")
