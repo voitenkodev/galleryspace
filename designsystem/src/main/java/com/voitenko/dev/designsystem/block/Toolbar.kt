@@ -8,7 +8,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.voitenko.dev.designsystem.third
+import com.voitenko.dev.designsystem.common.third
 
 @Composable
 fun Toolbar(modifier: Modifier = Modifier) {

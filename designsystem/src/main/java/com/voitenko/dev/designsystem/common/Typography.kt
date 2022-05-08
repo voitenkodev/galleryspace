@@ -1,4 +1,4 @@
-package com.voitenko.dev.designsystem
+package com.voitenko.dev.designsystem.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
@@ -8,6 +8,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.sp
+import com.voitenko.dev.designsystem.R
 
 @ExperimentalUnitApi
 @Composable

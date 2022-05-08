@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.voitenko.dev.designsystem.GallerySpaceComponent
-import com.voitenko.dev.designsystem.white
+import com.voitenko.dev.designsystem.common.white
 
 @Composable
 fun ButtonPrimary(

@@ -1,4 +1,4 @@
-package com.voitenko.dev.designsystem
+package com.voitenko.dev.designsystem.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color

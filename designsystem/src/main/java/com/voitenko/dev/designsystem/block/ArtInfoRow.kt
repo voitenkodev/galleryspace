@@ -9,13 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.voitenko.dev.designsystem.common.fourth
+import com.voitenko.dev.designsystem.common.sixteen
+import com.voitenko.dev.designsystem.common.third
+import com.voitenko.dev.designsystem.common.white
 import com.voitenko.dev.designsystem.components.BODY2Text
 import com.voitenko.dev.designsystem.components.CAPTIONText
 import com.voitenko.dev.designsystem.components.RatingBar
-import com.voitenko.dev.designsystem.fourth
-import com.voitenko.dev.designsystem.sixteen
-import com.voitenko.dev.designsystem.third
-import com.voitenko.dev.designsystem.white
 
 @Composable
 fun ArtInfoRow(modifier: Modifier = Modifier, visibility: Boolean) {

@@ -11,8 +11,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
-import com.voitenko.dev.galleryspace.designsystem.GallerySpaceComponent
-import com.voitenko.dev.galleryspace.designsystem.GallerySpaceTheme
+import com.voitenko.dev.designsystem.GallerySpaceComponent
+import com.voitenko.dev.designsystem.common.GallerySpaceTheme
 
 @Composable
 fun H1Text(
