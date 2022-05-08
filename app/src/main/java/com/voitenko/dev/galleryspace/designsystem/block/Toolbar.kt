@@ -24,7 +24,7 @@ fun Toolbar(modifier: Modifier = Modifier) {
                 .size(44.dp)
                 .padding(8.dp),
             imageVector = Icons.Default.ArrowBack,
-            contentDescription = "",
+            contentDescription = null,
             tint = third
         )
 
@@ -33,7 +33,7 @@ fun Toolbar(modifier: Modifier = Modifier) {
                 .size(44.dp)
                 .padding(8.dp),
             imageVector = Icons.Default.Menu,
-            contentDescription = "",
+            contentDescription = null,
             tint = third
         )
     }

@@ -115,7 +115,7 @@ private fun CAPTION2_Preview() {
 }
 
 @Composable
-private fun Text(
+internal fun Text(
     modifier: Modifier = Modifier,
     text: String,
     color: Color? = null,
