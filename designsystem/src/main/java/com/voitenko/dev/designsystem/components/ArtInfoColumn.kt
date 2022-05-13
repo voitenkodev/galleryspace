@@ -1,4 +1,4 @@
-package com.voitenko.dev.galleryspace.designsystem.block
+package com.voitenko.dev.designsystem.components
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.Arrangement
@@ -9,13 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.voitenko.dev.galleryspace.designsystem.components.BODY2Text
-import com.voitenko.dev.galleryspace.designsystem.components.CAPTIONText
-import com.voitenko.dev.galleryspace.designsystem.components.RatingBar
-import com.voitenko.dev.galleryspace.designsystem.fourth
-import com.voitenko.dev.galleryspace.designsystem.sixteen
-import com.voitenko.dev.galleryspace.designsystem.third
-import com.voitenko.dev.galleryspace.designsystem.white
+import com.voitenko.dev.designsystem.common.fourth
+import com.voitenko.dev.designsystem.common.sixteen
+import com.voitenko.dev.designsystem.common.third
+import com.voitenko.dev.designsystem.common.white
+import com.voitenko.dev.designsystem.controls.BODY2Text
+import com.voitenko.dev.designsystem.controls.CAPTIONText
+import com.voitenko.dev.designsystem.controls.RatingBar
 
 @Composable
 fun ArtInfoColumn(modifier: Modifier = Modifier, visibility: Boolean) {

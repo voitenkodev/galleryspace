@@ -37,31 +37,31 @@ data class GallerySpaceColor(
     val hint: Color,
 )
 
-val primary = Color(0xFF000000)
-val secondary = Color(0xFF151515)
-val third = Color(0xFFBFA077)
-val fourth = Color(0xFF707070)
-val sixteen = Color(0xFF228D57)
-val white = Color(0xFFFFFFFF)
+internal val primary = Color(0xFF000000)
+internal val secondary = Color(0xFF151515)
+internal val third = Color(0xFFBFA077)
+internal val fourth = Color(0xFF707070)
+internal val sixteen = Color(0xFF228D57)
+internal val white = Color(0xFFFFFFFF)
 
 
-val crystal = Color(0xFFD0DBE5)
-val crystalDark = Color(0xFFB3C1CE)
+internal val crystal = Color(0xFFD0DBE5)
+internal val crystalDark = Color(0xFFB3C1CE)
 
-val gray1 = Color(0xFFEEEEEE)
-val gray2 = Color(0xFFD5D5D5)
-val gray3 = Color(0xFF525252)
+internal val gray1 = Color(0xFFEEEEEE)
+internal val gray2 = Color(0xFFD5D5D5)
+internal val gray3 = Color(0xFF525252)
 
-val lightPurple = Color(0xFF5622E5)
-val darkPurple = Color(0xFF4119AF)
+internal val lightPurple = Color(0xFF5622E5)
+internal val darkPurple = Color(0xFF4119AF)
 
-val darkYellow = Color(0xFFD5BD3F)
-val lightYellow = Color(0xFFFADE4B)
+internal val darkYellow = Color(0xFFD5BD3F)
+internal val lightYellow = Color(0xFFFADE4B)
 
-val lightRed = Color(0xFFEA3469)
-val darkRed = Color(0xFFC52B58)
+internal val lightRed = Color(0xFFEA3469)
+internal val darkRed = Color(0xFFC52B58)
 
-val cyan1shadow1 = Color(0xFF81E4C6)
-val cyan1 = Color(0xFF28D8A3)
-val cyan2 = Color(0xFF00BEB2)
-val cyan2shadow2 = Color(0xFF06948B)
+internal val cyan1shadow1 = Color(0xFF81E4C6)
+internal val cyan1 = Color(0xFF28D8A3)
+internal val cyan2 = Color(0xFF00BEB2)
+internal val cyan2shadow2 = Color(0xFF06948B)

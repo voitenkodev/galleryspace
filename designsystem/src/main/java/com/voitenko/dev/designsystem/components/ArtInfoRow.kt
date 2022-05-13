@@ -1,4 +1,4 @@
-package com.voitenko.dev.designsystem.block
+package com.voitenko.dev.designsystem.components
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.Arrangement
@@ -13,24 +13,27 @@ import com.voitenko.dev.designsystem.common.fourth
 import com.voitenko.dev.designsystem.common.sixteen
 import com.voitenko.dev.designsystem.common.third
 import com.voitenko.dev.designsystem.common.white
-import com.voitenko.dev.designsystem.components.BODY2Text
-import com.voitenko.dev.designsystem.components.CAPTIONText
-import com.voitenko.dev.designsystem.components.RatingBar
+import com.voitenko.dev.designsystem.controls.BODY2Text
+import com.voitenko.dev.designsystem.controls.CAPTIONText
+import com.voitenko.dev.designsystem.controls.RatingBar
 
 @Composable
-fun ArtInfoColumn(modifier: Modifier = Modifier, visibility: Boolean) {
+fun ArtInfoRow(modifier: Modifier = Modifier, visibility: Boolean) {
     AnimatedVisibility(
         modifier = modifier,
         visible = visibility,
         enter = fadeIn() + expandHorizontally(expandFrom = Alignment.Start),
         exit = shrinkHorizontally() + fadeOut()
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
-            horizontalAlignment = Alignment.Start
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Field(caption = "Rating:") {
+            Field(
+                modifier = Modifier.weight(1f),
+                caption = "Rating"
+            ) {
                 RatingBar(
                     modifier = Modifier.height(height = 16.dp),
                     rating = 3.2f,
@@ -39,23 +42,23 @@ fun ArtInfoColumn(modifier: Modifier = Modifier, visibility: Boolean) {
                 )
             }
 
-            Field(caption = "Price:") {
+            Field(
+                modifier = Modifier.weight(1f),
+                caption = "Price"
+            ) {
                 BODY2Text(
-                    text = "200$",
+                    text = "1999$",
                     color = sixteen,
                 )
             }
 
-            Field(caption = "Created at:") {
+            Field(
+                modifier = Modifier.weight(1f),
+                caption = "Created at"
+            ) {
                 BODY2Text(
                     text = "16 May, 22",
                     color = white,
-                )
-            }
-
-            Field(caption = "Sign:") {
-                BODY2Text(
-                    text = "by Maxim"
                 )
             }
         }
@@ -64,12 +67,17 @@ fun ArtInfoColumn(modifier: Modifier = Modifier, visibility: Boolean) {
 
 @Composable
 private fun Field(modifier: Modifier = Modifier, caption: String, value: @Composable () -> Unit) {
-    Row(
+    Column(
         modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
-        CAPTIONText(text = caption)
+
         value.invoke()
+
+        CAPTIONText(
+            text = caption
+        )
     }
+
 }

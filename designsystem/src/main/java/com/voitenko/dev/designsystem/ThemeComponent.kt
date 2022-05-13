@@ -16,6 +16,6 @@ object GallerySpaceComponent {
         get() = LocalAppTypography.current
 }
 
-val LocalAppColors = staticCompositionLocalOf<GallerySpaceColor> { error("No colors provided") }
+internal val LocalAppColors = staticCompositionLocalOf<GallerySpaceColor> { error("No colors provided") }
 
-val LocalAppTypography = staticCompositionLocalOf<AppTypography> { error("No font provided") }
+internal val LocalAppTypography = staticCompositionLocalOf<AppTypography> { error("No font provided") }

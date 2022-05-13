@@ -1,4 +1,4 @@
-package com.voitenko.dev.designsystem.components
+package com.voitenko.dev.designsystem.controls
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.padding

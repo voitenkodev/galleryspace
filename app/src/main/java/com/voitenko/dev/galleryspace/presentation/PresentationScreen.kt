@@ -24,14 +24,13 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.voitenko.dev.galleryspace.designsystem.block.ArtInfoColumn
-import com.voitenko.dev.galleryspace.designsystem.block.ArtInfoRow
-import com.voitenko.dev.galleryspace.designsystem.block.Toolbar
-import com.voitenko.dev.galleryspace.designsystem.components.BODY1Text
-import com.voitenko.dev.galleryspace.designsystem.components.ButtonPrimary
-import com.voitenko.dev.galleryspace.designsystem.components.H1Text
-import com.voitenko.dev.galleryspace.designsystem.modifiers.rolling
-import com.voitenko.dev.galleryspace.designsystem.primary
+import com.voitenko.dev.designsystem.components.ArtInfoColumn
+import com.voitenko.dev.designsystem.components.ArtInfoRow
+import com.voitenko.dev.designsystem.components.Toolbar
+import com.voitenko.dev.designsystem.controls.BODY1Text
+import com.voitenko.dev.designsystem.controls.ButtonPrimary
+import com.voitenko.dev.designsystem.controls.H1Text
+import com.voitenko.dev.designsystem.modifiers.rolling
 
 @OptIn(ExperimentalMaterialApi::class)
 @ExperimentalFoundationApi
@@ -73,7 +72,7 @@ fun PresentPictureScreen() {
                 drawContent()
                 drawRect(
                     brush = Brush.verticalGradient(
-                        0f to primary.copy(0.8f), 0.5f to primary.copy(alpha.value)
+                        0f to Color.Black.copy(0.8f), 0.5f to Color.Black.copy(alpha.value)
                     ), Offset.Zero, Size(size.width, size.height)
                 )
             },

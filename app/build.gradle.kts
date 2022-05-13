@@ -20,6 +20,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":designsystem"))
+
     implementation(libs.kotlinx.coroutines)
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.runtime)

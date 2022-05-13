@@ -12,16 +12,23 @@ import com.voitenko.dev.designsystem.R
 
 @ExperimentalUnitApi
 @Composable
-fun GallerySpaceTypography() = AppTypography(
+internal fun GallerySpaceTypography() = AppTypography(
     H1 = TextStyle(
-        fontSize = 36.sp,
-        fontFamily = TheSeasons,
+        fontSize = 40.sp,
+        fontFamily = Grenoble,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
         color = white,
     ),
+    H2 = TextStyle(
+        fontSize = 14.sp,
+        fontFamily = Grenoble,
+        fontWeight = FontWeight.Bold,
+        fontStyle = FontStyle.Normal,
+        color = third,
+    ),
     BODY1 = TextStyle(
-        fontSize = 15.sp,
+        fontSize = 16.sp,
         fontFamily = PtSans,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal,
@@ -52,6 +59,7 @@ fun GallerySpaceTypography() = AppTypography(
 
 data class AppTypography(
     val H1: TextStyle,
+    val H2: TextStyle,
     val BODY1: TextStyle,
     val BODY2: TextStyle,
     val CAPTION: TextStyle,
@@ -71,4 +79,10 @@ private val PtSans = FontFamily(
     Font(R.font.pt_sans_bold_italic, FontWeight.Bold, FontStyle.Italic),
     Font(R.font.pt_sans_italic, FontWeight.Normal, FontStyle.Italic),
     Font(R.font.pt_sans_regular, FontWeight.Normal, FontStyle.Normal),
+)
+private val Grenoble = FontFamily(
+    Font(R.font.grenoble_bold, FontWeight.Bold, FontStyle.Normal),
+    Font(R.font.grenoble_bold_italic, FontWeight.Bold, FontStyle.Italic),
+    Font(R.font.grenoble_italic, FontWeight.Normal, FontStyle.Italic),
+    Font(R.font.grenoble_regular, FontWeight.Normal, FontStyle.Normal),
 )

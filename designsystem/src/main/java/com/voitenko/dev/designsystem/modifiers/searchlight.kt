@@ -32,9 +32,3 @@ fun Modifier.searchlight() = this.then(object : DrawModifier {
         )
     }
 })
-//
-//@Composable
-//fun searchlight() = Modifier.drawWithContent {
-//    drawContent()
-//   )
-//}

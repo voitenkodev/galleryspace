@@ -1,4 +1,4 @@
-package com.voitenko.dev.designsystem.components
+package com.voitenko.dev.designsystem.controls
 
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.ProvideTextStyle
@@ -20,11 +20,29 @@ fun H1Text(
     text: String,
     color: Color? = null,
     textAlign: TextAlign? = null,
+    textSize: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
 ) = Text(
     modifier = modifier,
     text = text,
     textStyle = GallerySpaceComponent.typography.H1,
+    maxLines = maxLines,
+    color = color,
+    textAlign = textAlign,
+)
+
+@Composable
+fun H2Text(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color? = null,
+    textAlign: TextAlign? = null,
+    textSize: TextAlign? = null,
+    maxLines: Int = Int.MAX_VALUE,
+) = Text(
+    modifier = modifier,
+    text = text,
+    textStyle = GallerySpaceComponent.typography.H2,
     maxLines = maxLines,
     color = color,
     textAlign = textAlign,
