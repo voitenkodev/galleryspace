@@ -1,5 +1,5 @@
 [versions]
-android-gradle-vers = "7.3.0-alpha07"
+android-gradle-vers = "7.4.0-alpha02"
 kotlin-vers = "1.6.10"
 
 lifecycle-runtime-vers = "2.5.0-alpha04"
