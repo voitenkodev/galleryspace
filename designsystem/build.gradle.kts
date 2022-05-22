@@ -21,4 +21,5 @@ dependencies {
     implementation(libs.compose.tooling)
     implementation(libs.compose.preview)
     implementation(libs.compose.material)
+    implementation(libs.compose.activity)
 }

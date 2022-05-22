@@ -25,7 +25,7 @@ internal fun GallerySpaceTypography() = AppTypography(
         fontFamily = Grenoble,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
-        color = third,
+        color = white,
     ),
     BODY1 = TextStyle(
         fontSize = 16.sp,
@@ -44,14 +44,14 @@ internal fun GallerySpaceTypography() = AppTypography(
     CAPTION = TextStyle(
         fontSize = 14.sp,
         fontFamily = PtSans,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
         color = fourth,
     ),
-    BUTTON1 = TextStyle(
+    BUTTON = TextStyle(
         fontSize = 18.sp,
         fontFamily = TheSeasons,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
         color = white,
     )
@@ -63,7 +63,7 @@ data class AppTypography(
     val BODY1: TextStyle,
     val BODY2: TextStyle,
     val CAPTION: TextStyle,
-    val BUTTON1: TextStyle,
+    val BUTTON: TextStyle,
 )
 
 private val TheSeasons = FontFamily(

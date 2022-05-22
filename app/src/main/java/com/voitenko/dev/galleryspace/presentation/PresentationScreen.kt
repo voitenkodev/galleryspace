@@ -9,11 +9,15 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
@@ -29,7 +33,9 @@ import com.voitenko.dev.designsystem.components.ArtInfoRow
 import com.voitenko.dev.designsystem.components.Toolbar
 import com.voitenko.dev.designsystem.controls.BODY1Text
 import com.voitenko.dev.designsystem.controls.ButtonPrimary
+import com.voitenko.dev.designsystem.controls.ButtonSecondary
 import com.voitenko.dev.designsystem.controls.H1Text
+import com.voitenko.dev.designsystem.modifiers.accelerate
 import com.voitenko.dev.designsystem.modifiers.rolling
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -44,8 +50,8 @@ fun PresentPictureScreen() {
     val description =
         "Vincent van Gogh (1853 - 1890), Nuenen, March 1884\n" + "\n" + "pencil, pen and ink, watercolour, on paper, 39.5 cm x 54.2 cm\n" + "\n" + "Credits (obliged to state): Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)\n" + "\n" + "Van Gogh loved pollard trees with their gnarled trunks. They feature prominently in many of his paintings and drawings, including this one. In a letter to his brother Theo, he compared a row of pollard trees to a 'procession of orphan men'. What he meant was that nature had a soul of its own.\n" + "\n" + "This work is part of a series of seven pen and ink drawings of Brabant landscapes from 1884. The compositions are compelling. The way he drew it, with a great deal of hatching, shows his individual style. The drawings form a high point of Van Gogh's work in the Netherlands. " + "Vincent van Gogh (1853 - 1890), Nuenen, March 1884\\n\" + \"\\n\" + \"pencil, pen and ink, watercolour, on paper, 39.5 cm x 54.2 cm\\n\" + \"\\n\" + \"Credits (obliged to state): Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)\\n\" + \"\\n\" + \"Van Gogh loved pollard trees with their gnarled trunks. They feature prominently in many of his paintings and drawings, including this one. In a letter to his brother Theo, he compared a row of pollard trees to a 'procession of orphan men'. What he meant was that nature had a soul of its own.\\n\" + \"\\n\" + \"This work is part of a series of seven pen and ink drawings of Brabant landscapes from 1884. The compositions are compelling. The way he drew it, with a great deal of hatching, shows his individual style. The drawings form a high point of Van Gogh's work in the Netherlands."
     val image =
-        "https://veryimportantlot.com/uploads/over/files/%D0%9C%D0%B0%D0%B9%20%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F%2014%20(1.1)%20%D0%90%D0%B9%D0%B2%D0%B0%D0%B7%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9.%20%D0%94%D0%B5%D0%B2%D1%8F%D1%82%D1%8B%D0%B9%20%D0%B2%D0%B0%D0%BB.jpeg"
-
+//        "https://veryimportantlot.com/uploads/over/files/%D0%9C%D0%B0%D0%B9%20%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F%2014%20(1.1)%20%D0%90%D0%B9%D0%B2%D0%B0%D0%B7%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9.%20%D0%94%D0%B5%D0%B2%D1%8F%D1%82%D1%8B%D0%B9%20%D0%B2%D0%B0%D0%BB.jpeg"
+        "https://i.pinimg.com/736x/22/73/62/22736206150a1d0b805ac5744463978c--olives-post-impressionism.jpg"
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(BottomSheetValue.Collapsed)
     )
@@ -75,7 +81,9 @@ fun PresentPictureScreen() {
                         0f to Color.Black.copy(0.8f), 0.5f to Color.Black.copy(alpha.value)
                     ), Offset.Zero, Size(size.width, size.height)
                 )
-            },
+            }
+            .accelerate(100.dp)
+            .scale(1.5f),
         painter = painter,
         contentDescription = null,
         contentScale = ContentScale.Crop
@@ -115,12 +123,22 @@ fun PresentPictureScreen() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
-                            text = "Buy",
+                            text = "Buy - $ 999",
                             onClick = { /*TODO*/ }
                         )
                     }
                     item {
                         BODY1Text(text = description)
+                    }
+                    item {
+                        ButtonSecondary(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                            text = "Add to favorite",
+                            onClick = { /*TODO*/ },
+                            leadIcon = Icons.Default.FavoriteBorder
+                        )
                     }
                 }
             },
