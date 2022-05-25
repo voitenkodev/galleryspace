@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.voitenko.dev.designsystem.GallerySpaceComponent
 import com.voitenko.dev.designsystem.common.white
 import com.voitenko.dev.designsystem.controls.H2Text
 
@@ -28,7 +29,7 @@ fun Toolbar(modifier: Modifier = Modifier) {
                 .padding(8.dp),
             imageVector = Icons.Default.ArrowBack,
             contentDescription = null,
-            tint = white
+            tint = GallerySpaceComponent.colors.primaryInverse
         )
 
         H2Text(
@@ -43,7 +44,7 @@ fun Toolbar(modifier: Modifier = Modifier) {
                 .padding(8.dp),
             imageVector = Icons.Default.Menu,
             contentDescription = null,
-            tint = white
+            tint = GallerySpaceComponent.colors.primaryInverse
         )
     }
 }

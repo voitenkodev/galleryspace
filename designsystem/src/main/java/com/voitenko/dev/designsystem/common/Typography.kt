@@ -18,42 +18,36 @@ internal fun GallerySpaceTypography() = AppTypography(
         fontFamily = Grenoble,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
-        color = white,
     ),
     H2 = TextStyle(
         fontSize = 14.sp,
         fontFamily = Grenoble,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
-        color = white,
     ),
     BODY1 = TextStyle(
         fontSize = 16.sp,
         fontFamily = PtSans,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal,
-        color = white
     ),
     BODY2 = TextStyle(
         fontSize = 16.sp,
         fontFamily = TheSeasons,
         fontWeight = FontWeight.Normal,
-        fontStyle = FontStyle.Normal,
-        color = third,
+        fontStyle = FontStyle.Italic,
     ),
     CAPTION = TextStyle(
         fontSize = 14.sp,
         fontFamily = PtSans,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
-        color = fourth,
     ),
     BUTTON = TextStyle(
         fontSize = 18.sp,
         fontFamily = TheSeasons,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
-        color = white,
     )
 )
 

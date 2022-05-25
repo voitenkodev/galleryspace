@@ -5,44 +5,28 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 fun GallerySpaceLightPalette() = GallerySpaceColor(
-    background = crystal,
-    control = darkPurple,
-    primary = darkPurple,
-    primaryText = darkPurple,
-    secondary = Color.White,
-    secondaryText = Color.Black,
-    errorColor = darkRed,
-    successColor = cyan2,
-    warningColor = darkYellow,
-    buttonText = Color.White,
-    button = darkPurple,
-    hint = Color.Black.copy(alpha = 0.3F)
+    primary = white,
+    primaryInverse = black,
+    primaryControl = black,
+    primaryControlInverse = white,
 )
 
 @Composable
 fun GallerySpaceDarkPalette() = GallerySpaceLightPalette()
 
 data class GallerySpaceColor(
-    val background: Color,
-    val control: Color,
     val primary: Color,
-    val primaryText: Color,
-    val secondaryText: Color,
-    val secondary: Color,
-    val buttonText: Color,
-    val button: Color,
-    val successColor: Color,
-    val warningColor: Color,
-    val errorColor: Color,
-    val hint: Color,
+    val primaryInverse: Color,
+    val primaryControl: Color,
+    val primaryControlInverse: Color,
 )
 
-internal val primary = Color(0xFF000000)
 internal val secondary = Color(0xFF151515)
 internal val third = Color(0xFFBFA077)
 internal val fourth = Color(0xFF707070)
 internal val sixteen = Color(0xFF228D57)
-internal val white = Color(0xFFFFFFFF)
+internal val white = Color(0xFFF1F1F1)
+internal val black = Color(0xFF141414)
 
 
 internal val crystal = Color(0xFFD0DBE5)

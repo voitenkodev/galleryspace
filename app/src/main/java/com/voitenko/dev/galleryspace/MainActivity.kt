@@ -5,18 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Surface
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.ExperimentalUnitApi
-import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.voitenko.dev.designsystem.GallerySpaceComponent
 import com.voitenko.dev.designsystem.common.GallerySpaceTheme
 import com.voitenko.dev.galleryspace.presentation.PresentPictureScreen
 
@@ -34,15 +32,19 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             GallerySpaceTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-//                    Box(modifier = Modifier.fillMaxSize()) {
-//                        Spacer(
-//                            modifier = Modifier
-//                                .accelerate().size(100.dp)
-//                                .background(Color.Magenta)
-//
-//                        )
-//                    }
+
+                val systemUiController = rememberSystemUiController()
+                SideEffect {
+                    systemUiController.setSystemBarsColor(
+                        color = Color.Transparent,
+                        darkIcons = true
+                    )
+                }
+
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    contentColor = GallerySpaceComponent.colors.primary
+                ) {
 //                    GalleryScreen()
                     PresentPictureScreen()
                 }

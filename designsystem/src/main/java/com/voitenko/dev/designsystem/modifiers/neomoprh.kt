@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 fun Modifier.neu(
     radius: Dp = 0.dp,
     pressed: Boolean = false,
-    shadow1: Color = Color.Gray,
-    shadow2: Color = Color.White,
+    shadow1: Color = Color.Black,
+    shadow2: Color = Color.Black,
     elevation: Dp = 4.dp
 ) = this.then(object : DrawModifier {
 

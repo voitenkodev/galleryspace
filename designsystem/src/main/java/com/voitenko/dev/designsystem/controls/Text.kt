@@ -27,7 +27,7 @@ fun H1Text(
     text = text,
     textStyle = GallerySpaceComponent.typography.H1,
     maxLines = maxLines,
-    color = color,
+    color = color ?: GallerySpaceComponent.colors.primaryInverse,
     textAlign = textAlign,
 )
 
@@ -44,7 +44,7 @@ fun H2Text(
     text = text,
     textStyle = GallerySpaceComponent.typography.H2,
     maxLines = maxLines,
-    color = color,
+    color = color ?: GallerySpaceComponent.colors.primaryInverse,
     textAlign = textAlign,
 )
 
@@ -60,7 +60,7 @@ fun BODY1Text(
     text = text,
     textStyle = GallerySpaceComponent.typography.BODY1,
     maxLines = maxLines,
-    color = color,
+    color = color ?: GallerySpaceComponent.colors.primaryInverse,
     textAlign = textAlign,
 )
 
@@ -76,7 +76,7 @@ fun BODY2Text(
     text = text,
     textStyle = GallerySpaceComponent.typography.BODY2,
     maxLines = maxLines,
-    color = color,
+    color = color ?: GallerySpaceComponent.colors.primaryInverse.copy(alpha = 0.6f),
     textAlign = textAlign,
 )
 
@@ -92,7 +92,7 @@ fun CAPTIONText(
     text = text,
     textStyle = GallerySpaceComponent.typography.CAPTION,
     maxLines = maxLines,
-    color = color,
+    color = color ?: GallerySpaceComponent.colors.primaryInverse,
     textAlign = textAlign,
 )
 
