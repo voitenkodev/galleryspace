@@ -41,7 +41,7 @@ fun PresentPictureScreen() {
     val createdAt = "16 May, 22"
     val price = "279$"
     val description =
-        "Vincent van Gogh (1853 - 1890), Nuenen, March 1884 pencil, pen and ink, watercolour, on paper, 39.5 cm x 54.2 cm\n" + "\n" + "Credits (obliged to state): Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)\n" + "\n" + "Van Gogh loved pollard trees with their gnarled trunks. They feature prominently in many of his paintings and drawings, including this one. In a letter to his brother Theo, he compared a row of pollard trees to a 'procession of orphan men'. What he meant was that nature had a soul of its own.\n" + "\n" + "This work is part of a series of seven pen and ink drawings of Brabant landscapes from 1884. The compositions are compelling. The way he drew it, with a great deal of hatching, shows his individual style. The drawings form a high point of Van Gogh's work in the Netherlands. " + "Vincent van Gogh (1853 - 1890), Nuenen, March 1884\\n\" + \"\\n\" + \"pencil, pen and ink, watercolour, on paper, 39.5 cm x 54.2 cm\\n\" + \"\\n\" + \"Credits (obliged to state): Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)\\n\" + \"\\n\" + \"Van Gogh loved pollard trees with their gnarled trunks. They feature prominently in many of his paintings and drawings, including this one. In a letter to his brother Theo, he compared a row of pollard trees to a 'procession of orphan men'. What he meant was that nature had a soul of its own.\\n\" + \"\\n\" + \"This work is part of a series of seven pen and ink drawings of Brabant landscapes from 1884. The compositions are compelling. The way he drew it, with a great deal of hatching, shows his individual style. The drawings form a high point of Van Gogh's work in the Netherlands."
+        "Vincent van Gogh (1853 - 1890), Nuenen, March 1884 pencil, pen and ink, watercolour, on paper, 39.5 cm x 54.2 cm Credits (obliged to state): Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation) The way he drew it, with a great deal of hatching, shows his individual style. The drawings form a high point of Van Gogh's work in the Netherlands."
     val image =
         "https://veryimportantlot.com/uploads/over/files/%D0%9C%D0%B0%D0%B9%20%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F%2014%20(1.1)%20%D0%90%D0%B9%D0%B2%D0%B0%D0%B7%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9.%20%D0%94%D0%B5%D0%B2%D1%8F%D1%82%D1%8B%D0%B9%20%D0%B2%D0%B0%D0%BB.jpeg"
 
@@ -72,9 +72,11 @@ fun PresentPictureScreen() {
             sheetElevation = 0.dp,
             content = {
                 Header(
-                    topPadding = toolbar,
                     url = image,
-                    fraction = fraction.value
+                    fraction = fraction.value,
+                    sign = sign,
+                    price = price,
+                    createdAt = createdAt
                 )
             },
             sheetContent = {
@@ -95,8 +97,8 @@ fun PresentPictureScreen() {
 private fun ColumnScope.SheetContent(
     height: Dp,
     title: String,
-    sign: String,
     description: String,
+    sign: String,
     price: String,
     createdAt: String,
 ) {
@@ -163,23 +165,23 @@ private fun ColumnScope.SheetContent(
         item { Divider() }
 
         item {
+            ButtonPrimary(modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 24.dp), text = "Buy - $ 999", onClick = { /*TODO*/ })
+        }
+
+        item { BODY1Text(text = description) }
+
+        item {
             ButtonSecondary(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp),
+                    .padding(vertical = 24.dp),
                 text = "Add to favorite",
                 onClick = { /*TODO*/ },
                 leadIcon = Icons.Default.FavoriteBorder
             )
         }
-
-        item {
-            ButtonPrimary(modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp), text = "Buy - $ 999", onClick = { /*TODO*/ })
-        }
-
-        item { BODY1Text(text = description) }
     }
 }
 
@@ -188,51 +190,58 @@ private fun ColumnScope.SheetContent(
 @ExperimentalFoundationApi
 @Composable
 fun Header(
-    topPadding: Dp,
-    url: String,
     fraction: Float,
-) {
+    url: String,
+    sign: String,
+    price: String,
+    createdAt: String,
+
+    ) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current).data(url.toUri()).size(coil.size.Size.ORIGINAL).build()
     )
 
-    Box {
+    Column {
+
         Toolbar()
-        BoxWithConstraints(
+
+        Box(
             modifier = Modifier
-                .padding(top = topPadding)
-                .fillMaxWidth(fraction = fraction)
-                .aspectRatio(1f),
-            contentAlignment = Alignment.Center
+                .fillMaxWidth()
         ) {
-            Box(
+            BoxWithConstraints(
                 modifier = Modifier
-                    .padding(34.dp)
-                    .wrapContentSize()
-                    .rolling()
+                    .fillMaxWidth(fraction = fraction)
+                    .aspectRatio(1f), contentAlignment = Alignment.Center
             ) {
-                Image(
-                    modifier = Modifier.wrapContentSize(), painter = painter, contentDescription = null
-                )
-                Spacer(
+                Box(
                     modifier = Modifier
-                        .matchParentSize()
-                        .neu(
-                            pressed = true,
-                            shadow1 = GallerySpaceComponent.colors.primaryInverse,
-                            shadow2 = GallerySpaceComponent.colors.primaryInverse,
-                            elevation = 2.dp
-                        )
-                )
+                        .padding(34.dp)
+                        .wrapContentSize()
+                        .rolling()
+                ) {
+                    Image(
+                        modifier = Modifier.wrapContentSize(), painter = painter, contentDescription = null
+                    )
+                    Spacer(
+                        modifier = Modifier
+                            .matchParentSize()
+                            .neu(
+                                pressed = true,
+                                shadow1 = GallerySpaceComponent.colors.primaryInverse,
+                                shadow2 = GallerySpaceComponent.colors.primaryInverse,
+                                elevation = 2.dp
+                            )
+                    )
+                }
             }
+            ArtInfoColumn(
+                modifier = Modifier
+                    .fillMaxWidth(0.5f)
+                    .aspectRatio(1f)
+                    .align(Alignment.TopEnd),
+                visibility = fraction == 0.5f
+            )
         }
-        ArtInfoColumn(
-            modifier = Modifier
-                .padding(top = topPadding)
-                .fillMaxWidth(0.5f)
-                .aspectRatio(1f)
-                .align(Alignment.TopEnd),
-            visibility = fraction == 0.5f
-        )
     }
 }

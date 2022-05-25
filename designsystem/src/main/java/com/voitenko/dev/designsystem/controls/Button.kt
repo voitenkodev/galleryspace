@@ -26,10 +26,12 @@ fun ButtonPrimary(
     enabled: Boolean = true,
     leadIcon: ImageVector? = null,
 ) {
+    val textColor = color ?: GallerySpaceComponent.colors.primary
+
     Button(
         modifier = modifier,
         text = text,
-        textStyle = GallerySpaceComponent.typography.BUTTON,
+        textStyle = GallerySpaceComponent.typography.BUTTON.copy(color = textColor),
         enabled = enabled,
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(backgroundColor = sixteen),
@@ -48,10 +50,13 @@ fun ButtonSecondary(
     enabled: Boolean = true,
     leadIcon: ImageVector? = null,
 ) {
+
+    val textColor = color ?: GallerySpaceComponent.colors.primaryInverse
+
     Button(
         modifier = modifier,
         text = text,
-        textStyle = GallerySpaceComponent.typography.BUTTON,
+        textStyle = GallerySpaceComponent.typography.BUTTON.copy(color = textColor),
         enabled = enabled,
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),

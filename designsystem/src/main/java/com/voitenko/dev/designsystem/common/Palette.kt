@@ -22,7 +22,7 @@ data class GallerySpaceColor(
 )
 
 internal val secondary = Color(0xFF151515)
-internal val third = Color(0xFFBFA077)
+internal val third = Color(0xFFF5A235)
 internal val fourth = Color(0xFF707070)
 internal val sixteen = Color(0xFF228D57)
 internal val white = Color(0xFFF1F1F1)
