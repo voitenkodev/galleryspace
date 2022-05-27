@@ -51,7 +51,7 @@ fun ButtonSecondary(
     leadIcon: ImageVector? = null,
 ) {
 
-    val textColor = color ?: GallerySpaceComponent.colors.primaryInverse
+    val textColor = color ?: GallerySpaceComponent.colors.secondary
 
     Button(
         modifier = modifier,

@@ -15,6 +15,8 @@ fun Modifier.parallelepiped(
     angleX: Float,
     angleY: Float,
     coefficient: Float = 1.0F,
+    color1: Color,
+    color2: Color,
 ): Modifier = composed {
 
     then(Modifier.drawWithContent {
@@ -54,7 +56,7 @@ fun Modifier.parallelepiped(
                 lineTo(x = contentWidth + _angleFirst, y = rightHeight)
                 lineTo(x = contentWidth, y = 0f)
                 lineTo(x = 0f, y = 0f)
-            }.draw3d(Color.DarkGray)
+            }.draw3d(color1)
         }
 
         // BOTTOM
@@ -68,7 +70,7 @@ fun Modifier.parallelepiped(
                 lineTo(x = contentWidth + _angleFirst, y = rightHeight)
                 lineTo(x = contentWidth, y = contentHeight)
                 lineTo(x = 0f, y = contentHeight)
-            }.draw3d(Color.DarkGray)
+            }.draw3d(color1)
         }
 
         // LEFT
@@ -82,7 +84,7 @@ fun Modifier.parallelepiped(
                 lineTo(x = bottomWidth, y = contentHeight + _angleSecond)
                 lineTo(x = 0f, y = contentHeight)
                 lineTo(x = 0f, y = 0f)
-            }.draw3d(Color.Black)
+            }.draw3d(color2)
         }
 
         // RIGHT
@@ -96,7 +98,7 @@ fun Modifier.parallelepiped(
                 lineTo(x = bottomWidth, y = contentHeight + _angleSecond)
                 lineTo(x = contentWidth, y = contentHeight)
                 lineTo(x = contentWidth, y = 0f)
-            }.draw3d(Color.Black)
+            }.draw3d(color2)
         }
 
         drawContent()

@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.Surface
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -34,15 +35,16 @@ class MainActivity : ComponentActivity() {
             GallerySpaceTheme {
 
                 val systemUiController = rememberSystemUiController()
+
                 SideEffect {
                     systemUiController.setSystemBarsColor(
                         color = Color.Transparent,
-                        darkIcons = true
+                        darkIcons = false
                     )
                 }
 
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize().navigationBarsPadding(),
                     contentColor = GallerySpaceComponent.colors.primary
                 ) {
 //                    GalleryScreen()

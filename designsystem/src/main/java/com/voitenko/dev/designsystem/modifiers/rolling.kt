@@ -12,6 +12,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInteropFilter
@@ -24,7 +25,9 @@ import androidx.compose.ui.unit.dp
 fun Modifier.rolling(
     initialX: Float = 10f,
     initialY: Float = -10f,
-    maxAngle: Float = 35f
+    maxAngle: Float = 35f,
+    sideColor1: Color,
+    sideColor2: Color,
 ): Modifier = composed {
     var angle by remember { mutableStateOf(Pair(initialX, initialY)) }
     var start by remember { mutableStateOf(Pair(-1f, -1f)) }
@@ -72,6 +75,8 @@ fun Modifier.rolling(
         .parallelepiped(
             angleX = angle.first,
             angleY = angle.second,
+            color1 = sideColor1,
+            color2 = sideColor2
         )
     )
 }

@@ -6,27 +6,47 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun GallerySpaceLightPalette() = GallerySpaceColor(
     primary = white,
-    primaryInverse = black,
+    secondary = lightYellow,
+    tertiary = greengray,
+
     primaryControl = black,
-    primaryControlInverse = white,
+    secondaryControl = brown,
+
+    shadow = dark,
 )
 
 @Composable
-fun GallerySpaceDarkPalette() = GallerySpaceLightPalette()
+fun GallerySpaceDarkPalette() = GallerySpaceColor(
+    primary = black,
+    secondary = white,
+    tertiary = greengray,
+
+    primaryControl = white,
+    secondaryControl = brown,
+
+    shadow = dark,
+)
 
 data class GallerySpaceColor(
     val primary: Color,
-    val primaryInverse: Color,
+    val secondary: Color,
+    val tertiary: Color,
+
     val primaryControl: Color,
-    val primaryControlInverse: Color,
+    val secondaryControl: Color,
+
+    val shadow: Color,
 )
 
+internal val white = Color(0xFFF1F1F1)
+internal val black = Color(0xFF181A17)
+internal val brown = Color(0xFFB0815A)
+internal val dark = Color(0xFF242424)
+internal val greengray = Color(0xFF201F19)
+
 internal val secondary = Color(0xFF151515)
-internal val third = Color(0xFFF5A235)
 internal val fourth = Color(0xFF707070)
 internal val sixteen = Color(0xFF228D57)
-internal val white = Color(0xFFF1F1F1)
-internal val black = Color(0xFF141414)
 
 
 internal val crystal = Color(0xFFD0DBE5)
@@ -39,8 +59,8 @@ internal val gray3 = Color(0xFF525252)
 internal val lightPurple = Color(0xFF5622E5)
 internal val darkPurple = Color(0xFF4119AF)
 
-internal val darkYellow = Color(0xFFD5BD3F)
-internal val lightYellow = Color(0xFFFADE4B)
+internal val darkYellow = Color(0xFFB6A238)
+internal val lightYellow = Color(0xFFD5BD3F)
 
 internal val lightRed = Color(0xFFEA3469)
 internal val darkRed = Color(0xFFC52B58)

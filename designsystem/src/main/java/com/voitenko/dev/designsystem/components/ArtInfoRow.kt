@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.voitenko.dev.designsystem.common.fourth
 import com.voitenko.dev.designsystem.common.sixteen
-import com.voitenko.dev.designsystem.common.third
+import com.voitenko.dev.designsystem.common.brown
 import com.voitenko.dev.designsystem.common.white
 import com.voitenko.dev.designsystem.controls.BODY2Text
 import com.voitenko.dev.designsystem.controls.CAPTIONText
@@ -37,7 +37,7 @@ fun ArtInfoRow(modifier: Modifier = Modifier, visibility: Boolean) {
                 RatingBar(
                     modifier = Modifier.height(height = 16.dp),
                     rating = 3.2f,
-                    colorEnabled = third,
+                    colorEnabled = brown,
                     colorDisabled = fourth
                 )
             }

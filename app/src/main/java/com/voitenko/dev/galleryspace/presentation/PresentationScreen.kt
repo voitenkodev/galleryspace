@@ -1,11 +1,13 @@
 package com.voitenko.dev.galleryspace.presentation
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
@@ -43,7 +45,8 @@ fun PresentPictureScreen() {
     val description =
         "Vincent van Gogh (1853 - 1890), Nuenen, March 1884 pencil, pen and ink, watercolour, on paper, 39.5 cm x 54.2 cm Credits (obliged to state): Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation) The way he drew it, with a great deal of hatching, shows his individual style. The drawings form a high point of Van Gogh's work in the Netherlands."
     val image =
-        "https://veryimportantlot.com/uploads/over/files/%D0%9C%D0%B0%D0%B9%20%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F%2014%20(1.1)%20%D0%90%D0%B9%D0%B2%D0%B0%D0%B7%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9.%20%D0%94%D0%B5%D0%B2%D1%8F%D1%82%D1%8B%D0%B9%20%D0%B2%D0%B0%D0%BB.jpeg"
+//        "https://veryimportantlot.com/uploads/over/files/%D0%9C%D0%B0%D0%B9%20%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F%2014%20(1.1)%20%D0%90%D0%B9%D0%B2%D0%B0%D0%B7%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9.%20%D0%94%D0%B5%D0%B2%D1%8F%D1%82%D1%8B%D0%B9%20%D0%B2%D0%B0%D0%BB.jpeg"
+        "https://artincontext.org/wp-content/uploads/2021/08/Japanese-Art-848x530.jpg"
 
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(BottomSheetValue.Collapsed)
@@ -54,11 +57,18 @@ fun PresentPictureScreen() {
         animationSpec = spring(stiffness = Spring.StiffnessLow)
     )
 
+    val background = animateColorAsState(
+        targetValue = if (scaffoldState.bottomSheetState.targetValue == BottomSheetValue.Collapsed) GallerySpaceComponent.colors.tertiary else GallerySpaceComponent.colors.primary,
+        animationSpec = spring(stiffness = Spring.StiffnessLow)
+    )
+
     BoxWithConstraints(
         modifier = Modifier
+            .background(background.value)
             .statusBarsPadding()
             .fillMaxSize()
     ) {
+
         val space = 8.dp
         val toolbar = 44.dp
         val collapsedBottomSheetHeight = this.maxHeight - this.maxWidth - toolbar - space
@@ -67,16 +77,12 @@ fun PresentPictureScreen() {
         BottomSheetScaffold(
             scaffoldState = scaffoldState,
             backgroundColor = Color.Transparent,
-            sheetBackgroundColor = Color.Transparent,
+            sheetBackgroundColor = GallerySpaceComponent.colors.tertiary,
             sheetPeekHeight = collapsedBottomSheetHeight,
             sheetElevation = 0.dp,
             content = {
                 Header(
-                    url = image,
-                    fraction = fraction.value,
-                    sign = sign,
-                    price = price,
-                    createdAt = createdAt
+                    url = image, fraction = fraction.value, sign = sign, price = price, createdAt = createdAt
                 )
             },
             sheetContent = {
@@ -110,7 +116,7 @@ private fun ColumnScope.SheetContent(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
 
-        item { H1Text(text = title) }
+        item { H1Text(modifier = Modifier.padding(top = 8.dp), text = title) }
 
         item { BODY2Text(modifier = Modifier.padding(top = 8.dp, bottom = 8.dp), text = sign) }
 
@@ -195,8 +201,7 @@ fun Header(
     sign: String,
     price: String,
     createdAt: String,
-
-    ) {
+) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current).data(url.toUri()).size(coil.size.Size.ORIGINAL).build()
     )
@@ -205,10 +210,7 @@ fun Header(
 
         Toolbar()
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
+        Box(modifier = Modifier.fillMaxWidth()) {
             BoxWithConstraints(
                 modifier = Modifier
                     .fillMaxWidth(fraction = fraction)
@@ -218,7 +220,10 @@ fun Header(
                     modifier = Modifier
                         .padding(34.dp)
                         .wrapContentSize()
-                        .rolling()
+                        .rolling(
+                            sideColor1 = GallerySpaceComponent.colors.primary,
+                            sideColor2 = GallerySpaceComponent.colors.primary,
+                        )
                 ) {
                     Image(
                         modifier = Modifier.wrapContentSize(), painter = painter, contentDescription = null
@@ -228,8 +233,8 @@ fun Header(
                             .matchParentSize()
                             .neu(
                                 pressed = true,
-                                shadow1 = GallerySpaceComponent.colors.primaryInverse,
-                                shadow2 = GallerySpaceComponent.colors.primaryInverse,
+                                shadow1 = GallerySpaceComponent.colors.shadow,
+                                shadow2 = GallerySpaceComponent.colors.shadow,
                                 elevation = 2.dp
                             )
                     )
@@ -239,8 +244,7 @@ fun Header(
                 modifier = Modifier
                     .fillMaxWidth(0.5f)
                     .aspectRatio(1f)
-                    .align(Alignment.TopEnd),
-                visibility = fraction == 0.5f
+                    .align(Alignment.TopEnd), visibility = fraction == 0.5f
             )
         }
     }
