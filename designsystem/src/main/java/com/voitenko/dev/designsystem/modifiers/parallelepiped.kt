@@ -7,26 +7,29 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.DrawStyle
 import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.graphics.drawscope.Stroke
 
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 fun Modifier.parallelepiped(
     angleX: Float,
     angleY: Float,
-    coefficient: Float = 1.0F,
+    thicknessCoefficient: Float = 1.0F,
     color1: Color,
     color2: Color,
 ): Modifier = composed {
 
     then(Modifier.drawWithContent {
 
-        fun Path.draw3d(color: Color) {
-            drawPath(path = this, color = color, style = Fill)
+        fun Path.draw(color: Color, style: DrawStyle): Path {
+            drawPath(path = this, color = color, style = style)
+            return this
         }
 
-        val angleFirst = angleX * coefficient
-        val angleSecond = angleY * coefficient
+        val angleFirst = angleX * thicknessCoefficient
+        val angleSecond = angleY * thicknessCoefficient
 
         val contentWidth = size.width
         val contentHeight = size.height
@@ -35,6 +38,9 @@ fun Modifier.parallelepiped(
         val coefSize = 0.4f
         val _angleFirst = angleFirst * coefSize
         val _angleSecond = angleSecond * coefSize
+
+        val strikeWidth = 1.4f
+        val strikeColor = Color.Black
 
         val rightPerspectiveOut =
             if (_angleFirst < 0) kotlin.math.abs(_angleFirst * coefProportion) else 0f
@@ -45,32 +51,33 @@ fun Modifier.parallelepiped(
         val bottomPerspectiveOut =
             if (_angleSecond > 0) kotlin.math.abs(_angleSecond * coefProportion) else 0f
 
+
         // TOP
         if (_angleSecond < 0f) {
-            Path().apply {
-                val leftHeight = (_angleSecond + leftPerspectiveOut)
-                val rightHeight = (_angleSecond + rightPerspectiveOut)
+            val leftHeight = (_angleSecond + leftPerspectiveOut)
+            val rightHeight = (_angleSecond + rightPerspectiveOut)
 
+            Path().apply {
                 moveTo(x = 0f, y = 0f)
                 lineTo(x = _angleFirst, y = leftHeight)
                 lineTo(x = contentWidth + _angleFirst, y = rightHeight)
                 lineTo(x = contentWidth, y = 0f)
                 lineTo(x = 0f, y = 0f)
-            }.draw3d(color1)
+            }.draw(color1, Fill).draw(strikeColor, Stroke(strikeWidth))
         }
 
         // BOTTOM
         if (_angleSecond > 0f) {
-            Path().apply {
-                val leftHeight = (contentHeight + _angleSecond - leftPerspectiveOut)
-                val rightHeight = (contentHeight + _angleSecond - rightPerspectiveOut)
+            val leftHeight = (contentHeight + _angleSecond - leftPerspectiveOut)
+            val rightHeight = (contentHeight + _angleSecond - rightPerspectiveOut)
 
+            Path().apply {
                 moveTo(0f, contentHeight)
                 lineTo(x = _angleFirst, y = leftHeight)
                 lineTo(x = contentWidth + _angleFirst, y = rightHeight)
                 lineTo(x = contentWidth, y = contentHeight)
                 lineTo(x = 0f, y = contentHeight)
-            }.draw3d(color1)
+            }.draw(color1, Fill).draw(strikeColor, Stroke(strikeWidth))
         }
 
         // LEFT
@@ -84,7 +91,7 @@ fun Modifier.parallelepiped(
                 lineTo(x = bottomWidth, y = contentHeight + _angleSecond)
                 lineTo(x = 0f, y = contentHeight)
                 lineTo(x = 0f, y = 0f)
-            }.draw3d(color2)
+            }.draw(color1, Fill).draw(strikeColor, Stroke(strikeWidth))
         }
 
         // RIGHT
@@ -98,7 +105,7 @@ fun Modifier.parallelepiped(
                 lineTo(x = bottomWidth, y = contentHeight + _angleSecond)
                 lineTo(x = contentWidth, y = contentHeight)
                 lineTo(x = contentWidth, y = 0f)
-            }.draw3d(color2)
+            }.draw(color1, Fill).draw(strikeColor, Stroke(strikeWidth))
         }
 
         drawContent()

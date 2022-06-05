@@ -7,6 +7,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -22,6 +23,7 @@ import com.voitenko.dev.galleryspace.presentation.PresentPictureScreen
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @ExperimentalUnitApi
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
 

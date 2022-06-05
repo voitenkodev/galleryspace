@@ -10,11 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.voitenko.dev.designsystem.GallerySpaceComponent
 import com.voitenko.dev.designsystem.R
-import com.voitenko.dev.designsystem.controls.H2Text
 
 @Composable
 fun Toolbar(modifier: Modifier = Modifier) {
@@ -30,13 +28,7 @@ fun Toolbar(modifier: Modifier = Modifier) {
 
         }
 
-//        H2Text(
-//            modifier = Modifier.weight(1f),
-//            text = "Gallery\nSpace",
-//            textAlign = TextAlign.Center
-//        )
-
-        Spacer(modifier = Modifier.weight(1f),)
+        Spacer(modifier = Modifier.weight(1f))
 
         Menu {
 
@@ -48,11 +40,14 @@ fun Toolbar(modifier: Modifier = Modifier) {
 fun Dot(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Spacer(
         modifier = modifier
-            .size(44.dp)
+            .size(42.dp)
             .clip(shape = RoundedCornerShape(50))
             .clickable { onClick.invoke() }
             .padding(16.dp)
-            .background(shape = RoundedCornerShape(50), color = GallerySpaceComponent.colors.secondaryControl),
+            .background(
+                shape = RoundedCornerShape(50),
+                color = GallerySpaceComponent.colors.primaryInverse
+            ),
     )
 }
 
@@ -66,6 +61,6 @@ fun Menu(modifier: Modifier = Modifier, onClick: () -> Unit) {
             .clickable { onClick.invoke() }
             .padding(8.dp),
         contentDescription = null,
-        tint = GallerySpaceComponent.colors.secondaryControl
+        tint = GallerySpaceComponent.colors.primaryInverse
     )
 }

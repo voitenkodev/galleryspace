@@ -20,7 +20,7 @@ internal fun GallerySpaceTypography() = AppTypography(
         fontStyle = FontStyle.Normal,
     ),
     H2 = TextStyle(
-        fontSize = 14.sp,
+        fontSize = 30.sp,
         fontFamily = Grenoble,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
@@ -35,12 +35,12 @@ internal fun GallerySpaceTypography() = AppTypography(
         fontSize = 16.sp,
         fontFamily = TheSeasons,
         fontWeight = FontWeight.Normal,
-        fontStyle = FontStyle.Italic,
+        fontStyle = FontStyle.Normal,
     ),
-    CAPTION = TextStyle(
+    CAPTION1 = TextStyle(
         fontSize = 14.sp,
         fontFamily = PtSans,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal,
     ),
     BUTTON = TextStyle(
@@ -56,7 +56,7 @@ data class AppTypography(
     val H2: TextStyle,
     val BODY1: TextStyle,
     val BODY2: TextStyle,
-    val CAPTION: TextStyle,
+    val CAPTION1: TextStyle,
     val BUTTON: TextStyle,
 )
 

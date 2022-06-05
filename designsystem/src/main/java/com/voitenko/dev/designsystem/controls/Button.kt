@@ -14,8 +14,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.voitenko.dev.designsystem.GallerySpaceComponent
-import com.voitenko.dev.designsystem.common.sixteen
-import com.voitenko.dev.designsystem.common.white
+import com.voitenko.dev.designsystem.common.almostWhite
 
 @Composable
 fun ButtonPrimary(
@@ -27,6 +26,7 @@ fun ButtonPrimary(
     leadIcon: ImageVector? = null,
 ) {
     val textColor = color ?: GallerySpaceComponent.colors.primary
+    val backgroundColor = color ?: GallerySpaceComponent.colors.primaryInverse
 
     Button(
         modifier = modifier,
@@ -34,7 +34,7 @@ fun ButtonPrimary(
         textStyle = GallerySpaceComponent.typography.BUTTON.copy(color = textColor),
         enabled = enabled,
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(backgroundColor = sixteen),
+        colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
         shape = RoundedCornerShape(50),
         borderStroke = null,
         leadIcon = leadIcon
@@ -51,7 +51,7 @@ fun ButtonSecondary(
     leadIcon: ImageVector? = null,
 ) {
 
-    val textColor = color ?: GallerySpaceComponent.colors.secondary
+    val textColor = color ?: GallerySpaceComponent.colors.primaryInverse
 
     Button(
         modifier = modifier,
@@ -61,7 +61,7 @@ fun ButtonSecondary(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
         shape = RoundedCornerShape(50),
-        borderStroke = BorderStroke(2.dp, white),
+        borderStroke = BorderStroke(2.dp, almostWhite),
         leadIcon = leadIcon
     )
 }
@@ -86,10 +86,10 @@ private fun Button(
         content = {
             if (leadIcon != null) {
                 Icon(
-                    leadIcon,
+                    imageVector = leadIcon,
                     modifier = Modifier.size(24.dp),
                     contentDescription = "",
-                    tint = white
+                    tint = almostWhite
                 )
             }
             Text(

@@ -11,16 +11,16 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.SolidColor
-import com.voitenko.dev.designsystem.common.fourth
-import com.voitenko.dev.designsystem.common.brown
+import com.voitenko.dev.designsystem.common.darkGray
+import com.voitenko.dev.designsystem.common.yellow
 
 @Composable
 fun RatingBar(
     modifier: Modifier = Modifier,
     rating: Float = 0.0f,
     maxRating: Int = 5,
-    colorEnabled: Color = brown,
-    colorDisabled: Color = fourth
+    colorEnabled: Color = yellow,
+    colorDisabled: Color = darkGray
 ) = Row(modifier = modifier.wrapContentSize()) {
     (1..maxRating).forEach { step ->
         val stepRating = when {
