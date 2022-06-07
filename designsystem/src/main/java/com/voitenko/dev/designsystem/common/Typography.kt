@@ -44,9 +44,9 @@ internal fun GallerySpaceTypography() = AppTypography(
         fontStyle = FontStyle.Normal,
     ),
     BUTTON = TextStyle(
-        fontSize = 18.sp,
+        fontSize = 16.sp,
         fontFamily = TheSeasons,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal,
     )
 )

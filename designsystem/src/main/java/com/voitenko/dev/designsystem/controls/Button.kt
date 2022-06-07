@@ -20,21 +20,22 @@ import com.voitenko.dev.designsystem.common.almostWhite
 fun ButtonPrimary(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color? = null,
+    textColor: Color? = null,
+    backgroundColor: Color? = null,
     onClick: () -> Unit,
     enabled: Boolean = true,
     leadIcon: ImageVector? = null,
 ) {
-    val textColor = color ?: GallerySpaceComponent.colors.primary
-    val backgroundColor = color ?: GallerySpaceComponent.colors.primaryInverse
+    val _textColor = textColor ?: GallerySpaceComponent.colors.primary
+    val _backgroundColor = backgroundColor ?: GallerySpaceComponent.colors.primaryInverse
 
     Button(
         modifier = modifier,
         text = text,
-        textStyle = GallerySpaceComponent.typography.BUTTON.copy(color = textColor),
+        textStyle = GallerySpaceComponent.typography.BUTTON.copy(color = _textColor),
         enabled = enabled,
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
+        colors = ButtonDefaults.buttonColors(backgroundColor = _backgroundColor),
         shape = RoundedCornerShape(50),
         borderStroke = null,
         leadIcon = leadIcon

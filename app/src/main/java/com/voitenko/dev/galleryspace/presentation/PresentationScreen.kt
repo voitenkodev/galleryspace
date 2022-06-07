@@ -8,13 +8,9 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -26,8 +22,10 @@ import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.voitenko.dev.designsystem.GallerySpaceComponent
+import com.voitenko.dev.designsystem.components.Owner
+import com.voitenko.dev.designsystem.components.PresentationDashboard
 import com.voitenko.dev.designsystem.components.Toolbar
-import com.voitenko.dev.designsystem.controls.*
+import com.voitenko.dev.designsystem.controls.H2Text
 import com.voitenko.dev.designsystem.modifiers.rolling
 
 @ExperimentalMaterialApi
@@ -39,14 +37,44 @@ fun PresentPictureScreen() {
 
     val title = "Cthulhu Mythos."
     val creator = "by H. P. Lovecraft"
-    val owner = "Olivie Piero"
     val createdAt = "16 May, 22"
     val price = "0.251 BTC"
     val description =
         "In his essay \"H. P. Lovecraft and the Cthulhu Mythos\", Robert M. Price described two stages in the development of the Cthulhu Mythos. Price called the first stage the \"Cthulhu Mythos proper\". This stage was formulated during Lovecraft's lifetime and was subject to his guidance. The second stage was guided by August Derleth who, in addition to publishing Lovecraft's stories after his death, attempted to categorize and expand the Mythos."
     val image =
-        "https://render.fineartamerica.com/images/rendered/search/print/6.5/8/break/images-medium-5/call-of-cthulhu-armand-cabrera.jpg"
-//        "https://www.neilbuchanan.co.uk/uploads/6/6/9/5/66951261/published/16-11-woolly-mammoth.jpeg?1591877159"
+//        "https://render.fineartamerica.com/images/rendered/search/print/6.5/8/break/images-medium-5/call-of-cthulhu-armand-cabrera.jpg"
+        "https://www.neilbuchanan.co.uk/uploads/6/6/9/5/66951261/published/16-11-woolly-mammoth.jpeg?1591877159"
+    val owners = listOf(
+        Owner(
+            name = "Philip K. Howard",
+            url = "https://upload.wikimedia.org/wikipedia/commons/a/ad/Philip_K._Howard.jpg",
+            purchase = "1.2224 BTC",
+            purchaseColor = GallerySpaceComponent.colors.priceUp,
+            date = "10.11.2022"
+        ),
+        Owner(
+            name = "Alfredo Peters",
+            url = "https://miro.medium.com/max/1400/0*E-e0EHOU1Fvxtuis.jpg",
+            purchase = "0.0054 BTC",
+            purchaseColor = GallerySpaceComponent.colors.priceUp,
+            date = "16.09.2019"
+        ),
+        Owner(
+            name = "Michiel Vernandos",
+            url = "https://globalmsk.ru/usr/person/big-person-15642469881.jpg",
+            purchase = "127 $",
+            purchaseColor = GallerySpaceComponent.colors.priceDown,
+            date = "26.08.2016"
+        ),
+        Owner(
+            name = "Van Gogh",
+            url = "https://upload.wikimedia.org/wikipedia/commons/7/76/Vincent_van_Gogh_photo_cropped.jpg",
+            purchase = "142 $",
+            purchaseColor = GallerySpaceComponent.colors.priceUp,
+            date = "01.01.2008"
+        ),
+    )
+
 
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(BottomSheetValue.Collapsed)
@@ -99,7 +127,7 @@ fun PresentPictureScreen() {
                 )
             },
             sheetContent = {
-                SheetContent(
+                PresentationDashboard(
                     state = listState,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -110,7 +138,7 @@ fun PresentPictureScreen() {
                     creator = creator,
                     price = price,
                     createdAt = createdAt,
-                    owner = owner
+                    owners = owners
                 )
             },
         )
@@ -155,148 +183,15 @@ fun Header(
                         .padding(vertical = 16.dp)
                         .wrapContentSize()
                         .rolling(
-                            sideColor1 = Color.LightGray,
-                            sideColor2 = Color.LightGray,
-                            thicknessCoefficient = thicknessCoefficient
-                        ),
-                    painter = painter,
-                    contentDescription = null
+                            sideColor1 = Color.LightGray, sideColor2 = Color.LightGray, thicknessCoefficient = thicknessCoefficient
+                        ), painter = painter, contentDescription = null
                 )
             }
 
-            AnimatedVisibility(
-                visible = titleVisible,
+            AnimatedVisibility(visible = titleVisible,
                 enter = fadeIn() + expandHorizontally(expandFrom = Alignment.Start),
                 exit = shrinkHorizontally() + fadeOut(),
                 content = { H2Text(modifier = Modifier.padding(start = 16.dp), text = title, maxLines = 3) })
         }
     }
-}
-
-@Composable
-private fun SheetContent(
-    modifier: Modifier = Modifier,
-    state: LazyListState = rememberLazyListState(),
-    title: String,
-    description: String,
-    creator: String,
-    price: String,
-    createdAt: String,
-    owner: String,
-) {
-    LazyColumn(
-        state = state,
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-
-        item { H1Text(modifier = Modifier.padding(top = 8.dp), text = title) }
-
-        item { BODY2Text(modifier = Modifier.padding(top = 8.dp, bottom = 8.dp), text = creator) }
-
-        item { Divider(thickness = 2.dp, color = GallerySpaceComponent.colors.primaryInverse) }
-
-        Info(rating = 3.5f, price = price, createdAt = createdAt, owner = owner)
-
-        item {
-            ButtonPrimary(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 24.dp),
-                text = "Buy - $ 999",
-                onClick = { /*TODO*/ }
-            )
-        }
-
-        item { CAPTION1Text(text = "Description") }
-
-        item { BODY1Text(text = description) }
-
-        item {
-            ButtonSecondary(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 24.dp),
-                text = "Add to favorite",
-                onClick = { /*TODO*/ },
-                leadIcon = Icons.Default.FavoriteBorder
-            )
-        }
-
-        item { CAPTION1Text(text = "Provenance") }
-
-    }
-}
-
-fun LazyListScope.Info(
-    rating: Float,
-    price: String,
-    createdAt: String,
-    owner: String,
-) {
-    item {
-        Row(
-            Modifier
-                .fillMaxSize()
-                .height(44.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            CAPTION1Text(text = "Rating")
-            RatingBar(
-                modifier = Modifier.height(height = 16.dp),
-                rating = rating,
-            )
-        }
-    }
-
-    item { Divider() }
-
-    item {
-        Row(
-            Modifier
-                .fillMaxSize()
-                .height(44.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            CAPTION1Text(text = "Price")
-            BODY2Text(text = price)
-        }
-    }
-
-    item { Divider() }
-
-    item {
-        Row(
-            Modifier
-                .fillMaxSize()
-                .height(44.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            CAPTION1Text(text = "Created at")
-            BODY2Text(text = createdAt)
-        }
-    }
-
-    item { Divider() }
-
-    item {
-        Row(
-            Modifier
-                .fillMaxSize()
-                .height(44.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            CAPTION1Text(text = "Owner ")
-            BODY2Text(text = owner)
-        }
-    }
-}
-
-@Composable
-fun LazyListScope.Provenance() {
-
 }

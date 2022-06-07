@@ -17,7 +17,7 @@ import com.voitenko.dev.designsystem.common.GallerySpaceTheme
 @Composable
 fun H1Text(
     modifier: Modifier = Modifier,
-    text: String,
+    text: String?,
     color: Color? = null,
     textAlign: TextAlign? = null,
     textSize: TextAlign? = null,
@@ -34,7 +34,7 @@ fun H1Text(
 @Composable
 fun H2Text(
     modifier: Modifier = Modifier,
-    text: String,
+    text: String?,
     color: Color? = null,
     textAlign: TextAlign? = null,
     textSize: TextAlign? = null,
@@ -51,7 +51,7 @@ fun H2Text(
 @Composable
 fun BODY1Text(
     modifier: Modifier = Modifier,
-    text: String,
+    text: String?,
     color: Color? = null,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
@@ -67,7 +67,7 @@ fun BODY1Text(
 @Composable
 fun BODY2Text(
     modifier: Modifier = Modifier,
-    text: String,
+    text: String?,
     color: Color? = null,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
@@ -83,7 +83,7 @@ fun BODY2Text(
 @Composable
 fun CAPTION1Text(
     modifier: Modifier = Modifier,
-    text: String,
+    text: String?,
     color: Color? = null,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
@@ -135,7 +135,7 @@ private fun CAPTION2_Preview() {
 @Composable
 internal fun Text(
     modifier: Modifier = Modifier,
-    text: String,
+    text: String?,
     color: Color? = null,
     textAlign: TextAlign? = null,
     textStyle: TextStyle,
@@ -152,7 +152,7 @@ internal fun Text(
 
     BasicText(
         modifier = modifier,
-        text = text,
+        text = text ?: "",
         style = innerTextAlignTextStyle,
         maxLines = maxLines,
         onTextLayout = { tl: TextLayoutResult -> })

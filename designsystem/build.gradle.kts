@@ -22,4 +22,5 @@ dependencies {
     implementation(libs.compose.preview)
     implementation(libs.compose.material)
     implementation(libs.compose.activity)
+    implementation(libs.coil.core)
 }
