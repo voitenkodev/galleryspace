@@ -36,6 +36,5 @@ dependencies {
     implementation(libs.compose.material)
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.23.1")
 //    implementation(libs.compose.accompansit)
-
 //    implementation("io.github.voitenkodev:mvi-core:1.0.6")
 }

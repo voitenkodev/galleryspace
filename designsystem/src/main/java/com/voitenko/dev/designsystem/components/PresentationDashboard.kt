@@ -118,17 +118,6 @@ fun PresentationDashboard(
             }
         }
 
-//        item {
-//            ButtonSecondary(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(vertical = 24.dp),
-//                text = "Add to favorite",
-//                onClick = { /*TODO*/ },
-//                leadIcon = Icons.Default.FavoriteBorder
-//            )
-//        }
-
         item { Divider() }
 
         item {

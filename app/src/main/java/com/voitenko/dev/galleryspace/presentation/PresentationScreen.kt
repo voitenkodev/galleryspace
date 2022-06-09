@@ -15,7 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -42,8 +45,7 @@ fun PresentPictureScreen() {
     val description =
         "In his essay \"H. P. Lovecraft and the Cthulhu Mythos\", Robert M. Price described two stages in the development of the Cthulhu Mythos. Price called the first stage the \"Cthulhu Mythos proper\". This stage was formulated during Lovecraft's lifetime and was subject to his guidance. The second stage was guided by August Derleth who, in addition to publishing Lovecraft's stories after his death, attempted to categorize and expand the Mythos."
     val image =
-//        "https://render.fineartamerica.com/images/rendered/search/print/6.5/8/break/images-medium-5/call-of-cthulhu-armand-cabrera.jpg"
-        "https://www.neilbuchanan.co.uk/uploads/6/6/9/5/66951261/published/16-11-woolly-mammoth.jpeg?1591877159"
+        "https://render.fineartamerica.com/images/rendered/search/print/6.5/8/break/images-medium-5/call-of-cthulhu-armand-cabrera.jpg"
     val owners = listOf(
         Owner(
             name = "Philip K. Howard",
@@ -72,9 +74,12 @@ fun PresentPictureScreen() {
             purchase = "142 $",
             purchaseColor = GallerySpaceComponent.colors.priceUp,
             date = "01.01.2008"
-        ),
+        )
     )
 
+    val painter = rememberAsyncImagePainter(
+        model = ImageRequest.Builder(LocalContext.current).data(image.toUri()).size(coil.size.Size.ORIGINAL).build()
+    )
 
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(BottomSheetValue.Collapsed)
@@ -102,14 +107,24 @@ fun PresentPictureScreen() {
     BoxWithConstraints(
         modifier = Modifier
             .background(background.value)
-            .statusBarsPadding()
             .fillMaxSize()
     ) {
 
+        val status = WindowInsets.systemBars.asPaddingValues().calculateTopPadding()
         val space = 8.dp
         val toolbar = 44.dp
-        val collapsedBottomSheetHeight = this.maxHeight - this.maxWidth - toolbar - space
-        val expandedBottomSheetHeight = this.maxHeight - (this.maxWidth / 2) - toolbar
+        val collapsedBottomSheetHeight = this.maxHeight - this.maxWidth - toolbar - space - status
+        val expandedBottomSheetHeight = this.maxHeight - (this.maxWidth / 2) - toolbar - status
+
+        Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(this.maxHeight - collapsedBottomSheetHeight)
+                .alpha(0.3f),
+            painter = painter,
+            contentScale = ContentScale.Crop,
+            contentDescription = null
+        )
 
         BottomSheetScaffold(
             scaffoldState = scaffoldState,
@@ -122,7 +137,7 @@ fun PresentPictureScreen() {
                     fraction = fraction.value,
                     thicknessCoefficient = thicknessCoefficient.value,
                     titleVisible = titleVisible,
-                    url = image,
+                    image = painter,
                     title = title
                 )
             },
@@ -140,7 +155,7 @@ fun PresentPictureScreen() {
                     createdAt = createdAt,
                     owners = owners
                 )
-            },
+            }
         )
     }
 }
@@ -153,14 +168,11 @@ fun Header(
     fraction: Float,
     thicknessCoefficient: Float,
     titleVisible: Boolean,
-    url: String,
+    image: Painter,
     title: String,
 ) {
-    val painter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(url.toUri()).size(coil.size.Size.ORIGINAL).build()
-    )
 
-    Column {
+    Column(Modifier.statusBarsPadding()) {
 
         Toolbar()
 
@@ -184,7 +196,9 @@ fun Header(
                         .wrapContentSize()
                         .rolling(
                             sideColor1 = Color.LightGray, sideColor2 = Color.LightGray, thicknessCoefficient = thicknessCoefficient
-                        ), painter = painter, contentDescription = null
+                        ),
+                    painter = image,
+                    contentDescription = null
                 )
             }
 

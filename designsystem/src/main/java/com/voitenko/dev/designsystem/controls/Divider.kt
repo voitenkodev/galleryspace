@@ -12,5 +12,4 @@ fun Divider(
     modifier: Modifier = Modifier,
     thickness: Dp = 1.dp,
     color: Color = GallerySpaceComponent.colors.shadow
-) =
-    androidx.compose.material.Divider(modifier = modifier, color = color, thickness = thickness)
+) = androidx.compose.material.Divider(modifier = modifier, color = color, thickness = thickness)

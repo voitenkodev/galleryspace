@@ -41,7 +41,7 @@ fun Modifier.shimmer(): Modifier = composed {
     remember(area, shimmer) { ShimmerModifier(area, shimmer.effect) }
 }
 
-internal class ShimmerModifier(
+private class ShimmerModifier(
     private val area: ShimmerArea,
     private val effect: ShimmerEffect,
 ) : DrawModifier, OnGloballyPositionedModifier {
@@ -57,7 +57,7 @@ internal class ShimmerModifier(
 }
 
 @Composable
-fun rememberShimmer(
+private fun rememberShimmer(
     theme: ShimmerConfiguration = ShimmerConfiguration(),
 ): Shimmer {
     val displayMetrics = LocalContext.current.resources.displayMetrics
@@ -72,13 +72,13 @@ fun rememberShimmer(
     }
 }
 
-class Shimmer internal constructor(
-    internal val theme: ShimmerConfiguration,
-    internal val effect: ShimmerEffect,
+private class Shimmer constructor(
+    val theme: ShimmerConfiguration,
+    val effect: ShimmerEffect,
     bounds: Rect?,
 ) {
 
-    internal val boundsFlow = MutableStateFlow(bounds)
+    val boundsFlow = MutableStateFlow(bounds)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -99,7 +99,7 @@ class Shimmer internal constructor(
 /**
  * Describes the area in which the shimmer effect will be drawn.
  */
-internal class ShimmerArea(
+private class ShimmerArea(
     private val widthOfShimmer: Float,
     rotationInDegree: Float,
 ) {
@@ -184,7 +184,7 @@ internal class ShimmerArea(
 }
 
 @Composable
-internal fun rememberShimmerEffect(theme: ShimmerConfiguration): ShimmerEffect {
+private fun rememberShimmerEffect(theme: ShimmerConfiguration): ShimmerEffect {
     val shimmerWidth = with(LocalDensity.current) { theme.shimmerWidth.toPx() }
     val shimmerEffect = remember(theme) {
         ShimmerEffect(
@@ -203,7 +203,7 @@ internal fun rememberShimmerEffect(theme: ShimmerConfiguration): ShimmerEffect {
     return shimmerEffect
 }
 
-internal class ShimmerEffect(
+private class ShimmerEffect(
     private val animationSpec: AnimationSpec<Float>,
     private val blendMode: BlendMode,
     private val rotation: Float,
@@ -230,7 +230,7 @@ internal class ShimmerEffect(
         shader = this@ShimmerEffect.shader
     }
 
-    internal suspend fun startAnimation() {
+    suspend fun startAnimation() {
         animatedState.animateTo(
             targetValue = 1f,
             animationSpec = animationSpec,
@@ -288,7 +288,7 @@ internal class ShimmerEffect(
     }
 }
 
-data class ShimmerConfiguration(
+private data class ShimmerConfiguration(
     val animationSpec: AnimationSpec<Float> = infiniteRepeatable(
         animation = tween(900, easing = LinearEasing, delayMillis = 700),
         repeatMode = RepeatMode.Restart,
@@ -304,7 +304,7 @@ data class ShimmerConfiguration(
     val shimmerWidth: Dp = 400.dp,
 )
 
-fun LayoutCoordinates.unclippedBoundsInWindow(): Rect {
+private fun LayoutCoordinates.unclippedBoundsInWindow(): Rect {
     val positionInWindow = positionInWindow()
     return Rect(
         positionInWindow.x,

@@ -20,7 +20,6 @@ fun H1Text(
     text: String?,
     color: Color? = null,
     textAlign: TextAlign? = null,
-    textSize: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
 ) = Text(
     modifier = modifier,
@@ -37,7 +36,6 @@ fun H2Text(
     text: String?,
     color: Color? = null,
     textAlign: TextAlign? = null,
-    textSize: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
 ) = Text(
     modifier = modifier,
