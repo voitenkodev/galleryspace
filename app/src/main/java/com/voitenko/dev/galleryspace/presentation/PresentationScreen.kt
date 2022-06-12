@@ -195,14 +195,17 @@ fun Header(
                         .padding(vertical = 16.dp)
                         .wrapContentSize()
                         .rolling(
-                            sideColor1 = Color.LightGray, sideColor2 = Color.LightGray, thicknessCoefficient = thicknessCoefficient
+                            sideColor1 = Color.LightGray,
+                            sideColor2 = Color.LightGray,
+                            thicknessCoefficient = thicknessCoefficient
                         ),
                     painter = image,
                     contentDescription = null
                 )
             }
 
-            AnimatedVisibility(visible = titleVisible,
+            AnimatedVisibility(
+                visible = titleVisible,
                 enter = fadeIn() + expandHorizontally(expandFrom = Alignment.Start),
                 exit = shrinkHorizontally() + fadeOut(),
                 content = { H2Text(modifier = Modifier.padding(start = 16.dp), text = title, maxLines = 3) })

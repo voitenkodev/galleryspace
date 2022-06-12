@@ -19,6 +19,7 @@ import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.voitenko.dev.designsystem.GallerySpaceComponent
 import com.voitenko.dev.designsystem.common.GallerySpaceTheme
+import com.voitenko.dev.galleryspace.gallery.GalleryScreen
 import com.voitenko.dev.galleryspace.presentation.PresentPictureScreen
 
 @ExperimentalFoundationApi
@@ -52,8 +53,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize().navigationBarsPadding(),
                     contentColor = GallerySpaceComponent.colors.primary
                 ) {
-//                    GalleryScreen()
-                    PresentPictureScreen()
+                    GalleryScreen()
+//                    PresentPictureScreen()
                 }
             }
         }
