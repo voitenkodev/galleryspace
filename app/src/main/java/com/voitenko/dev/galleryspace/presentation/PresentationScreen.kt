@@ -30,22 +30,24 @@ import com.voitenko.dev.designsystem.components.PresentationDashboard
 import com.voitenko.dev.designsystem.components.Toolbar
 import com.voitenko.dev.designsystem.controls.H2Text
 import com.voitenko.dev.designsystem.modifiers.rolling
+import com.voitenko.dev.galleryspace.mock
 
 @ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @Composable
-fun PresentPictureScreen() {
+fun PresentationScreen(artId: String) {
 
-    val title = "Cthulhu Mythos."
-    val creator = "by H. P. Lovecraft"
-    val createdAt = "16 May, 22"
-    val price = "0.251 BTC"
-    val description =
-        "In his essay \"H. P. Lovecraft and the Cthulhu Mythos\", Robert M. Price described two stages in the development of the Cthulhu Mythos. Price called the first stage the \"Cthulhu Mythos proper\". This stage was formulated during Lovecraft's lifetime and was subject to his guidance. The second stage was guided by August Derleth who, in addition to publishing Lovecraft's stories after his death, attempted to categorize and expand the Mythos."
-    val image =
-        "https://render.fineartamerica.com/images/rendered/search/print/6.5/8/break/images-medium-5/call-of-cthulhu-armand-cabrera.jpg"
+    val art = mock(artId)!! // todo mock
+
+    val title = art.title
+    val creator = art.creator
+    val createdAt = art.createdAt
+    val price = art.price
+    val description = art.description
+    val image = art.url
+
     val owners = listOf(
         Owner(
             name = "Philip K. Howard",
@@ -53,22 +55,19 @@ fun PresentPictureScreen() {
             purchase = "1.2224 BTC",
             purchaseColor = GallerySpaceComponent.colors.priceUp,
             date = "10.11.2022"
-        ),
-        Owner(
+        ), Owner(
             name = "Alfredo Peters",
             url = "https://miro.medium.com/max/1400/0*E-e0EHOU1Fvxtuis.jpg",
             purchase = "0.0054 BTC",
             purchaseColor = GallerySpaceComponent.colors.priceUp,
             date = "16.09.2019"
-        ),
-        Owner(
+        ), Owner(
             name = "Michiel Vernandos",
             url = "https://globalmsk.ru/usr/person/big-person-15642469881.jpg",
             purchase = "127 $",
             purchaseColor = GallerySpaceComponent.colors.priceDown,
             date = "26.08.2016"
-        ),
-        Owner(
+        ), Owner(
             name = "Van Gogh",
             url = "https://upload.wikimedia.org/wikipedia/commons/7/76/Vincent_van_Gogh_photo_cropped.jpg",
             purchase = "142 $",
@@ -126,8 +125,7 @@ fun PresentPictureScreen() {
             contentDescription = null
         )
 
-        BottomSheetScaffold(
-            scaffoldState = scaffoldState,
+        BottomSheetScaffold(scaffoldState = scaffoldState,
             backgroundColor = Color.Transparent,
             sheetBackgroundColor = GallerySpaceComponent.colors.primary,
             sheetPeekHeight = collapsedBottomSheetHeight,
@@ -146,7 +144,6 @@ fun PresentPictureScreen() {
                     state = listState,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
                         .height(height = expandedBottomSheetHeight),
                     title = title,
                     description = description,
@@ -155,8 +152,7 @@ fun PresentPictureScreen() {
                     createdAt = createdAt,
                     owners = owners
                 )
-            }
-        )
+            })
     }
 }
 
@@ -208,7 +204,8 @@ fun Header(
                 visible = titleVisible,
                 enter = fadeIn() + expandHorizontally(expandFrom = Alignment.Start),
                 exit = shrinkHorizontally() + fadeOut(),
-                content = { H2Text(modifier = Modifier.padding(start = 16.dp), text = title, maxLines = 3) })
+                content = { H2Text(modifier = Modifier.padding(start = 16.dp), text = title, maxLines = 3) }
+            )
         }
     }
 }

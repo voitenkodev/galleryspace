@@ -1,6 +1,7 @@
 [versions]
 android-gradle-vers = "7.4.0-alpha02"
-kotlin-vers = "1.6.10"
+kotlin-vers = "1.6.10" # todo 1.7.0 need upgrade
+parcelize-vers = "1.6.10"
 
 lifecycle-runtime-vers = "2.5.0-alpha04"
 coroutines-vers = "1.6.0"
@@ -31,5 +32,6 @@ coil-core = { module = "io.coil-kt:coil-compose", version.ref = "coil-vers" }
 
 [plugins]
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-vers" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "parcelize-vers" }
 android-app = { id = "com.android.application", version.ref = "android-gradle-vers" }
 android-library = { id = "com.android.library", version.ref = "android-gradle-vers" }

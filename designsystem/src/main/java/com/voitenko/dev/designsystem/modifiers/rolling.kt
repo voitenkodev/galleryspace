@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.dp
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 fun Modifier.rolling(
-    initialX: Float =18f,
-    initialY: Float = -18f,
+    initialX: Float =0f,
+    initialY: Float = 0f,
     maxAngle: Float = 35f,
     thicknessCoefficient: Float = 1f,
     sideColor1: Color,

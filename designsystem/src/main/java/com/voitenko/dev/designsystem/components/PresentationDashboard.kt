@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.dp
@@ -56,16 +57,31 @@ fun PresentationDashboard(
         state = state, modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
 
-        item { H1Text(modifier = Modifier.padding(top = 8.dp), text = title) }
-
-        item { BODY2Text(modifier = Modifier.padding(top = 8.dp, bottom = 8.dp), text = creator) }
-
         item {
-            Divider(thickness = 1.dp, color = GallerySpaceComponent.colors.primaryInverse)
+            H1Text(
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .padding(horizontal = 16.dp),
+                text = title
+            )
         }
 
         item {
-            Info(caption = "Rating") {
+            BODY2Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                text = creator,
+                textAlign = TextAlign.End
+            )
+        }
+
+        item {
+            Divider(modifier = Modifier.padding(start = 16.dp), thickness = 1.dp, color = GallerySpaceComponent.colors.primaryInverse)
+        }
+
+        item {
+            Info(modifier = Modifier.padding(horizontal = 16.dp), caption = "Rating") {
                 RatingBar(
                     modifier = Modifier.height(height = 16.dp),
                     rating = 3.5f,
@@ -73,18 +89,18 @@ fun PresentationDashboard(
             }
         }
 
-        item { Divider() }
+        item { Divider(modifier = Modifier.padding(horizontal = 16.dp)) }
 
         item {
-            Info(caption = "Created at") {
+            Info(modifier = Modifier.padding(horizontal = 16.dp), caption = "Created at") {
                 BODY2Text(text = createdAt)
             }
         }
 
-        item { Divider() }
+        item { Divider(modifier = Modifier.padding(horizontal = 16.dp)) }
 
         item {
-            Info(caption = "Price") {
+            Info(modifier = Modifier.padding(horizontal = 16.dp), caption = "Price") {
                 ButtonPrimary(
                     modifier = Modifier,
                     text = price,
@@ -95,10 +111,10 @@ fun PresentationDashboard(
             }
         }
 
-        item { Divider() }
+        item { Divider(modifier = Modifier.padding(horizontal = 16.dp)) }
 
         item {
-            Info(caption = "Owner") {
+            Info(modifier = Modifier.padding(horizontal = 16.dp), caption = "Owner") {
                 Image(
                     painter = ownerPhoto,
                     modifier = Modifier
@@ -110,18 +126,18 @@ fun PresentationDashboard(
             }
         }
 
-        item { Divider() }
+        item { Divider(modifier = Modifier.padding(horizontal = 16.dp)) }
 
         item {
-            Info(caption = "Description", orientation = Orientation.Vertical) {
+            Info(modifier = Modifier.padding(horizontal = 16.dp), caption = "Description", orientation = Orientation.Vertical) {
                 BODY1Text(text = description)
             }
         }
 
-        item { Divider() }
+        item { Divider(modifier = Modifier.padding(horizontal = 16.dp)) }
 
         item {
-            Info(caption = "Provenance", orientation = Orientation.Vertical) {
+            Info(modifier = Modifier.padding(horizontal = 16.dp), caption = "Provenance", orientation = Orientation.Vertical) {
                 owners.forEach {
                     Provenance(
                         modifier = Modifier.fillMaxWidth(),

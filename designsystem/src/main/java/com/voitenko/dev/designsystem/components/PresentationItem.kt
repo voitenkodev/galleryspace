@@ -1,6 +1,7 @@
 package com.voitenko.dev.designsystem.components
 
 import android.content.res.Configuration
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
@@ -10,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.dp
@@ -26,68 +26,63 @@ import com.voitenko.dev.designsystem.controls.H2Text
 
 @Composable
 fun PresentationItem(
-    url: String, title: String, align: TextAlign, more: () -> Unit
+    url: String,
+    title: String,
+    description: String,
+    creator: String,
+    more: () -> Unit
 ) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current).data(url.toUri()).size(Size.ORIGINAL).build()
     )
 
-    BoxWithConstraints {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .padding(top = 44.dp)
+    ) {
 
-        val maxImageWidth = this.maxWidth / 2
+        Title(title = title)
 
         Column(
             modifier = Modifier
-                .padding(top = 44.dp)
-                .fillMaxSize()
+                .fillMaxWidth()
+                .padding(top = 12.dp, start = 16.dp)
         ) {
-            Title(
-                modifier = Modifier
-                    .fillMaxWidth(0.7f)
-                    .padding(horizontal = 44.dp),
-                title = title
+            Icon(
+                modifier = Modifier.clickable { more.invoke() },
+                imageVector = Icons.Default.ArrowForward,
+                contentDescription = null,
+                tint = GallerySpaceComponent.colors.primaryInverse
             )
+        }
+        Column(modifier = Modifier.align(Alignment.End), horizontalAlignment = Alignment.End) {
+            CAPTION1Text(text = "created by")
+            BODY1Text(text = creator)
+        }
 
-            Row(
+        Row(
+            modifier = Modifier.wrapContentSize(), verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(
                 modifier = Modifier
-                    .padding(top = 24.dp, start = 44.dp, end = 44.dp)
-                    .height(80.dp)
-                    .fillMaxSize(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .weight(1f)
+                    .padding(end = 16.dp),
             ) {
-                Icon(
-                    modifier = Modifier.align(Alignment.Top),
-                    imageVector = Icons.Default.ArrowForward,
-                    contentDescription = null,
-                    tint = GallerySpaceComponent.colors.primaryInverse
-                )
-
-                Column(modifier = Modifier.align(Alignment.Bottom)) {
-                    CAPTION1Text(text = "created by")
-                    BODY1Text(text = "Alfredo Peters")
-                }
+                CAPTION1Text(text = "description")
+                BODY1Text(text = description, maxLines = 4)
             }
-            Row(modifier = Modifier.height(maxImageWidth)) {
-                Column(
-                    modifier = Modifier.weight(1f).padding(horizontal = 16.dp, vertical = 16.dp)
-                ) {
-
-                    CAPTION1Text(text = "description")
-
-                    BODY1Text(text = "In his essay \"H. P. Lovecraft and the Cthulhu Mythos\", Robert M. Price described two stages in the development of the Cthulhu Mythos. Price called the first stage the \"Cthulhu Mythos proper\". This stage was formulated during Lovecraft's lifetime and was subject to his guidance. The second stage was guided by August Derleth who, in addition to publishing Lovecraft's stories after his death, attempted to categorize and expand the Mythos.")
-
-                }
-                Image(
-                    modifier = Modifier
-                        .weight(1f)
-                        .widthIn(max = maxImageWidth),
-                    painter = painter
-                )
-            }
-
-            Divider(modifier = Modifier.padding(start = 44.dp, top = 24.dp))
+            Image(
+                modifier = Modifier.weight(1f),
+                painter = painter
+            )
         }
     }
+    Divider(
+        modifier = Modifier.padding(start = 16.dp, top = 34.dp),
+        color = GallerySpaceComponent.colors.primaryInverse,
+    )
 }
 
 @Composable
@@ -101,17 +96,26 @@ private fun Image(modifier: Modifier = Modifier, painter: Painter) = androidx.co
 private fun Title(modifier: Modifier = Modifier, title: String) = H2Text(
     modifier = modifier,
     text = title,
-    maxLines = 3,
 )
-
 
 @ExperimentalUnitApi
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFF121311, uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL)
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF, uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL)
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFF121311,
+    uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
+)
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFFFFFFFF,
+    uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL
+)
 fun PresentationItem_Preview() {
-    PresentationItem(url = "https://i.pinimg.com/originals/b2/fa/15/b2fa156ec6baea56cf784cb60af2f17e.jpg",
-        title = "Cthulhu Mythos.",
-        align = TextAlign.End,
-        more = {})
+    PresentationItem(
+        url = "https://collectionapi.metmuseum.org/api/collection/v1/iiif/591860/1229664/restricted",
+        title = "The Treatyse of Fysshynge wyth an Angle from the book of Saint Albans\n1903",
+        description = "In 1878 William Loring Andrews became a trustee of The Metropolitan Museum of Art and served as its first librarian. He was a prominent collector of rare books of English and American literature and a founding member of the Grolier Club and the Society of Iconophiles. In 1865 Andrews began to self-publish books in which he was also the author or editor. These works were published in his own taste, through his own direction, and are marked by exquisite taste in type, paper, illustration, and binding. In their production, he engaged the services of engravers Edwin Davis French and S. L. Smith, who designed and engraved bookplates for the Metropolitan Museum, and printers Walter Gillias and Theodore De Vinne. From 1865 to 1908 Andrews issued thirty-six volumes, twenty-six authored by himself. \"The Treatyse of Fysshynge\" was printed on hand-made paper in an edition of 160, at the Gilliss Press; the type, caste specially for the book, was patterned after the traditional Old English characters first used by Wynkyn de Worde. The volume is bound in full limpvellum, with the title gold-tooled on the front cover, and has two green silk ties.",
+        creator = "Juliana Berners",
+        more = {}
+    )
 }

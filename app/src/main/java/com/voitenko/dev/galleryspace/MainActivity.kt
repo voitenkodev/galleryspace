@@ -16,11 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.core.view.WindowCompat
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.voitenko.dev.designsystem.GallerySpaceComponent
 import com.voitenko.dev.designsystem.common.GallerySpaceTheme
-import com.voitenko.dev.galleryspace.gallery.GalleryScreen
-import com.voitenko.dev.galleryspace.presentation.PresentPictureScreen
 
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi
@@ -41,6 +40,7 @@ class MainActivity : ComponentActivity() {
             GallerySpaceTheme {
 
                 val systemUiController = rememberSystemUiController()
+                val navController = rememberNavController()
 
                 SideEffect {
                     systemUiController.setSystemBarsColor(
@@ -50,12 +50,12 @@ class MainActivity : ComponentActivity() {
                 }
 
                 Surface(
-                    modifier = Modifier.fillMaxSize().navigationBarsPadding(),
-                    contentColor = GallerySpaceComponent.colors.primary
-                ) {
-                    GalleryScreen()
-//                    PresentPictureScreen()
-                }
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .navigationBarsPadding(),
+                    contentColor = GallerySpaceComponent.colors.primary,
+                    content = { NavigationComponent(navController = navController) }
+                )
             }
         }
     }
