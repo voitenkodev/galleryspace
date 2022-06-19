@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.core.view.WindowCompat
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.voitenko.dev.designsystem.GallerySpaceComponent
 import com.voitenko.dev.designsystem.common.GallerySpaceTheme
@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
             GallerySpaceTheme {
 
                 val systemUiController = rememberSystemUiController()
-                val navController = rememberNavController()
+                val navController = rememberAnimatedNavController()
 
                 SideEffect {
                     systemUiController.setSystemBarsColor(
