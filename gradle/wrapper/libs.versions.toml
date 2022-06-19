@@ -11,7 +11,7 @@ coil-vers = "2.0.0-rc03"
 compose-vers = "1.2.0-alpha05"
 compose-activity-vers = "1.5.0-alpha03"
 compose-navigation-vers = "2.4.1"
-accompanist-system = "0.24.7-alpha"
+accompanist = "0.23.1"
 
 [libraries]
 kotlinx-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-vers" }
@@ -26,7 +26,9 @@ compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.r
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity-vers" }
 compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "compose-navigation-vers" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose-vers" }
-compose-accompansit = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist-system" }
+
+compose-accompansit-systemcontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+compose-accompansit-navigation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 
 coil-core = { module = "io.coil-kt:coil-compose", version.ref = "coil-vers" }
 

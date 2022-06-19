@@ -35,8 +35,9 @@ dependencies {
     implementation(libs.compose.activity)
     implementation(libs.compose.navigation)
     implementation(libs.compose.material)
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.23.1")
-    implementation("com.google.accompanist:accompanist-navigation-animation:0.23.1")
+
+    implementation(libs.compose.accompansit.navigation)
+    implementation(libs.compose.accompansit.systemcontroller)
 
 //    implementation("io.github.voitenkodev:mvi-core:1.0.6")
 }
