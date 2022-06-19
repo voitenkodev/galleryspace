@@ -15,7 +15,11 @@ import com.voitenko.dev.designsystem.GallerySpaceComponent
 import com.voitenko.dev.designsystem.R
 
 @Composable
-fun Toolbar(modifier: Modifier = Modifier) {
+fun Toolbar(
+    modifier: Modifier = Modifier,
+    back: (() -> Unit)? = null,
+    menu: (() -> Unit)? = null,
+) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -24,14 +28,14 @@ fun Toolbar(modifier: Modifier = Modifier) {
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        Dot {
-
+        back?.let {
+            Dot(onClick = it)
         }
 
         Spacer(modifier = Modifier.weight(1f))
 
-        Menu {
-
+        menu?.let {
+            Menu(onClick = it)
         }
     }
 }

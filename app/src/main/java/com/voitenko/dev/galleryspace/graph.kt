@@ -27,20 +27,18 @@ fun NavigationComponent(navController: NavHostController) {
 
         screen(
             route = Routes.Gallery.route,
-        ) {
-            GalleryScreen { art ->
-                navController.navigate("${Routes.Presentation.route}/${art.id}")
-            }
-        }
+            content = { GalleryScreen(navController = navController) }
+        )
 
         screen(
             route = "${Routes.Presentation.route}/{artId}",
             arguments = listOf(navArgument("artId") { type = NavType.StringType }),
-        ) {
-            it.arguments?.getString("artId")?.let { artId ->
-                PresentationScreen(artId = artId)
+            content = {
+                it.arguments?.getString("artId")?.let { artId ->
+                    PresentationScreen(navController = navController, artId = artId)
+                }
             }
-        }
+        )
     }
 }
 
@@ -52,18 +50,10 @@ private fun NavGraphBuilder.screen(
 ) = composable(
     route = route,
     arguments = arguments,
-    enterTransition = {
-        slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(400))
-    },
-    exitTransition = {
-        slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(400))
-    },
-    popEnterTransition = {
-        slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(400))
-    },
-    popExitTransition = {
-        slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(400))
-    },
+    enterTransition = { slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(400)) },
+    exitTransition = { slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(400)) },
+    popEnterTransition = { slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(400)) },
+    popExitTransition = { slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(400)) },
     content = content
 )
 

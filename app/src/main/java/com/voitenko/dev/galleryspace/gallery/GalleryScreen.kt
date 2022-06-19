@@ -10,17 +10,18 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import com.voitenko.dev.designsystem.GallerySpaceComponent
 import com.voitenko.dev.designsystem.components.PresentationItem
 import com.voitenko.dev.designsystem.components.Toolbar
-import com.voitenko.dev.galleryspace.Art
+import com.voitenko.dev.galleryspace.Routes
 import com.voitenko.dev.galleryspace.mock
 
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
-fun GalleryScreen(more: (Art) -> Unit) {
+fun GalleryScreen(navController: NavController) {
 
     val arts = mock()
 
@@ -39,8 +40,9 @@ fun GalleryScreen(more: (Art) -> Unit) {
                 title = item.title,
                 description = item.description,
                 creator = item.creator,
-                more = { more.invoke(item) },
-            )
+                more = {
+                    navController.navigate("${Routes.Presentation.route}/${item.id}")
+                })
         }
     }
 }

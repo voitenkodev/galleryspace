@@ -22,6 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.voitenko.dev.designsystem.GallerySpaceComponent
@@ -37,7 +38,10 @@ import com.voitenko.dev.galleryspace.mock
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @Composable
-fun PresentationScreen(artId: String) {
+fun PresentationScreen(
+    navController: NavController,
+    artId: String,
+) {
 
     val art = mock(artId)!! // todo mock
 
@@ -131,13 +135,12 @@ fun PresentationScreen(artId: String) {
             sheetPeekHeight = collapsedBottomSheetHeight,
             sheetElevation = 0.dp,
             content = {
-                Header(
-                    fraction = fraction.value,
+                Header(fraction = fraction.value,
                     thicknessCoefficient = thicknessCoefficient.value,
                     titleVisible = titleVisible,
                     image = painter,
-                    title = title
-                )
+                    title = title,
+                    back = { navController.popBackStack() })
             },
             sheetContent = {
                 PresentationDashboard(
@@ -161,16 +164,12 @@ fun PresentationScreen(artId: String) {
 @ExperimentalFoundationApi
 @Composable
 fun Header(
-    fraction: Float,
-    thicknessCoefficient: Float,
-    titleVisible: Boolean,
-    image: Painter,
-    title: String,
+    fraction: Float, thicknessCoefficient: Float, titleVisible: Boolean, image: Painter, title: String, back: () -> Unit
 ) {
 
     Column(Modifier.statusBarsPadding()) {
 
-        Toolbar()
+        Toolbar(back = back)
 
         Row(
             modifier = Modifier
@@ -191,21 +190,15 @@ fun Header(
                         .padding(vertical = 16.dp)
                         .wrapContentSize()
                         .rolling(
-                            sideColor1 = Color.LightGray,
-                            sideColor2 = Color.LightGray,
-                            thicknessCoefficient = thicknessCoefficient
-                        ),
-                    painter = image,
-                    contentDescription = null
+                            sideColor1 = Color.LightGray, sideColor2 = Color.LightGray, thicknessCoefficient = thicknessCoefficient
+                        ), painter = image, contentDescription = null
                 )
             }
 
-            AnimatedVisibility(
-                visible = titleVisible,
+            AnimatedVisibility(visible = titleVisible,
                 enter = fadeIn() + expandHorizontally(expandFrom = Alignment.Start),
                 exit = shrinkHorizontally() + fadeOut(),
-                content = { H2Text(modifier = Modifier.padding(start = 16.dp), text = title, maxLines = 3) }
-            )
+                content = { H2Text(modifier = Modifier.padding(start = 16.dp), text = title, maxLines = 3) })
         }
     }
 }
