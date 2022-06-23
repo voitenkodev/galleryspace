@@ -129,7 +129,8 @@ fun PresentationScreen(
             contentDescription = null
         )
 
-        BottomSheetScaffold(scaffoldState = scaffoldState,
+        BottomSheetScaffold(
+            scaffoldState = scaffoldState,
             backgroundColor = Color.Transparent,
             sheetBackgroundColor = GallerySpaceComponent.colors.primary,
             sheetPeekHeight = collapsedBottomSheetHeight,
