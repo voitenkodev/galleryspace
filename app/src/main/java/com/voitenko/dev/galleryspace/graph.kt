@@ -12,6 +12,7 @@ import androidx.navigation.*
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.voitenko.dev.galleryspace.gallery.GalleryScreen
+import com.voitenko.dev.galleryspace.newart.NewArtScreen
 import com.voitenko.dev.galleryspace.presentation.PresentationScreen
 
 @ExperimentalAnimationApi
@@ -22,10 +23,15 @@ import com.voitenko.dev.galleryspace.presentation.PresentationScreen
 fun NavigationComponent(navController: NavHostController) {
     AnimatedNavHost(
         navController = navController,
-        startDestination = Routes.Gallery.route
+        startDestination = Routes.NewArt.route
     ) {
 
         screen(
+            route = Routes.NewArt.route,
+            content = { NewArtScreen(navController = navController) }
+        )
+
+         screen(
             route = Routes.Gallery.route,
             content = { GalleryScreen(navController = navController) }
         )
@@ -60,4 +66,5 @@ private fun NavGraphBuilder.screen(
 sealed class Routes(val route: String) {
     object Gallery : Routes("gallery_screen")
     object Presentation : Routes("presentation_screen")
+    object NewArt : Routes("newart_screen")
 }

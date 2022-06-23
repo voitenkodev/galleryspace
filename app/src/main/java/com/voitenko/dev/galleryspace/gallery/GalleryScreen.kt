@@ -26,9 +26,7 @@ fun GalleryScreen(navController: NavController) {
     val arts = mock()
 
     LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(GallerySpaceComponent.colors.primary)
+        modifier = Modifier.fillMaxSize()
     ) {
         stickyHeader {
             Toolbar(modifier = Modifier.statusBarsPadding())

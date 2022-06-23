@@ -190,8 +190,12 @@ fun Header(
                         .padding(vertical = 16.dp)
                         .wrapContentSize()
                         .rolling(
-                            sideColor1 = Color.LightGray, sideColor2 = Color.LightGray, thicknessCoefficient = thicknessCoefficient
-                        ), painter = image, contentDescription = null
+                            sideColor1 = Color.LightGray,
+                            sideColor2 = Color.LightGray,
+                            thicknessCoefficient = thicknessCoefficient
+                        ),
+                    painter = image,
+                    contentDescription = null
                 )
             }
 

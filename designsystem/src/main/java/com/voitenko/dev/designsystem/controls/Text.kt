@@ -1,12 +1,9 @@
 package com.voitenko.dev.designsystem.controls
 
 import androidx.compose.foundation.text.BasicText
-import androidx.compose.material.ProvideTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,12 +15,14 @@ import com.voitenko.dev.designsystem.common.GallerySpaceTheme
 fun H1Text(
     modifier: Modifier = Modifier,
     text: String?,
+    placeholder: String? = null,
     color: Color? = null,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
 ) = Text(
     modifier = modifier,
     text = text,
+    placeholder = placeholder,
     textStyle = GallerySpaceComponent.typography.H1,
     maxLines = maxLines,
     color = color ?: GallerySpaceComponent.colors.primaryInverse,
@@ -34,12 +33,14 @@ fun H1Text(
 fun H2Text(
     modifier: Modifier = Modifier,
     text: String?,
+    placeholder: String? = null,
     color: Color? = null,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
 ) = Text(
     modifier = modifier,
     text = text,
+    placeholder = placeholder,
     textStyle = GallerySpaceComponent.typography.H2,
     maxLines = maxLines,
     color = color ?: GallerySpaceComponent.colors.primaryInverse,
@@ -50,12 +51,14 @@ fun H2Text(
 fun BODY1Text(
     modifier: Modifier = Modifier,
     text: String?,
+    placeholder: String? = null,
     color: Color? = null,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
 ) = Text(
     modifier = modifier,
     text = text,
+    placeholder = placeholder,
     textStyle = GallerySpaceComponent.typography.BODY1,
     maxLines = maxLines,
     color = color ?: GallerySpaceComponent.colors.primaryInverse,
@@ -66,12 +69,14 @@ fun BODY1Text(
 fun BODY2Text(
     modifier: Modifier = Modifier,
     text: String?,
+    placeholder: String? = null,
     color: Color? = null,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
 ) = Text(
     modifier = modifier,
     text = text,
+    placeholder = placeholder,
     textStyle = GallerySpaceComponent.typography.BODY2,
     maxLines = maxLines,
     color = color ?: GallerySpaceComponent.colors.primaryInverse.copy(alpha = 0.6f),
@@ -82,12 +87,14 @@ fun BODY2Text(
 fun CAPTION1Text(
     modifier: Modifier = Modifier,
     text: String?,
+    placeholder: String? = null,
     color: Color? = null,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
 ) = Text(
     modifier = modifier,
     text = text,
+    placeholder = placeholder,
     textStyle = GallerySpaceComponent.typography.CAPTION1,
     maxLines = maxLines,
     color = color ?: GallerySpaceComponent.colors.caption,
@@ -134,29 +141,28 @@ private fun CAPTION2_Preview() {
 internal fun Text(
     modifier: Modifier = Modifier,
     text: String?,
+    placeholder: String? = null,
     color: Color? = null,
     textAlign: TextAlign? = null,
     textStyle: TextStyle,
     maxLines: Int = Int.MAX_VALUE,
 ) {
-    val innerColorTextStyle = if (color != null) {
-        textStyle.copy(color = color)
+    val isPlaceholder = text == null
+
+    val _color = if (isPlaceholder) color?.copy(alpha = 0.7f) else color
+
+    val innerColorTextStyle = if (_color != null) {
+        textStyle.copy(color = _color)
     } else textStyle
 
     val innerTextAlignTextStyle = if (textAlign != null) {
         innerColorTextStyle.copy(textAlign = textAlign)
     } else innerColorTextStyle
 
-
     BasicText(
         modifier = modifier,
-        text = text ?: "",
+        text = text ?: placeholder ?: "",
         style = innerTextAlignTextStyle,
-        maxLines = maxLines,
-        onTextLayout = { tl: TextLayoutResult -> })
-}
-
-@Composable
-private fun Inner(style: TextStyle, text: String) = ProvideTextStyle(value = style) {
-    androidx.compose.material.Text(modifier = Modifier.alpha(0.6f), text = text, maxLines = 1)
+        maxLines = maxLines
+    )
 }

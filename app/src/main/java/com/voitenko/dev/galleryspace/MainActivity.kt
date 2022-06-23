@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                         .navigationBarsPadding(),
-                    contentColor = GallerySpaceComponent.colors.primary,
+                    color = GallerySpaceComponent.colors.primary,
                     content = { NavigationComponent(navController = navController) }
                 )
             }
