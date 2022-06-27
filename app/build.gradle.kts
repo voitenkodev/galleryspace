@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.app)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.sqldelight)
 }
 
 android {
@@ -39,5 +40,17 @@ dependencies {
     implementation(libs.compose.accompansit.navigation)
     implementation(libs.compose.accompansit.systemcontroller)
 
+    implementation(libs.sqldelight.common)
+    implementation(libs.sqldelight.android)
+    implementation(libs.sqldelight.extensions)
+
 //    implementation("io.github.voitenkodev:mvi-core:1.0.6")
+}
+
+sqldelight {
+    this.database("AppDataBase") {
+        packageName = "com.voitenko.dev.galleryspace.db"
+        sourceFolders = listOf("java")
+        linkSqlite = true
+    }
 }
