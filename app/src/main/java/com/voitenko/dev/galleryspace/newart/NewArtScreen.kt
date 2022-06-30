@@ -15,12 +15,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -79,6 +82,16 @@ fun NewArtScreen(navController: NavController) {
                         )
                     }
                 }
+                if (bitmap.value == null)
+                    Icon(
+                        imageVector = Icons.Outlined.ShoppingCart,
+                        tint = GallerySpaceComponent.colors.primaryInverse,
+                        modifier = Modifier
+                            .fillMaxSize(0.5f)
+                            .statusBarsPadding()
+                            .padding(16.dp),
+                        contentDescription = null
+                    )
             }
         }
 
