@@ -69,12 +69,11 @@ fun NewArtScreen(navController: NavController) {
                             contentDescription = null
                         )
 
-
-
                         Image(
                             modifier = Modifier
-                                .padding(vertical = 16.dp)
-                                .wrapContentSize(),
+                                .wrapContentSize()
+                                .statusBarsPadding()
+                                .padding(16.dp),
                             bitmap = btm.asImageBitmap(),
                             contentDescription = null
                         )
@@ -85,7 +84,6 @@ fun NewArtScreen(navController: NavController) {
 
         item {
             val value = remember { mutableStateOf(TextFieldValue()) }
-
             BODY1EditText(
                 text = value.value,
                 onValueChange = { value.value = it },

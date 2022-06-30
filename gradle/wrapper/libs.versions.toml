@@ -1,5 +1,5 @@
 [versions]
-android-gradle-vers = "7.4.0-alpha05"
+android-gradle-vers = "7.4.0-alpha07"
 kotlin-vers = "1.6.10" # todo 1.7.0 need upgrade
 parcelize-vers = "1.6.10"
 
