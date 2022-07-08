@@ -40,7 +40,8 @@ fun GalleryScreen(navController: NavController) {
                 creator = item.creator,
                 more = {
                     navController.navigate("${Routes.Presentation.route}/${item.id}")
-                })
+                }
+            )
         }
     }
 }
