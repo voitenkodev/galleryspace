@@ -1,6 +1,8 @@
 package com.voitenko.dev.galleryspace.db
 
 import com.squareup.sqldelight.ColumnAdapter
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.toLocalDateTime
 
 val listOfStringsAdapter = object : ColumnAdapter<List<String>, String> {
     override fun decode(databaseValue: String) =
@@ -9,12 +11,15 @@ val listOfStringsAdapter = object : ColumnAdapter<List<String>, String> {
         } else {
             databaseValue.split(",")
         }
+
     override fun encode(value: List<String>) = value.joinToString(separator = ",")
 }
 
-//val queryWrapper: AppDa = AppDataBase(
-//    driver = driver,
-//    hockeyPlayerAdapter = hockeyPlayer.Adapter(
-//        cup_winsAdapter = listOfStringsAdapter
-//    )
-//)
+val dateAdapter = object : ColumnAdapter<LocalDateTime, String> {
+
+    override fun decode(databaseValue: String): LocalDateTime =
+        databaseValue.toLocalDateTime()
+
+    override fun encode(value: LocalDateTime): String =
+        value.toString()
+}
