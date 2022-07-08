@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -84,7 +85,7 @@ fun NewArtScreen(navController: NavController) {
                 }
                 if (bitmap.value == null)
                     Icon(
-                        imageVector = Icons.Outlined.ShoppingCart,
+                        painterResource(id = com.voitenko.dev.designsystem.R.drawable.ic_gallery),
                         tint = GallerySpaceComponent.colors.primaryInverse,
                         modifier = Modifier
                             .fillMaxSize(0.5f)
@@ -108,7 +109,8 @@ fun NewArtScreen(navController: NavController) {
 
         item {
             val value = remember { mutableStateOf<String?>(null) }
-            Info(modifier = Modifier.padding(horizontal = 16.dp),
+            Info(
+                modifier = Modifier.padding(horizontal = 16.dp),
                 caption = "Put a date",
                 placeholder = "00, Jan, 0000",
                 value = value.value,
