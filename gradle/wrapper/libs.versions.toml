@@ -21,6 +21,7 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-vers" }
 kotlinx-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-vers" }
 
+# COMPOSE
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-vers" }
 compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-vers" }
 compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-vers" }
@@ -28,14 +29,20 @@ compose-activity = { module = "androidx.activity:activity-compose", version.ref 
 compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "compose-navigation-vers" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose-vers" }
 
+#ACCOMPANIST
 compose-accompansit-systemcontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 compose-accompansit-navigation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 
+#COIL
 coil-core = { module = "io.coil-kt:coil-compose", version.ref = "coil-vers" }
 
+#SQLDELIGHT
 sqldelight-common = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight-vers" }
 sqldelight-android = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight-vers" }
 sqldelight-extensions = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqldelight-vers" }
+
+#KOIN
+
 
 [plugins]
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-vers" }

@@ -5,12 +5,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 
-
 internal fun database(driver: SqlDriver): AppDataBaseQueries = AppDataBase.invoke(
     driver,
     Art.Adapter(dateAdapter, listOfStringsAdapter),
 ).appDataBaseQueries
-
 
 internal class DatabaseDriverFactory(private val context: Context) {
     internal fun createDriver(): SqlDriver = AndroidSqliteDriver(

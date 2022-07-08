@@ -44,7 +44,9 @@ dependencies {
     implementation(libs.sqldelight.android)
     implementation(libs.sqldelight.extensions)
 
-//    implementation("io.github.voitenkodev:mvi-core:1.0.6")
+    implementation("io.insert-koin:koin-core:3.2.0")
+    implementation("io.insert-koin:koin-androidx-compose:3.2.0")
+    implementation("io.insert-koin:koin-android:3.2.0")
 }
 
 sqldelight {
