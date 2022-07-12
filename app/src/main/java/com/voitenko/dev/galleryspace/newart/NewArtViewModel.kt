@@ -1,4 +1,7 @@
 package com.voitenko.dev.galleryspace.newart
 
-class NewArtViewModel {
+import androidx.lifecycle.ViewModel
+import com.voitenko.dev.galleryspace.db.AppDataSource
+
+class NewArtViewModel(private val source: AppDataSource) : ViewModel() {
 }

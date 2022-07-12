@@ -15,15 +15,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -35,9 +32,13 @@ import com.voitenko.dev.designsystem.GallerySpaceComponent
 import com.voitenko.dev.designsystem.controls.BODY1EditText
 import com.voitenko.dev.designsystem.controls.BODY1Text
 import com.voitenko.dev.designsystem.controls.Divider
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun NewArtScreen(navController: NavController) {
+fun NewArtScreen(
+    navController: NavController,
+    viewModel: NewArtViewModel = koinViewModel()
+) {
 
     LazyColumn {
         item {

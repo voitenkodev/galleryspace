@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.LocalDateTime
 
-public class DataSource(context: Context) {
+class AppDataSource(context: Context) {
 
     private val database: AppDataBaseQueries = database(DatabaseDriverFactory(context = context).createDriver())
 

@@ -1,4 +1,6 @@
 package com.voitenko.dev.galleryspace.gallery
 
-class GalleryViewModel {
+import androidx.lifecycle.ViewModel
+
+class GalleryViewModel : ViewModel(){
 }
