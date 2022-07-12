@@ -7,6 +7,7 @@ import android.os.Build
 import android.provider.MediaStore
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,9 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -25,22 +24,37 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.voitenko.dev.designsystem.GallerySpaceComponent
+import com.voitenko.dev.designsystem.components.Toolbar
 import com.voitenko.dev.designsystem.controls.BODY1EditText
 import com.voitenko.dev.designsystem.controls.BODY1Text
 import com.voitenko.dev.designsystem.controls.Divider
 import org.koin.androidx.compose.koinViewModel
 
+@ExperimentalFoundationApi
 @Composable
 fun NewArtScreen(
     navController: NavController,
     viewModel: NewArtViewModel = koinViewModel()
 ) {
+    val art = viewModel.state.collectAsState()
 
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .statusBarsPadding()
+    ) {
+
+        stickyHeader {
+            Toolbar(
+                ok = {
+                    viewModel.save()
+                }
+            )
+        }
+
         item {
             val context = LocalContext.current
             val imageUri = remember { mutableStateOf<Uri?>(null) }
@@ -62,6 +76,7 @@ fun NewArtScreen(
                         val source = ImageDecoder.createSource(context.contentResolver, it)
                         bitmap.value = ImageDecoder.decodeBitmap(source)
                     }
+                    viewModel.set(uri = imageUri.value)
 
                     bitmap.value?.let { btm ->
                         Image(
@@ -98,10 +113,9 @@ fun NewArtScreen(
         }
 
         item {
-            val value = remember { mutableStateOf(TextFieldValue()) }
             BODY1EditText(
-                text = value.value,
-                onValueChange = { value.value = it },
+                text = art.value.title,
+                onValueChange = { viewModel.set(title = it) },
                 label = "Put a Title",
             )
         }
@@ -109,33 +123,32 @@ fun NewArtScreen(
         item { Divider(modifier = Modifier.padding(horizontal = 16.dp)) }
 
         item {
-            val value = remember { mutableStateOf<String?>(null) }
             Info(
                 modifier = Modifier.padding(horizontal = 16.dp),
                 caption = "Put a date",
                 placeholder = "00, Jan, 0000",
-                value = value.value,
-                onClick = { value.value = "16, Sep, 1994" })
+                value = art.value.createAt,
+                onClick = { viewModel.set(date = "16, Sep, 1994") })
         }
 
         item { Divider(modifier = Modifier.padding(horizontal = 16.dp)) }
 
         item {
-            val value = remember { mutableStateOf<String?>(null) }
-            Info(modifier = Modifier.padding(horizontal = 16.dp),
+            Info(
+                modifier = Modifier.padding(horizontal = 16.dp),
                 caption = "Put a price",
                 placeholder = "--- $",
-                value = value.value,
-                onClick = { value.value = "200 $" })
+                value = art.value.price,
+                onClick = { viewModel.set(price = "200 $") }
+            )
         }
 
         item { Divider(modifier = Modifier.padding(horizontal = 16.dp)) }
 
         item {
-            val value = remember { mutableStateOf(TextFieldValue()) }
             BODY1EditText(
-                text = value.value,
-                onValueChange = { value.value = it },
+                text = art.value.description,
+                onValueChange = { viewModel.set(description = it) },
                 label = "Put a description",
             )
         }

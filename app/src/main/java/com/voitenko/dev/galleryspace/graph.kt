@@ -23,7 +23,7 @@ import com.voitenko.dev.galleryspace.presentation.PresentationScreen
 fun NavigationComponent(navController: NavHostController) {
     AnimatedNavHost(
         navController = navController,
-        startDestination = Routes.NewArt.route
+        startDestination = Routes.Gallery.route
     ) {
 
         screen(
@@ -31,7 +31,7 @@ fun NavigationComponent(navController: NavHostController) {
             content = { NewArtScreen(navController = navController) }
         )
 
-         screen(
+        screen(
             route = Routes.Gallery.route,
             content = { GalleryScreen(navController = navController) }
         )

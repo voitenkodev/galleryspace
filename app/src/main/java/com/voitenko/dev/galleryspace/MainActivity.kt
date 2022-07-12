@@ -38,10 +38,8 @@ class MainActivity : ComponentActivity() {
             val useDarkIcons = MaterialTheme.colors.isLight
 
             GallerySpaceTheme {
-
                 val systemUiController = rememberSystemUiController()
                 val navController = rememberAnimatedNavController()
-
                 SideEffect {
                     systemUiController.setSystemBarsColor(
                         color = Color.Transparent,
@@ -54,9 +52,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .navigationBarsPadding(),
                     color = GallerySpaceComponent.colors.primary,
-                    content = {
-                        NavigationComponent(navController = navController)
-                    }
+                    content = { NavigationComponent(navController = navController) }
                 )
             }
         }

@@ -19,6 +19,8 @@ fun Toolbar(
     modifier: Modifier = Modifier,
     back: (() -> Unit)? = null,
     menu: (() -> Unit)? = null,
+    add: (() -> Unit)? = null,
+    ok: (() -> Unit)? = null,
 ) {
     Row(
         modifier = modifier
@@ -33,6 +35,14 @@ fun Toolbar(
         }
 
         Spacer(modifier = Modifier.weight(1f))
+
+        add?.let {
+            Add(onClick = it)
+        }
+
+        ok?.let {
+            Ok(onClick = it)
+        }
 
         menu?.let {
             Menu(onClick = it)
@@ -51,7 +61,7 @@ fun Dot(modifier: Modifier = Modifier, onClick: () -> Unit) {
             .background(
                 shape = RoundedCornerShape(50),
                 color = GallerySpaceComponent.colors.primaryInverse
-            ),
+            )
     )
 }
 
@@ -64,6 +74,34 @@ fun Menu(modifier: Modifier = Modifier, onClick: () -> Unit) {
             .clip(shape = RoundedCornerShape(50))
             .clickable { onClick.invoke() }
             .padding(8.dp),
+        contentDescription = null,
+        tint = GallerySpaceComponent.colors.primaryInverse
+    )
+}
+
+@Composable
+fun Add(modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Icon(
+        painter = painterResource(id = R.drawable.ic_add),
+        modifier = modifier
+            .size(44.dp)
+            .clip(shape = RoundedCornerShape(50))
+            .clickable { onClick.invoke() }
+            .padding(12.dp),
+        contentDescription = null,
+        tint = GallerySpaceComponent.colors.primaryInverse
+    )
+}
+
+@Composable
+fun Ok(modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Icon(
+        painter = painterResource(id = R.drawable.ic_ok),
+        modifier = modifier
+            .size(44.dp)
+            .clip(shape = RoundedCornerShape(50))
+            .clickable { onClick.invoke() }
+            .padding(12.dp),
         contentDescription = null,
         tint = GallerySpaceComponent.colors.primaryInverse
     )

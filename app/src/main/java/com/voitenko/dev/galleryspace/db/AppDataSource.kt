@@ -10,7 +10,7 @@ import kotlinx.datetime.LocalDateTime
 
 class AppDataSource(context: Context) {
 
-    private val database: AppDataBaseQueries = database(DatabaseDriverFactory(context = context).createDriver())
+    private val database: AppDataBaseQueries = database(context = context)
 
     private fun lastId(): Flow<Long?> =
         database.getLastId().asFlow().map { it.executeAsOneOrNull() }

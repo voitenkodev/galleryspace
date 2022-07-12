@@ -32,6 +32,7 @@ import com.voitenko.dev.designsystem.components.Toolbar
 import com.voitenko.dev.designsystem.controls.H2Text
 import com.voitenko.dev.designsystem.modifiers.rolling
 import com.voitenko.dev.galleryspace.mock
+import org.koin.androidx.compose.koinViewModel
 
 @ExperimentalMaterialApi
 @ExperimentalFoundationApi
@@ -40,6 +41,7 @@ import com.voitenko.dev.galleryspace.mock
 @Composable
 fun PresentationScreen(
     navController: NavController,
+    viewModel: PresentationViewModel = koinViewModel(),
     artId: String,
 ) {
 
