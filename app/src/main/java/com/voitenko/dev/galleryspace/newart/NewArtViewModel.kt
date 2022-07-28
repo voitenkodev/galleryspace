@@ -8,7 +8,7 @@ import com.voitenko.dev.galleryspace.db.AppDataSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.toLocalDateTime
 
 class NewArtViewModel(private val source: AppDataSource) : ViewModel() {
 
@@ -43,7 +43,7 @@ class NewArtViewModel(private val source: AppDataSource) : ViewModel() {
         title = state.value.title.text,
         description = state.value.description.text,
         price = state.value.price,
-        createdAt = LocalDateTime.parse(state.value.createAt),
+        createdAt = state.value.createAt.toLocalDateTime(),
         proprietors = emptyList()
     ).launchIn(viewModelScope)
 }

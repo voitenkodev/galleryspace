@@ -128,7 +128,7 @@ fun NewArtScreen(
                 caption = "Put a date",
                 placeholder = "00, Jan, 0000",
                 value = art.value.createAt,
-                onClick = { viewModel.set(date = "16, Sep, 1994") })
+                onClick = { viewModel.set(date = "2010-06-01T22:19:44") })
         }
 
         item { Divider(modifier = Modifier.padding(horizontal = 16.dp)) }
