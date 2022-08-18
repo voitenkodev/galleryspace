@@ -1,45 +1,50 @@
 package com.voitenko.dev.galleryspace.newart
 
-import android.net.Uri
+import android.graphics.Bitmap
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.voitenko.dev.galleryspace.ImageSaver
 import com.voitenko.dev.galleryspace.db.AppDataSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.datetime.toLocalDateTime
 
-class NewArtViewModel(private val source: AppDataSource) : ViewModel() {
+class NewArtViewModel(
+    private val source: AppDataSource,
+    private val imageSaver: ImageSaver,
+) : ViewModel() {
+
+    private val _state = MutableStateFlow(NewArt())
+    val state: StateFlow<NewArt> = _state
 
     data class NewArt(
-        val url: Uri = Uri.EMPTY,
+        val image: Bitmap? = null,
         val title: TextFieldValue = TextFieldValue(""),
         val description: TextFieldValue = TextFieldValue(""),
         val price: String = "",
         val createAt: String = "",
     )
 
-    private val _state = MutableStateFlow(NewArt())
-    val state: StateFlow<NewArt> = _state
-
     fun set(
-        uri: Uri? = null,
+        image: Bitmap? = null,
         title: TextFieldValue? = null,
         description: TextFieldValue? = null,
         price: String? = null,
         date: String? = null
     ) {
         _state.value = _state.value.copy(
-            url = uri ?: _state.value.url,
+            image = image ?: _state.value.image,
             title = title ?: _state.value.title,
             description = description ?: _state.value.description,
             price = price ?: _state.value.price,
             createAt = date ?: _state.value.createAt
         )
     }
-    fun save() = source.setArt(
-        url = state.value.url.toString(),
+
+    fun save(success: () -> Unit, error: () -> Unit) = source.setArt(
+        url = imageSaver.saveToFile(state.value.image).toString(),
         title = state.value.title.text,
         description = state.value.description.text,
         price = state.value.price,

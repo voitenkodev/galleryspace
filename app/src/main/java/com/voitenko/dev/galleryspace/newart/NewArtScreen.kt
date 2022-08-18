@@ -16,7 +16,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -50,7 +53,10 @@ fun NewArtScreen(
         stickyHeader {
             Toolbar(
                 ok = {
-                    viewModel.save()
+                    viewModel.save(
+                        success = {navController.popBackStack()},
+                        error = {}
+                    )
                 }
             )
         }
@@ -76,7 +82,7 @@ fun NewArtScreen(
                         val source = ImageDecoder.createSource(context.contentResolver, it)
                         bitmap.value = ImageDecoder.decodeBitmap(source)
                     }
-                    viewModel.set(uri = imageUri.value)
+                    viewModel.set(image = bitmap.value)
 
                     bitmap.value?.let { btm ->
                         Image(

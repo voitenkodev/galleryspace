@@ -1,19 +1,9 @@
 package com.voitenko.dev.galleryspace.db
 
-import android.content.Context
-import com.squareup.sqldelight.runtime.coroutines.asFlow
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 import kotlinx.datetime.LocalDateTime
 
-class AppDataSource(context: Context) {
-
-    private val database: AppDataBaseQueries = database(context = context)
-
-    private fun lastId(): Flow<Long?> =
-        database.getLastId().asFlow().map { it.executeAsOneOrNull() }
+interface AppDataSource {
 
     fun setArt(
         url: String,
@@ -22,8 +12,7 @@ class AppDataSource(context: Context) {
         price: String,
         createdAt: LocalDateTime,
         proprietors: List<String>
-    ): Flow<Long?> = flowOf(database.setArt(url, title, description, price, createdAt, proprietors))
-        .flatMapConcat { lastId() }
+    ): Flow<Long?>
 
     fun updateArt(
         id: Long,
@@ -33,13 +22,9 @@ class AppDataSource(context: Context) {
         price: String,
         createdAt: LocalDateTime,
         proprietors: List<String>
-    ): Flow<Long?> = flowOf(database.updateArt(id, url, title, description, price, createdAt, proprietors))
-        .flatMapConcat { lastId() }
+    ): Flow<Long?>
 
-    fun getArt(
-        id: Long,
-    ): Flow<Art?> = flowOf(database.getArtById(id)).map { it.executeAsOneOrNull() }
+    fun getArt(id: Long): Flow<Art?>
 
-    fun getArts(): Flow<List<Art>> = flowOf(database.getArts()).map { it.executeAsList() }
-
+    fun getArts(): Flow<List<Art>>
 }
