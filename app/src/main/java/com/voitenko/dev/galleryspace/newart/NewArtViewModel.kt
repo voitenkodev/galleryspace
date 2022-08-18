@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.voitenko.dev.galleryspace.ImageSaver
 import com.voitenko.dev.galleryspace.db.AppDataSource
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.*
 import kotlinx.datetime.toLocalDateTime
 
 class NewArtViewModel(
@@ -43,12 +41,16 @@ class NewArtViewModel(
         )
     }
 
-    fun save(success: () -> Unit, error: () -> Unit) = source.setArt(
+    fun save(success: () -> Unit, error: () -> Unit) = source
+        .setArt(
         url = imageSaver.saveToFile(state.value.image).toString(),
         title = state.value.title.text,
         description = state.value.description.text,
         price = state.value.price,
         createdAt = state.value.createAt.toLocalDateTime(),
         proprietors = emptyList()
-    ).launchIn(viewModelScope)
+    )
+        .onEach { success.invoke() }
+        .catch { error.invoke() }
+        .launchIn(viewModelScope)
 }

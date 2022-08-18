@@ -16,9 +16,7 @@ class ImageSaver(private val context: Context) {
 
     fun saveToFile(bitmap: Bitmap?): Uri {
         if (bitmap == null) return Uri.EMPTY
-
         val name = UUID.randomUUID().toString()
-
         val outStream: FileOutputStream
         try {
             outStream = FileOutputStream(pictureDirectory(name))
