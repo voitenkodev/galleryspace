@@ -2,7 +2,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-//    alias(libs.plugins.compose)
+    alias(libs.plugins.compose)
 }
 
 android {
@@ -10,14 +10,16 @@ android {
     compileSdk = 32
     defaultConfig { minSdk = 21 }
     buildFeatures.compose = true
-    composeOptions.kotlinCompilerExtensionVersion = "1.3.0"
+    composeOptions.kotlinCompilerExtensionVersion = "1.2.0"
 }
 
 dependencies {
-    implementation(libs.compose.ui)
-    implementation(libs.compose.tooling)
-    implementation(libs.compose.preview)
-    implementation(libs.compose.material)
+    implementation(compose.ui)
+    implementation(compose.material)
+    implementation(compose.preview)
+    implementation(compose.materialIconsExtended)
+    implementation(compose.uiTooling)
+
     implementation(libs.compose.activity)
     implementation(libs.coil.core)
 }

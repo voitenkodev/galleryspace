@@ -1,5 +1,7 @@
 [versions]
-kotlin-vers = "1.7.10"
+compose-plugin-vers = "1.2.0-alpha01-dev755"
+
+kotlin-vers = "1.7.0"
 compose-vers = "1.2.1"
 coroutines-vers = "1.6.0"
 logger-vers = "1.0.0"
@@ -59,4 +61,4 @@ android-library = { id = "com.android.library", version.ref = "android-gradle-ve
 sqldelight = { id = "com.squareup.sqldelight", version.ref = "sqldelight-vers" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin-vers" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-vers" }
-compose = { id = "org.jetbrains.compose", version.ref = "compose-vers" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose-plugin-vers" }
