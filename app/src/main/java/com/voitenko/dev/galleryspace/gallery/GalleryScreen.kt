@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.voitenko.dev.designsystem.components.PresentationItem
@@ -18,7 +17,6 @@ import org.koin.androidx.compose.koinViewModel
 
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
-@ExperimentalComposeUiApi
 @Composable
 fun GalleryScreen(
     navController: NavController,

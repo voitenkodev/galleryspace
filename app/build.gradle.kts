@@ -2,7 +2,7 @@
 plugins {
     alias(libs.plugins.android.app)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.serialization)
     alias(libs.plugins.sqldelight)
 }
 
@@ -17,16 +17,23 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+
     buildFeatures.compose = true
-    composeOptions.kotlinCompilerExtensionVersion = "1.2.0-alpha05"
+    composeOptions.kotlinCompilerExtensionVersion = "1.3.0"
+
+//    kotlinOptions {
+//        jvmTarget = "1.8"
+//    }
 }
 
 dependencies {
     implementation(project(":designsystem"))
 
-    implementation(libs.kotlinx.coroutines)
-    implementation(libs.kotlinx.datetime)
+    implementation(libs.coroutines)
+    implementation(libs.datetime)
     implementation(libs.kotlinx.runtime)
+
+    implementation(libs.serialization)
 
     implementation(libs.coil.core)
 

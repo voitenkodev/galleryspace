@@ -15,10 +15,10 @@ import com.voitenko.dev.galleryspace.gallery.GalleryScreen
 import com.voitenko.dev.galleryspace.newart.NewArtScreen
 import com.voitenko.dev.galleryspace.presentation.PresentationScreen
 
-@ExperimentalAnimationApi
 @ExperimentalComposeUiApi
-@ExperimentalFoundationApi
 @ExperimentalMaterialApi
+@ExperimentalAnimationApi
+@ExperimentalFoundationApi
 @Composable
 fun NavigationComponent(navController: NavHostController) {
     AnimatedNavHost(

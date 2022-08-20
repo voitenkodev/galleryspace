@@ -1,11 +1,5 @@
 package com.voitenko.dev.galleryspace
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
-
-@Parcelize
 data class Art(
     val id: String,
     val url: String,
@@ -15,15 +9,13 @@ data class Art(
     val price: String,
     val createdAt: String,
     val proprietors: List<Proprietor>,
-) : Parcelable
-
-@Parcelize
+)
 data class Proprietor(
     val name: String,
     val url: String,
     val purchase: String,
     val date: String
-) : Parcelable
+)
 
 fun mock(id: String) = mock().find { it.id == id }
 

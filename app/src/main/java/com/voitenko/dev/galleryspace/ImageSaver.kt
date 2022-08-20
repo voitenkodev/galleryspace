@@ -10,7 +10,6 @@ import java.io.FileOutputStream
 import java.util.UUID
 
 class ImageSaver(private val context: Context) {
-
     private fun pictureDirectory(nameFile: String): String =
         "${context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)}${File.separator}$nameFile.png"
 

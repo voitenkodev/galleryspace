@@ -2,18 +2,15 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+//    alias(libs.plugins.compose)
 }
 
 android {
     namespace = "com.voitenko.dev.designsystem"
     compileSdk = 32
-
-    defaultConfig {
-        minSdk = 21
-        targetSdk = 32
-    }
+    defaultConfig { minSdk = 21 }
     buildFeatures.compose = true
-    composeOptions.kotlinCompilerExtensionVersion = "1.2.0-alpha05"
+    composeOptions.kotlinCompilerExtensionVersion = "1.3.0"
 }
 
 dependencies {
