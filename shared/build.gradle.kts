@@ -75,19 +75,17 @@ kotlin {
             }
         }
 
+
         val iosMain by creating {
-//            dependencies {
-//                implementation(libs.ktor.ios)
-//            implementation(libs.sqldelight.ios)
-//            implementation(libs.sqldelight.native) ??
-//            }
             dependsOn(commonMain)
+            dependencies {
+                implementation(libs.ktor.darwin)
+            }
         }
 
         val macosMain by creating { dependsOn(iosMain) }
         val macosX64Main by getting { dependsOn(macosMain) }
         val macosArm64Main by getting { dependsOn(macosMain) }
-
         val uikitMain by creating { dependsOn(iosMain) }
         val uikitX64Main by getting { dependsOn(uikitMain) }
         val uikitArm64Main by getting { dependsOn(uikitMain) }
@@ -113,7 +111,7 @@ compose.desktop {
                 org.jetbrains.compose.desktop.application.dsl.TargetFormat.Msi,
                 org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
             )
-            packageName = "Tesla App"
+            packageName = "GallerySpace"
             packageVersion = "1.0.0"
 
             windows {
@@ -128,8 +126,8 @@ compose.desktop {
 compose.experimental {
     web.application {}
     uikit.application {
-        bundleIdPrefix = "ru.agladkov"
-        projectName = "TeslaApp"
+        bundleIdPrefix = "dev.voitenko"
+        projectName = "GallerySpace"
         deployConfigurations {
             simulator("IPhone13") {
                 //Usage: ./gradlew iosDeployIPhone13Debug
@@ -156,7 +154,7 @@ compose.desktop.nativeApplication {
     targets(kotlin.targets.getByName("macosX64"))
     distributions {
         targetFormats(org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg)
-        packageName = "TeslaApp"
+        packageName = "GallerySpace"
         packageVersion = "1.0.0"
     }
 }
@@ -169,7 +167,6 @@ afterEvaluate {
         nodeVersion = "16.0.0"
     }
 }
-
 
 // TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
 project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.java).configureEach {

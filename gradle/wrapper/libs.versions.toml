@@ -45,8 +45,9 @@ sqldelight-js = { module = "com.squareup.sqldelight:sqljs-driver", version.ref =
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-vers" }
 ktor-android = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor-vers" }
 ktor-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor-vers" }
-ktor-ios = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor-vers" }
 ktor-desktop = { module = "io.ktor:ktor-client-apache", version.ref = "ktor-vers" }
+ktor-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor-vers" }
+#ktor-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor-vers" }
 
 [plugins]
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-vers" }

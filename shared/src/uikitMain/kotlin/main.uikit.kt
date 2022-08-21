@@ -9,7 +9,6 @@ import kotlinx.cinterop.*
 import platform.Foundation.NSStringFromClass
 import platform.UIKit.*
 
-@ExperimentalUnitApi
 fun main() {
     val args = emptyArray<String>()
     memScoped {
@@ -21,7 +20,6 @@ fun main() {
     }
 }
 
-@ExperimentalUnitApi
 class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
     companion object : UIResponderMeta(), UIApplicationDelegateProtocolMeta
 
@@ -40,7 +38,7 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
             Column {
                 // To skip upper part of screen.
                 Box(modifier = Modifier.height(30.dp))
-                TeslaApp()
+                App()
             }
         }
         window!!.makeKeyAndVisible()
