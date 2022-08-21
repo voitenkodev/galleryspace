@@ -1,4 +1,4 @@
-@Suppress("UnstableApiUsage", "DSL_SCOPE_VIOLATION")
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.app)
     alias(libs.plugins.kotlin.android)
@@ -22,7 +22,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":designsystem"))
+//    implementation(project(":designsystem"))
 
     implementation(compose.ui)
     implementation(compose.uiTooling)
@@ -34,8 +34,8 @@ dependencies {
     implementation(libs.compose.accompansit.systemcontroller)
 
     implementation(libs.coroutines)
-    implementation(libs.datetime)
     implementation(libs.kotlinx.runtime)
+    implementation(libs.datetime)
     implementation(libs.serialization)
     implementation(libs.coil.core)
 

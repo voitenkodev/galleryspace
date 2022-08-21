@@ -1,5 +1,5 @@
 enableFeaturePreview("VERSION_CATALOGS")
-//enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")// TODO FIX
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
@@ -20,9 +20,10 @@ pluginManagement {
     }
 }
 
-rootProject.name = "Gallery Space"
+rootProject.name = "GallerySpace"
 
 include(
     ":app",
-    ":designsystem"
+    ":designsystem",
+//    ":shared"
 )

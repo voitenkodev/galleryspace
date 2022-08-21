@@ -50,9 +50,10 @@ kotlin {
         }
         val iosMain by creating {
             dependencies {
-                implementation(libs.sqldelight.ios)
+//                implementation(libs.sqldelight.ios)
             }
         }
+
         val watchosMain by creating
         val linuxMain by creating
         val macosMain by creating
