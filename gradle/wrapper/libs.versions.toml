@@ -5,7 +5,7 @@ coroutines-vers = "1.6.4"
 logger-vers = "1.0.0"
 serialization-vers = "1.3.2"
 sqldelight-vers = "1.5.3"
-ktor-vers = "2.0.0-beta-1"
+ktor-vers = "2.1.0"
 
 android-gradle-vers = "7.4.0-alpha08"
 lifecycle-runtime-vers = "2.5.0-alpha04"
@@ -42,9 +42,11 @@ sqldelight-native = { module = "com.squareup.sqldelight:native-driver", version.
 sqldelight-js = { module = "com.squareup.sqldelight:sqljs-driver", version.ref = "sqldelight-vers" }
 
 #KTOR
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-vers" }
 ktor-android = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor-vers" }
 ktor-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor-vers" }
-ktor-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor-vers" }
+ktor-ios = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor-vers" }
+ktor-desktop = { module = "io.ktor:ktor-client-apache", version.ref = "ktor-vers" }
 
 [plugins]
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-vers" }

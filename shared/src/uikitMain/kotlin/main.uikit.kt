@@ -2,12 +2,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Application
 import kotlinx.cinterop.*
 import platform.Foundation.NSStringFromClass
 import platform.UIKit.*
 
+@ExperimentalUnitApi
 fun main() {
     val args = emptyArray<String>()
     memScoped {
@@ -19,6 +21,7 @@ fun main() {
     }
 }
 
+@ExperimentalUnitApi
 class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
     companion object : UIResponderMeta(), UIApplicationDelegateProtocolMeta
 
@@ -33,7 +36,7 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
 
     override fun application(application: UIApplication, didFinishLaunchingWithOptions: Map<Any?, *>?): Boolean {
         window = UIWindow(frame = UIScreen.mainScreen.bounds)
-        window!!.rootViewController = Application("TeslaApp") {
+        window!!.rootViewController = Application("GallerySpace") {
             Column {
                 // To skip upper part of screen.
                 Box(modifier = Modifier.height(30.dp))

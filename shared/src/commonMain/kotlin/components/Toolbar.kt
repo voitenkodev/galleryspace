@@ -1,18 +1,20 @@
-package com.voitenko.dev.designsystem.components
+package components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.voitenko.dev.designsystem.GallerySpaceComponent
-import com.voitenko.dev.designsystem.R
+import GallerySpaceComponent
 
 @Composable
 fun Toolbar(
@@ -68,7 +70,7 @@ fun Dot(modifier: Modifier = Modifier, onClick: () -> Unit) {
 @Composable
 fun Menu(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Icon(
-        painter = painterResource(id = R.drawable.ic_menu),
+        imageVector = Icons.Default.Menu,
         modifier = modifier
             .size(44.dp)
             .clip(shape = RoundedCornerShape(50))
@@ -82,7 +84,7 @@ fun Menu(modifier: Modifier = Modifier, onClick: () -> Unit) {
 @Composable
 fun Add(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Icon(
-        painter = painterResource(id = R.drawable.ic_add),
+        imageVector = Icons.Default.Add,
         modifier = modifier
             .size(44.dp)
             .clip(shape = RoundedCornerShape(50))
@@ -96,7 +98,7 @@ fun Add(modifier: Modifier = Modifier, onClick: () -> Unit) {
 @Composable
 fun Ok(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Icon(
-        painter = painterResource(id = R.drawable.ic_ok),
+        imageVector = Icons.Default.Done,
         modifier = modifier
             .size(44.dp)
             .clip(shape = RoundedCornerShape(50))

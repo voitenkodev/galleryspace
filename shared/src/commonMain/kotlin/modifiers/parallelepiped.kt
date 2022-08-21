@@ -1,4 +1,4 @@
-package com.voitenko.dev.designsystem.modifiers
+package modifiers
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.ExperimentalComposeUiApi

@@ -11,8 +11,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.SolidColor
-import com.voitenko.dev.designsystem.common.darkGray
-import com.voitenko.dev.designsystem.common.yellow
+import common.darkGray
+import common.yellow
 
 @Composable
 fun RatingBar(

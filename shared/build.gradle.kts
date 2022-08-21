@@ -45,6 +45,7 @@ kotlin {
                 implementation(libs.logger)
                 implementation(libs.serialization)
                 implementation(libs.sqldelight.extensions)
+                implementation(libs.ktor.core)
 
                 implementation(compose.ui)
                 implementation(compose.foundation)
@@ -56,27 +57,31 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
+                implementation(libs.ktor.desktop)
             }
         }
 
         val androidMain by getting {
             dependencies {
-                implementation(libs.sqldelight.android)
                 implementation(libs.ktor.android)
+//                implementation(libs.sqldelight.android)
             }
         }
 
         val jsMain by getting {
             dependencies {
                 implementation(libs.ktor.js)
-                implementation(libs.sqldelight.js)
+//                implementation(libs.sqldelight.js)
             }
         }
 
         val iosMain by creating {
-            dependsOn(commonMain)
+//            dependencies {
+//                implementation(libs.ktor.ios)
 //            implementation(libs.sqldelight.ios)
 //            implementation(libs.sqldelight.native) ??
+//            }
+            dependsOn(commonMain)
         }
 
         val macosMain by creating { dependsOn(iosMain) }
