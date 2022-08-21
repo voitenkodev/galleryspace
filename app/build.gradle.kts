@@ -10,7 +10,6 @@ plugins {
 android {
     namespace = "com.voitenko.dev.galleryspace"
     compileSdk = 32
-
     defaultConfig {
         applicationId = "com.voitenko.dev.galleryspace"
         minSdk = 21
@@ -18,7 +17,6 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
-
     buildFeatures.compose = true
     composeOptions.kotlinCompilerExtensionVersion = "1.2.0"
 }
@@ -26,22 +24,20 @@ android {
 dependencies {
     implementation(project(":designsystem"))
 
-    implementation(libs.coroutines)
-    implementation(libs.datetime)
-    implementation(libs.kotlinx.runtime)
-
-    implementation(libs.serialization)
-
-    implementation(libs.coil.core)
-
     implementation(compose.ui)
+    implementation(compose.uiTooling)
     implementation(compose.material)
     implementation(compose.preview)
-    implementation(compose.materialIconsExtended)
-    implementation(compose.uiTooling)
+    implementation(compose.foundation)
 
     implementation(libs.compose.accompansit.navigation)
     implementation(libs.compose.accompansit.systemcontroller)
+
+    implementation(libs.coroutines)
+    implementation(libs.datetime)
+    implementation(libs.kotlinx.runtime)
+    implementation(libs.serialization)
+    implementation(libs.coil.core)
 
     implementation(libs.sqldelight.common)
     implementation(libs.sqldelight.android)

@@ -14,12 +14,12 @@ android {
 }
 
 dependencies {
+    implementation(libs.kotlinx.gradle)
     implementation(compose.ui)
     implementation(compose.material)
     implementation(compose.preview)
     implementation(compose.materialIconsExtended)
     implementation(compose.uiTooling)
-
-    implementation(libs.compose.activity)
+    implementation(compose.foundation)
     implementation(libs.coil.core)
 }

@@ -1,6 +1,7 @@
 package com.voitenko.dev.designsystem.components
 
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.*
@@ -18,7 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.voitenko.dev.designsystem.GallerySpaceComponent
@@ -27,7 +27,7 @@ import com.voitenko.dev.designsystem.controls.*
 
 data class Owner(
     val name: String,
-    val url: String,
+    val uri: Uri,
     val purchase: String,
     val purchaseColor: Color,
     val date: String
@@ -50,7 +50,7 @@ fun PresentationDashboard(
     val owner = owners.firstOrNull()
 
     val ownerPhoto = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(owner?.url?.toUri()).size(coil.size.Size.ORIGINAL).build()
+        model = ImageRequest.Builder(LocalContext.current).data(owner?.uri).size(coil.size.Size.ORIGINAL).build()
     )
 
     LazyColumn(
@@ -141,7 +141,7 @@ fun PresentationDashboard(
                 owners.forEach {
                     Provenance(
                         modifier = Modifier.fillMaxWidth(),
-                        avatar = it.url,
+                        avatar = it.uri,
                         name = it.name,
                         date = it.date,
                         price = it.purchase,
@@ -181,7 +181,7 @@ private fun Info(
 @Composable
 private fun Provenance(
     modifier: Modifier = Modifier,
-    avatar: String,
+    avatar: Uri,
     name: String,
     date: String,
     price: String,
@@ -189,7 +189,7 @@ private fun Provenance(
 ) {
 
     val painter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(avatar.toUri()).size(coil.size.Size.ORIGINAL).build()
+        model = ImageRequest.Builder(LocalContext.current).data(avatar).size(coil.size.Size.ORIGINAL).build()
     )
 
     Column(modifier = modifier) {
@@ -233,28 +233,28 @@ private fun PresentationDashboard_Preview() {
             owners = listOf(
                 Owner(
                     name = "Philip K. Howard",
-                    url = "https://upload.wikimedia.org/wikipedia/commons/a/ad/Philip_K._Howard.jpg",
+                    uri = Uri.EMPTY/*"https://miro.medium.com/max/1400/0*E-e0EHOU1Fvxtuis.jpg"*/,
                     purchase = "1.2224 BTC",
                     purchaseColor = GallerySpaceComponent.colors.priceUp,
                     date = "10.11.2022"
                 ),
                 Owner(
                     name = "Alfredo Peters",
-                    url = "https://miro.medium.com/max/1400/0*E-e0EHOU1Fvxtuis.jpg",
+                    uri = Uri.EMPTY/*"https://miro.medium.com/max/1400/0*E-e0EHOU1Fvxtuis.jpg"*/,
                     purchase = "0.0054 BTC",
                     purchaseColor = GallerySpaceComponent.colors.priceUp,
                     date = "16.09.2019"
                 ),
                 Owner(
                     name = "Michiel Vernandos",
-                    url = "https://globalmsk.ru/usr/person/big-person-15642469881.jpg",
+                    uri = Uri.EMPTY/*"https://miro.medium.com/max/1400/0*E-e0EHOU1Fvxtuis.jpg"*/,
                     purchase = "127 $",
                     purchaseColor = GallerySpaceComponent.colors.priceDown,
                     date = "26.08.2016"
                 ),
                 Owner(
                     name = "Van Gogh",
-                    url = "https://upload.wikimedia.org/wikipedia/commons/7/76/Vincent_van_Gogh_photo_cropped.jpg",
+                    uri = Uri.EMPTY/*"https://miro.medium.com/max/1400/0*E-e0EHOU1Fvxtuis.jpg"*/,
                     purchase = "142 $",
                     purchaseColor = GallerySpaceComponent.colors.priceUp,
                     date = "01.01.2008"

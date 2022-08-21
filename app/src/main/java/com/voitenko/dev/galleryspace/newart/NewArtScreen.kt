@@ -47,7 +47,7 @@ fun NewArtScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .statusBarsPadding()
+//            .statusBarsPadding()
     ) {
 
         stickyHeader {
@@ -98,7 +98,7 @@ fun NewArtScreen(
                         Image(
                             modifier = Modifier
                                 .wrapContentSize()
-                                .statusBarsPadding()
+//                                .statusBarsPadding()
                                 .padding(16.dp),
                             bitmap = btm.asImageBitmap(),
                             contentDescription = null
@@ -111,7 +111,7 @@ fun NewArtScreen(
                         tint = GallerySpaceComponent.colors.primaryInverse,
                         modifier = Modifier
                             .fillMaxSize(0.5f)
-                            .statusBarsPadding()
+//                            .statusBarsPadding()
                             .padding(16.dp),
                         contentDescription = null
                     )

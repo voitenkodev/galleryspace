@@ -1,6 +1,7 @@
 package com.voitenko.dev.designsystem.components
 
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
@@ -14,7 +15,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
@@ -26,14 +26,14 @@ import com.voitenko.dev.designsystem.controls.H2Text
 
 @Composable
 fun PresentationItem(
-    url: String,
+    uri: Uri,
     title: String,
     description: String,
     creator: String,
     more: () -> Unit
 ) {
     val painter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(url.toUri()).size(Size.ORIGINAL).build()
+        model = ImageRequest.Builder(LocalContext.current).data(uri).size(Size.ORIGINAL).build()
     )
 
     Column(
@@ -112,7 +112,7 @@ private fun Title(modifier: Modifier = Modifier, title: String) = H2Text(
 )
 fun PresentationItem_Preview() {
     PresentationItem(
-        url = "https://collectionapi.metmuseum.org/api/collection/v1/iiif/591860/1229664/restricted",
+        uri = Uri.EMPTY, // "https://collectionapi.metmuseum.org/api/collection/v1/iiif/591860/1229664/restricted",
         title = "The Treatyse of Fysshynge wyth an Angle from the book of Saint Albans\n1903",
         description = "In 1878 William Loring Andrews became a trustee of The Metropolitan Museum of Art and served as its first librarian. He was a prominent collector of rare books of English and American literature and a founding member of the Grolier Club and the Society of Iconophiles. In 1865 Andrews began to self-publish books in which he was also the author or editor. These works were published in his own taste, through his own direction, and are marked by exquisite taste in type, paper, illustration, and binding. In their production, he engaged the services of engravers Edwin Davis French and S. L. Smith, who designed and engraved bookplates for the Metropolitan Museum, and printers Walter Gillias and Theodore De Vinne. From 1865 to 1908 Andrews issued thirty-six volumes, twenty-six authored by himself. \"The Treatyse of Fysshynge\" was printed on hand-made paper in an edition of 160, at the Gilliss Press; the type, caste specially for the book, was patterned after the traditional Old English characters first used by Wynkyn de Worde. The volume is bound in full limpvellum, with the title gold-tooled on the front cover, and has two green silk ties.",
         creator = "Juliana Berners",

@@ -1,23 +1,23 @@
 [versions]
-compose-plugin-vers = "1.2.0-alpha01-dev755"
-
+compose-vers = "1.2.0-alpha01-dev755"
 kotlin-vers = "1.7.0"
-compose-vers = "1.2.1"
-coroutines-vers = "1.6.0"
+coroutines-vers = "1.6.4"
 logger-vers = "1.0.0"
 serialization-vers = "1.3.2"
+sqldelight-vers = "1.5.3"
+ktor-vers = "2.0.0-beta-1"
+
 android-gradle-vers = "7.4.0-alpha08"
 lifecycle-runtime-vers = "2.5.0-alpha04"
 datetime-vers = "0.3.1"
 coil-vers = "2.0.0-rc03"
-sqldelight-vers = "1.5.3"
-ktor-vers = "2.0.0-beta-1"
 
 compose-activity-vers = "1.5.0-alpha03"
 compose-navigation-vers = "2.4.1"
 accompanist = "0.23.1"
 
 [libraries]
+
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-vers" }
 logger = { module = "co.touchlab:kermit", version.ref = "logger-vers" }
 serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-vers" }
@@ -26,14 +26,6 @@ datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "d
 kotlinx-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-vers" }
 kotlinx-kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin-vers" }
 kotlinx-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-vers" }
-
-# COMPOSE
-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-vers" }
-compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-vers" }
-compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-vers" }
-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity-vers" }
-compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "compose-navigation-vers" }
-compose-material = { module = "androidx.compose.material:material", version.ref = "compose-vers" }
 
 #ACCOMPANIST
 compose-accompansit-systemcontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
@@ -61,4 +53,4 @@ android-library = { id = "com.android.library", version.ref = "android-gradle-ve
 sqldelight = { id = "com.squareup.sqldelight", version.ref = "sqldelight-vers" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin-vers" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-vers" }
-compose = { id = "org.jetbrains.compose", version.ref = "compose-plugin-vers" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose-vers" }

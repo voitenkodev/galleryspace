@@ -57,25 +57,25 @@ fun PresentationScreen(
     val owners = listOf(
         Owner(
             name = "Philip K. Howard",
-            url = "https://upload.wikimedia.org/wikipedia/commons/a/ad/Philip_K._Howard.jpg",
+            uri = "https://upload.wikimedia.org/wikipedia/commons/a/ad/Philip_K._Howard.jpg".toUri(),
             purchase = "1.2224 BTC",
             purchaseColor = GallerySpaceComponent.colors.priceUp,
             date = "10.11.2022"
         ), Owner(
             name = "Alfredo Peters",
-            url = "https://miro.medium.com/max/1400/0*E-e0EHOU1Fvxtuis.jpg",
+            uri = "https://miro.medium.com/max/1400/0*E-e0EHOU1Fvxtuis.jpg".toUri(),
             purchase = "0.0054 BTC",
             purchaseColor = GallerySpaceComponent.colors.priceUp,
             date = "16.09.2019"
         ), Owner(
             name = "Michiel Vernandos",
-            url = "https://globalmsk.ru/usr/person/big-person-15642469881.jpg",
+            uri = "https://globalmsk.ru/usr/person/big-person-15642469881.jpg".toUri(),
             purchase = "127 $",
             purchaseColor = GallerySpaceComponent.colors.priceDown,
             date = "26.08.2016"
         ), Owner(
             name = "Van Gogh",
-            url = "https://upload.wikimedia.org/wikipedia/commons/7/76/Vincent_van_Gogh_photo_cropped.jpg",
+            uri = "https://upload.wikimedia.org/wikipedia/commons/7/76/Vincent_van_Gogh_photo_cropped.jpg".toUri(),
             purchase = "142 $",
             purchaseColor = GallerySpaceComponent.colors.priceUp,
             date = "01.01.2008"
@@ -115,7 +115,7 @@ fun PresentationScreen(
             .fillMaxSize()
     ) {
 
-        val status = WindowInsets.systemBars.asPaddingValues().calculateTopPadding()
+        val status = 0.dp //WindowInsets.systemBars.asPaddingValues().calculateTopPadding()
         val space = 8.dp
         val toolbar = 44.dp
         val collapsedBottomSheetHeight = this.maxHeight - this.maxWidth - toolbar - space - status
@@ -170,7 +170,9 @@ fun Header(
     fraction: Float, thicknessCoefficient: Float, titleVisible: Boolean, image: Painter, title: String, back: () -> Unit
 ) {
 
-    Column(Modifier.statusBarsPadding()) {
+    Column(
+//        Modifier.statusBarsPadding() // TODO ??
+    ) {
 
         Toolbar(back = back)
 
