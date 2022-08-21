@@ -1,25 +1,41 @@
-@Suppress("UnstableApiUsage", "DSL_SCOPE_VIOLATION")
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.serialization)
     alias(libs.plugins.android.library)
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.compose)
 }
 
 kotlin {
-    jvm()
+    jvm("desktop")
     android()
-    js { browser(); nodejs() }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-    watchosX64()
-    watchosArm64()
-    watchosSimulatorArm64()
-    linuxX64()
-    macosX64()
-    macosArm64()
-    mingwX64()
+    js(IR) { browser();binaries.executable() }
+    macosX64().binaries.executable {
+        entryPoint = "main"
+        freeCompilerArgs += listOf("-linker-option", "-framework", "-linker-option", "Metal")
+    }
+    macosArm64().binaries.executable {
+        entryPoint = "main"
+        freeCompilerArgs += listOf("-linker-option", "-framework", "-linker-option", "Metal")
+    }
+    iosX64("uikitX64").binaries.executable {
+        entryPoint = "main"
+        freeCompilerArgs += listOf(
+            "-linker-option", "-framework", "-linker-option", "Metal",
+            "-linker-option", "-framework", "-linker-option", "CoreText",
+            "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+        )
+    }
+    iosArm64("uikitArm64").binaries.executable {
+        entryPoint = "main"
+        freeCompilerArgs += listOf(
+            "-linker-option", "-framework", "-linker-option", "Metal",
+            "-linker-option", "-framework", "-linker-option", "CoreText",
+            "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+        )
+        freeCompilerArgs += "-Xdisable-phases=VerifyBitcode" // TODO: the current compose binary surprises LLVM, so disable checks for now.
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -29,72 +45,128 @@ kotlin {
                 implementation(libs.logger)
                 implementation(libs.serialization)
                 implementation(libs.sqldelight.extensions)
+
+                implementation(compose.ui)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.runtime)
             }
         }
-        val nativeMain by creating {
+
+        val desktopMain by getting {
             dependencies {
-                implementation(libs.sqldelight.native)
+                implementation(compose.desktop.currentOs)
             }
         }
+
         val androidMain by getting {
             dependencies {
                 implementation(libs.sqldelight.android)
                 implementation(libs.ktor.android)
             }
         }
+
         val jsMain by getting {
             dependencies {
                 implementation(libs.ktor.js)
                 implementation(libs.sqldelight.js)
             }
         }
+
         val iosMain by creating {
-            dependencies {
-//                implementation(libs.sqldelight.ios)
-            }
+            dependsOn(commonMain)
+//            implementation(libs.sqldelight.ios)
+//            implementation(libs.sqldelight.native) ??
         }
 
-        val watchosMain by creating
-        val linuxMain by creating
-        val macosMain by creating
-        val windowsMain by creating
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val watchosX64Main by getting
-        val watchosArm64Main by getting
-        val watchosSimulatorArm64Main by getting
-        val linuxX64Main by getting
-        val macosX64Main by getting
-        val macosArm64Main by getting
-        val mingwX64Main by getting
+        val macosMain by creating { dependsOn(iosMain) }
+        val macosX64Main by getting { dependsOn(macosMain) }
+        val macosArm64Main by getting { dependsOn(macosMain) }
 
-        nativeMain.dependsOn(commonMain)
-        androidMain.dependsOn(commonMain)
-        jsMain.dependsOn(commonMain)
-        iosMain.dependsOn(nativeMain)
-        iosX64Main.dependsOn(iosMain)
-        iosArm64Main.dependsOn(iosMain)
-        iosSimulatorArm64Main.dependsOn(iosMain)
-        watchosMain.dependsOn(nativeMain)
-        watchosX64Main.dependsOn(watchosMain)
-        watchosArm64Main.dependsOn(watchosMain)
-        watchosSimulatorArm64Main.dependsOn(watchosMain)
-        linuxMain.dependsOn(nativeMain)
-        linuxX64Main.dependsOn(linuxMain)
-        macosMain.dependsOn(nativeMain)
-        macosX64Main.dependsOn(macosMain)
-        macosArm64Main.dependsOn(macosMain)
-        windowsMain.dependsOn(nativeMain)
-        mingwX64Main.dependsOn(windowsMain)
+        val uikitMain by creating { dependsOn(iosMain) }
+        val uikitX64Main by getting { dependsOn(uikitMain) }
+        val uikitArm64Main by getting { dependsOn(uikitMain) }
     }
 }
 
 android {
     compileSdk = 31
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = 21
-        targetSdk = 31
+    defaultConfig { minSdk = 21 }
+    packagingOptions {
+        pickFirst("lib/x86_64/libjsc.so")
+        pickFirst("lib/arm64-v8a/libjsc.so")
     }
+}
+
+compose.desktop {
+    application {
+        mainClass = "Main_desktopKt"
+        nativeDistributions {
+            targetFormats(
+                org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg,
+                org.jetbrains.compose.desktop.application.dsl.TargetFormat.Msi,
+                org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
+            )
+            packageName = "Tesla App"
+            packageVersion = "1.0.0"
+
+            windows {
+                menuGroup = "Compose Examples"
+                // see https://wixtoolset.org/documentation/manual/v3/howtos/general/generate_guids.html
+                upgradeUuid = "18159995-d967-4CD2-8885-77BFA97CFA9F"
+            }
+        }
+    }
+}
+
+compose.experimental {
+    web.application {}
+    uikit.application {
+        bundleIdPrefix = "ru.agladkov"
+        projectName = "TeslaApp"
+        deployConfigurations {
+            simulator("IPhone13") {
+                //Usage: ./gradlew iosDeployIPhone13Debug
+                device = org.jetbrains.compose.experimental.dsl.IOSDevices.IPHONE_13_PRO
+            }
+            simulator("IPadUI") {
+                //Usage: ./gradlew iosDeployIPadUIDebug
+                device = org.jetbrains.compose.experimental.dsl.IOSDevices.IPAD_MINI_6th_Gen
+            }
+        }
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions.jvmTarget = "11" }
+
+kotlin {
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        // TODO: the current compose binary surprises LLVM, so disable checks for now.
+        binaries.all { freeCompilerArgs += "-Xdisable-phases=VerifyBitcode" }
+    }
+}
+
+compose.desktop.nativeApplication {
+    targets(kotlin.targets.getByName("macosX64"))
+    distributions {
+        targetFormats(org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg)
+        packageName = "TeslaApp"
+        packageVersion = "1.0.0"
+    }
+}
+
+// a temporary workaround for a bug in jsRun invocation - see https://youtrack.jetbrains.com/issue/KT-48273
+afterEvaluate {
+    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+        versions.webpackDevServer.version = "4.0.0"
+        versions.webpackCli.version = "4.10.0"
+        nodeVersion = "16.0.0"
+    }
+}
+
+
+// TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
+project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.java).configureEach {
+    kotlinOptions.freeCompilerArgs += listOf("-Xir-dce-runtime-diagnostic=log")
 }
