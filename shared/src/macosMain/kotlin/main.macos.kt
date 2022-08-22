@@ -5,7 +5,7 @@ import platform.AppKit.NSApplication
 fun main() {
     NSApplication.sharedApplication()
     Window("GallerySpace") {
-        App()
+        GallerySpace()
     }
     NSApp?.run()
 }

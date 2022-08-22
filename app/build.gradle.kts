@@ -22,7 +22,7 @@ android {
 }
 
 dependencies {
-//    implementation(project(":designsystem"))
+    implementation(project(":shared"))
 
     implementation(compose.ui)
     implementation(compose.uiTooling)

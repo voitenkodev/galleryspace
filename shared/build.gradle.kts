@@ -1,16 +1,16 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.multiplatform)
-    alias(libs.plugins.serialization)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.sqldelight)
+    alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
+//    alias(libs.plugins.serialization)
+//    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
     jvm("desktop")
     android()
-    js(IR) { browser();binaries.executable() }
+    js(IR) { browser(); binaries.executable() }
     macosX64().binaries.executable {
         entryPoint = "main"
         freeCompilerArgs += listOf("-linker-option", "-framework", "-linker-option", "Metal")
@@ -40,12 +40,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.coroutines)
-                implementation(libs.datetime)
-                implementation(libs.logger)
-                implementation(libs.serialization)
-                implementation(libs.sqldelight.extensions)
-                implementation(libs.ktor.core)
+//                implementation(libs.coroutines)
+//                implementation(libs.datetime)
+//                implementation(libs.logger)
+//                implementation(libs.serialization)
+//                implementation(libs.sqldelight.extensions)
+//                implementation(libs.ktor.core)
 
                 implementation(compose.ui)
                 implementation(compose.foundation)
@@ -57,7 +57,7 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
-                implementation(libs.ktor.desktop)
+//                implementation(libs.ktor.desktop)
             }
         }
 
@@ -70,7 +70,7 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                implementation(libs.ktor.js)
+//                implementation(libs.ktor.js)
 //                implementation(libs.sqldelight.js)
             }
         }
@@ -79,7 +79,7 @@ kotlin {
         val iosMain by creating {
             dependsOn(commonMain)
             dependencies {
-                implementation(libs.ktor.darwin)
+//                implementation(libs.ktor.darwin)
             }
         }
 
@@ -116,8 +116,7 @@ compose.desktop {
 
             windows {
                 menuGroup = "Compose Examples"
-                // see https://wixtoolset.org/documentation/manual/v3/howtos/general/generate_guids.html
-                upgradeUuid = "18159995-d967-4CD2-8885-77BFA97CFA9F"
+                upgradeUuid = "18159995-d967-4CD2-8885-77BFA97CFA9F" // see https://wixtoolset.org/documentation/manual/v3/howtos/general/generate_guids.html
             }
         }
     }
@@ -141,12 +140,16 @@ compose.experimental {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions.jvmTarget = "11" }
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "11"
+}
 
 kotlin {
     targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
-        // TODO: the current compose binary surprises LLVM, so disable checks for now.
-        binaries.all { freeCompilerArgs += "-Xdisable-phases=VerifyBitcode" }
+        binaries.all {
+            // TODO: the current compose binary surprises LLVM, so disable checks for now.
+            freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
+        }
     }
 }
 
@@ -168,7 +171,10 @@ afterEvaluate {
     }
 }
 
+
 // TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
 project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.java).configureEach {
-    kotlinOptions.freeCompilerArgs += listOf("-Xir-dce-runtime-diagnostic=log")
+    kotlinOptions.freeCompilerArgs += listOf(
+        "-Xir-dce-runtime-diagnostic=log"
+    )
 }

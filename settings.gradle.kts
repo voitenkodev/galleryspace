@@ -1,10 +1,10 @@
 enableFeaturePreview("VERSION_CATALOGS")
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+//enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     versionCatalogs { create("libs") { from(files("gradle/wrapper/libs.versions.toml")) } }
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         google()
         mavenCentral()
@@ -24,6 +24,5 @@ rootProject.name = "GallerySpace"
 
 include(
     ":app",
-    ":designsystem",
     ":shared"
 )

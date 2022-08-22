@@ -1,45 +1,59 @@
-@file:OptIn(ExperimentalFoundationApi::class, ExperimentalUnitApi::class)
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.ExperimentalUnitApi
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import common.GallerySpaceTheme
 import components.PresentationItem
 import components.Toolbar
 
+@OptIn(ExperimentalUnitApi::class, ExperimentalFoundationApi::class)
 @Composable
-fun App() {
-    GallerySpaceTheme {
-        Surface {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize().background(GallerySpaceComponent.colors.primary)
-            ) {
-                stickyHeader {
-                    Toolbar(
-                        add = {},
-                        menu = {},
-                        back = {}
-                    )
-                }
-
-                itemsIndexed(mock()) { index, item ->
-                    PresentationItem(
-                        uri = item.url,
-                        title = item.title,
-                        description = item.description,
-                        creator = item.proprietors.firstOrNull()?.name ?: "",
-                        more = {}
-                    )
-                }
-            }
-        }
+fun GallerySpace() {
+    Column {
+        Text(
+            modifier = Modifier.padding(16.dp),
+            text = "Tesla Store",
+            fontSize = 28.sp,
+            color = Color.Black
+        )
     }
+//    GallerySpaceTheme {
+////        Surface {
+//            LazyColumn(
+//                modifier = Modifier.fillMaxSize().background(GallerySpaceComponent.colors.primary)
+//            ) {
+//                stickyHeader {
+//                    Toolbar(
+//                        add = {},
+//                        menu = {},
+//                        back = {}
+//                    )
+//                }
+//
+//                itemsIndexed(mock()) { index, item ->
+//                    PresentationItem(
+//                        uri = item.url,
+//                        title = item.title,
+//                        description = item.description,
+//                        creator = item.proprietors.firstOrNull()?.name ?: "",
+//                        more = {}
+//                    )
+//                }
+//            }
+//        }
+//    }
 }
 
 data class Art(
