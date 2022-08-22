@@ -78,9 +78,7 @@ kotlin {
 
         val iosMain by creating {
             dependsOn(commonMain)
-            dependencies {
-                implementation(libs.ktor.darwin)
-            }
+            dependencies { implementation(libs.ktor.darwin) }
         }
 
         val macosMain by creating { dependsOn(iosMain) }

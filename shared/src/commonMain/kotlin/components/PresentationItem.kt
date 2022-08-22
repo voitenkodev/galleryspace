@@ -1,6 +1,7 @@
 package components
 
 import GallerySpaceComponent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
@@ -11,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.unit.dp
@@ -19,7 +21,9 @@ import com.voitenko.dev.designsystem.controls.CAPTION1Text
 import com.voitenko.dev.designsystem.controls.H2Text
 import controls.Divider
 import loadImage
+import modifiers.parallelepiped
 
+@OptIn(ExperimentalAnimationApi::class, ExperimentalComposeUiApi::class)
 @Composable
 fun PresentationItem(
     uri: String,
@@ -30,9 +34,7 @@ fun PresentationItem(
 ) {
     val img = remember { mutableStateOf<ImageBitmap?>(null) }
 
-    LaunchedEffect(Unit) {
-        img.value = loadImage("https://upload.wikimedia.org/wikipedia/commons/a/ad/Philip_K._Howard.jpg")
-    }
+    LaunchedEffect(Unit) { img.value = loadImage(uri) }
 
     Column(
         modifier = Modifier
@@ -72,7 +74,14 @@ fun PresentationItem(
                 BODY1Text(text = description, maxLines = 4)
             }
             Image(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.weight(1f)
+                    .parallelepiped(
+                        -25f,
+                        25f,
+                        2f,
+                        GallerySpaceComponent.colors.primaryInverse,
+                        GallerySpaceComponent.colors.primaryInverse
+                    ),
                 bitmap = img.value,
             )
         }
@@ -87,8 +96,7 @@ fun PresentationItem(
 private fun Image(modifier: Modifier = Modifier, bitmap: ImageBitmap?) = bitmap?.let {
     androidx.compose.foundation.Image(
         modifier = modifier
-            .wrapContentSize()
-            .padding(vertical = 16.dp), bitmap = bitmap, contentDescription = null
+            .wrapContentSize(), bitmap = bitmap, contentDescription = null
     )
 }
 
