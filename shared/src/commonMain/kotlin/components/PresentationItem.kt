@@ -16,8 +16,9 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.unit.dp
 import com.voitenko.dev.designsystem.controls.BODY1Text
 import com.voitenko.dev.designsystem.controls.CAPTION1Text
-import controls.Divider
 import com.voitenko.dev.designsystem.controls.H2Text
+import controls.Divider
+import loadImage
 
 @Composable
 fun PresentationItem(
@@ -30,9 +31,7 @@ fun PresentationItem(
     val img = remember { mutableStateOf<ImageBitmap?>(null) }
 
     LaunchedEffect(Unit) {
-//        withContext(Dispatchers.Default) {
-//          img.value = loadImage("https://upload.wikimedia.org/wikipedia/commons/a/ad/Philip_K._Howard.jpg")
-//        }
+        img.value = loadImage("https://upload.wikimedia.org/wikipedia/commons/a/ad/Philip_K._Howard.jpg")
     }
 
     Column(

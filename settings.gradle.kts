@@ -1,5 +1,5 @@
 enableFeaturePreview("VERSION_CATALOGS")
-//enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
