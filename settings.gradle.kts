@@ -4,7 +4,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     versionCatalogs { create("libs") { from(files("gradle/wrapper/libs.versions.toml")) } }
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT) // TODO CANNOT MOVE IT TO "FAIL_ON_PROJECT_REPOS" because J.S. does not build
     repositories {
         google()
         mavenCentral()
@@ -22,7 +22,4 @@ pluginManagement {
 
 rootProject.name = "GallerySpace"
 
-include(
-    ":app",
-    ":shared"
-)
+include(":app")
