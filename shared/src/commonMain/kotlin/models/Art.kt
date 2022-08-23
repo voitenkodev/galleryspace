@@ -14,7 +14,7 @@ data class Art(
     companion object {
         internal val MOCK = Art(
             id = "4",
-            url = "https://collectionapi.metmuseum.org/api/collection/v1/iiif/339671/763635/main-image",
+            url = "https://html5css.ru/css/img_forest.jpg",
             title = "Armor\n1891",
             description = "This fantastical drawing of a helmeted woman in profile is one of four similar charcoal drawings Redon executed during the last decade of the nineteenth century. The sitter, rendered strangely mute by her helmetlike covering and untouchable by its thorny needles, varies slightly from sheet to sheet. While the exact meaning of Redon's image is unclear, it has been thought that the bizarre bondage imposed on his sitter expresses subconscious fear of female sexuality or, conversely, serves as a symbol of female fecundity. Equally important, however, is Redon's virtuoso handling of charcoal and his ability to capture its full range of tones, from the dark velvet quality of the helmet to the pallor of the woman's skin.",
             creator = Person.MOCK,
