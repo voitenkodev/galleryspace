@@ -1,4 +1,4 @@
-package controls
+package designsystem.controls
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

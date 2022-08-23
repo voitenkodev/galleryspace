@@ -26,10 +26,10 @@
 //import coil.compose.rememberAsyncImagePainter
 //import coil.request.ImageRequest
 //import com.voitenko.dev.designsystem.GallerySpaceComponent
-//import com.voitenko.dev.designsystem.components.Owner
-//import com.voitenko.dev.designsystem.components.PresentationDashboard
+//import com.voitenko.dev.designsystem.designsystem.components.Owner
+//import com.voitenko.dev.designsystem.designsystem.components.PresentationDashboard
 //import com.voitenko.dev.designsystem.components.Toolbar
-//import com.voitenko.dev.designsystem.controls.H2Text
+//import designsystem.controls.H2Text
 //import com.voitenko.dev.designsystem.modifiers.rolling
 //import com.voitenko.dev.galleryspace.mock
 //import org.koin.androidx.compose.koinViewModel

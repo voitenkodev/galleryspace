@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
-//    alias(libs.plugins.serialization)
+    alias(libs.plugins.serialization)
 //    alias(libs.plugins.sqldelight)
 }
 

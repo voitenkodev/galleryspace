@@ -31,8 +31,8 @@
 //import androidx.navigation.NavController
 //import com.voitenko.dev.designsystem.GallerySpaceComponent
 //import com.voitenko.dev.designsystem.components.Toolbar
-//import com.voitenko.dev.designsystem.controls.BODY1EditText
-//import com.voitenko.dev.designsystem.controls.BODY1Text
+//import designsystem.controls.BODY1EditText
+//import designsystem.controls.BODY1Text
 //import com.voitenko.dev.designsystem.controls.Divider
 //import org.koin.androidx.compose.koinViewModel
 //

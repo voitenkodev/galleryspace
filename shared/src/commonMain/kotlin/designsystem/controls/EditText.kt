@@ -1,5 +1,6 @@
-package com.voitenko.dev.designsystem.controls
+package designsystem.controls
 
+import GallerySpaceComponent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.ProvideTextStyle
@@ -12,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import GallerySpaceComponent
 
 @Composable
 fun BODY1EditText(

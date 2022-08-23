@@ -1,4 +1,4 @@
-package common
+package designsystem.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle

@@ -13,7 +13,7 @@
 //import com.google.accompanist.navigation.animation.composable
 //import com.voitenko.dev.galleryspace.gallery.GalleryScreen
 //import com.voitenko.dev.galleryspace.newart.NewArtScreen
-//import com.voitenko.dev.galleryspace.presentation.PresentationScreen
+//import screens.PresentationScreen
 //
 //@ExperimentalComposeUiApi
 //@ExperimentalMaterialApi

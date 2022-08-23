@@ -1,4 +1,4 @@
-package com.voitenko.dev.designsystem.controls
+package designsystem.controls
 
 import GallerySpaceComponent
 import androidx.compose.foundation.text.BasicText
@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.ExperimentalUnitApi
-import common.GallerySpaceTheme
+import designsystem.common.GallerySpaceTheme
 
 @Composable
 fun H1Text(
@@ -99,42 +99,6 @@ fun CAPTION1Text(
     color = color ?: GallerySpaceComponent.colors.caption,
     textAlign = textAlign,
 )
-
-@ExperimentalUnitApi
-//@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, name = "H1")
-@Composable
-private fun H1_Preview() {
-    GallerySpaceTheme {
-        H1Text(text = "Text Helper")
-    }
-}
-
-@ExperimentalUnitApi
-//@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, name = "BODY1")
-@Composable
-private fun BODY1_Preview() {
-    GallerySpaceTheme {
-        BODY1Text(text = "Text Helper")
-    }
-}
-
-@ExperimentalUnitApi
-//@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, name = "BODY2")
-@Composable
-private fun BODY2_Preview() {
-    GallerySpaceTheme {
-        BODY2Text(text = "Text Helper")
-    }
-}
-
-@ExperimentalUnitApi
-//@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, name = "BUTTON2")
-@Composable
-private fun CAPTION2_Preview() {
-    GallerySpaceTheme {
-        CAPTION1Text(text = "Text Helper")
-    }
-}
 
 @Composable
 internal fun Text(

@@ -1,4 +1,4 @@
-package modifiers
+package designsystem.modifiers
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.ExperimentalComposeUiApi

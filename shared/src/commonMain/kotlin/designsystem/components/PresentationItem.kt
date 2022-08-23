@@ -1,4 +1,4 @@
-package components
+package designsystem.components
 
 import GallerySpaceComponent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -16,12 +16,12 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.unit.dp
-import com.voitenko.dev.designsystem.controls.BODY1Text
-import com.voitenko.dev.designsystem.controls.CAPTION1Text
-import com.voitenko.dev.designsystem.controls.H2Text
-import controls.Divider
+import designsystem.controls.BODY1Text
+import designsystem.controls.CAPTION1Text
+import designsystem.controls.Divider
+import designsystem.controls.H2Text
+import designsystem.modifiers.parallelepiped
 import loadImage
-import modifiers.parallelepiped
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalComposeUiApi::class)
 @Composable
@@ -76,9 +76,9 @@ fun PresentationItem(
             Image(
                 modifier = Modifier.weight(1f)
                     .parallelepiped(
-                        -25f,
-                        25f,
-                        2f,
+                        -15f,
+                        15f,
+                        1f,
                         GallerySpaceComponent.colors.primaryInverse,
                         GallerySpaceComponent.colors.primaryInverse
                     ),

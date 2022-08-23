@@ -1,7 +1,7 @@
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
-import common.AppTypography
-import common.GallerySpaceColor
+import designsystem.common.AppTypography
+import designsystem.common.GallerySpaceColor
 
 object GallerySpaceComponent {
 
