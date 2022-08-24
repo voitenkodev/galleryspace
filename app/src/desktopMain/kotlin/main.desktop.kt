@@ -5,7 +5,7 @@ import androidx.compose.ui.window.singleWindowApplication
 
 fun main() = singleWindowApplication(
     title = "GallerySpace",
-    state = WindowState(size = DpSize(800.dp, 600.dp))
+    state = WindowState(size = DpSize(400.dp, 800.dp))
 ) {
     GallerySpace()
 }

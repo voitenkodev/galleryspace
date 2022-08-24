@@ -1,6 +1,6 @@
 package screens
 
-import GallerySpaceComponent
+import designsystem.GallerySpaceComponent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.*
@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import designsystem.controls.RatingBar
 import designsystem.controls.*
+import loadImage
 import models.Art
 
 @Composable
@@ -30,8 +31,8 @@ fun PreviewScreen() {
     val ownerImage = remember { mutableStateOf<ImageBitmap?>(null) }
 
     LaunchedEffect(Unit) {
-//        artImage.value = loadImage(art.url)
-//        ownerImage.value = loadImage(art.owner.imageUrl)
+        artImage.value = loadImage(art.url)
+        ownerImage.value = loadImage(art.owner.imageUrl)
     }
 
     LazyColumn(

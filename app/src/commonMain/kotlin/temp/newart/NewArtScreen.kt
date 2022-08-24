@@ -29,7 +29,7 @@ package temp.newart//package com.voitenko.dev.galleryspace.newart
 //import androidx.compose.ui.res.painterResource
 //import androidx.compose.ui.unit.dp
 //import androidx.navigation.NavController
-//import com.voitenko.dev.designsystem.GallerySpaceComponent
+//import com.voitenko.dev.designsystem.designsystem.GallerySpaceComponent
 //import com.voitenko.dev.designsystem.components.Toolbar
 //import designsystem.controls.BODY1EditText
 //import designsystem.controls.BODY1Text
@@ -70,7 +70,7 @@ package temp.newart//package com.voitenko.dev.galleryspace.newart
 //            Box(
 //                modifier = Modifier
 //                    .aspectRatio(1f)
-//                    .background(GallerySpaceComponent.colors.secondary)
+//                    .background(designsystem.GallerySpaceComponent.colors.secondary)
 //                    .clickable { launcher.launch("image/*") },
 //                contentAlignment = Alignment.Center,
 //            ) {
@@ -88,7 +88,7 @@ package temp.newart//package com.voitenko.dev.galleryspace.newart
 //                        Image(
 //                            modifier = Modifier
 //                                .fillMaxSize()
-//                                .background(GallerySpaceComponent.colors.secondary)
+//                                .background(designsystem.GallerySpaceComponent.colors.secondary)
 //                                .alpha(0.3f),
 //                            bitmap = btm.asImageBitmap(),
 //                            contentScale = ContentScale.Crop,
@@ -108,7 +108,7 @@ package temp.newart//package com.voitenko.dev.galleryspace.newart
 //                if (bitmap.value == null)
 //                    Icon(
 //                        painterResource(id = com.voitenko.dev.designsystem.R.drawable.ic_gallery),
-//                        tint = GallerySpaceComponent.colors.primaryInverse,
+//                        tint = designsystem.GallerySpaceComponent.colors.primaryInverse,
 //                        modifier = Modifier
 //                            .fillMaxSize(0.5f)
 ////                            .statusBarsPadding()
@@ -182,7 +182,7 @@ package temp.newart//package com.voitenko.dev.galleryspace.newart
 //        BODY1Text(placeholder = placeholder, text = value)
 //        Icon(
 //            imageVector = Icons.Default.ArrowForward,
-//            tint = GallerySpaceComponent.colors.primaryInverse.copy(alpha = 0.7f),
+//            tint = designsystem.GallerySpaceComponent.colors.primaryInverse.copy(alpha = 0.7f),
 //            contentDescription = null
 //        )
 //    }

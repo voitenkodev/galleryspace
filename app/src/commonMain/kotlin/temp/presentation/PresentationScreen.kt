@@ -25,7 +25,7 @@ package temp.presentation//package com.voitenko.dev.galleryspace.presentation
 //import androidx.navigation.NavController
 //import coil.compose.rememberAsyncImagePainter
 //import coil.request.ImageRequest
-//import com.voitenko.dev.designsystem.GallerySpaceComponent
+//import com.voitenko.dev.designsystem.designsystem.GallerySpaceComponent
 //import com.voitenko.dev.designsystem.designsystem.components.Owner
 //import com.voitenko.dev.designsystem.designsystem.components.PresentationDashboard
 //import com.voitenko.dev.designsystem.components.Toolbar
@@ -59,25 +59,25 @@ package temp.presentation//package com.voitenko.dev.galleryspace.presentation
 //            name = "Philip K. Howard",
 //            uri = "https://upload.wikimedia.org/wikipedia/commons/a/ad/Philip_K._Howard.jpg".toUri(),
 //            purchase = "1.2224 BTC",
-//            purchaseColor = GallerySpaceComponent.colors.priceUp,
+//            purchaseColor = designsystem.GallerySpaceComponent.colors.priceUp,
 //            date = "10.11.2022"
 //        ), Owner(
 //            name = "Alfredo Peters",
 //            uri = "https://miro.medium.com/max/1400/0*E-e0EHOU1Fvxtuis.jpg".toUri(),
 //            purchase = "0.0054 BTC",
-//            purchaseColor = GallerySpaceComponent.colors.priceUp,
+//            purchaseColor = designsystem.GallerySpaceComponent.colors.priceUp,
 //            date = "16.09.2019"
 //        ), Owner(
 //            name = "Michiel Vernandos",
 //            uri = "https://globalmsk.ru/usr/person/big-person-15642469881.jpg".toUri(),
 //            purchase = "127 $",
-//            purchaseColor = GallerySpaceComponent.colors.priceDown,
+//            purchaseColor = designsystem.GallerySpaceComponent.colors.priceDown,
 //            date = "26.08.2016"
 //        ), Owner(
 //            name = "Van Gogh",
 //            uri = "https://upload.wikimedia.org/wikipedia/commons/7/76/Vincent_van_Gogh_photo_cropped.jpg".toUri(),
 //            purchase = "142 $",
-//            purchaseColor = GallerySpaceComponent.colors.priceUp,
+//            purchaseColor = designsystem.GallerySpaceComponent.colors.priceUp,
 //            date = "01.01.2008"
 //        )
 //    )
@@ -98,7 +98,7 @@ package temp.presentation//package com.voitenko.dev.galleryspace.presentation
 //    )
 //
 //    val background = animateColorAsState(
-//        targetValue = if (scaffoldState.bottomSheetState.targetValue == BottomSheetValue.Collapsed) GallerySpaceComponent.colors.primary else GallerySpaceComponent.colors.secondary,
+//        targetValue = if (scaffoldState.bottomSheetState.targetValue == BottomSheetValue.Collapsed) designsystem.GallerySpaceComponent.colors.primary else designsystem.GallerySpaceComponent.colors.secondary,
 //        animationSpec = spring(stiffness = Spring.StiffnessLow)
 //    )
 //
@@ -134,7 +134,7 @@ package temp.presentation//package com.voitenko.dev.galleryspace.presentation
 //        BottomSheetScaffold(
 //            scaffoldState = scaffoldState,
 //            backgroundColor = Color.Transparent,
-//            sheetBackgroundColor = GallerySpaceComponent.colors.primary,
+//            sheetBackgroundColor = designsystem.GallerySpaceComponent.colors.primary,
 //            sheetPeekHeight = collapsedBottomSheetHeight,
 //            sheetElevation = 0.dp,
 //            content = {

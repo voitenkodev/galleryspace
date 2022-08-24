@@ -1,6 +1,6 @@
 package designsystem.controls
 
-import GallerySpaceComponent
+import designsystem.GallerySpaceComponent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.ProvideTextStyle

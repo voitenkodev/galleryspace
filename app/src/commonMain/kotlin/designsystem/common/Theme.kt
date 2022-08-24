@@ -4,8 +4,8 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.unit.ExperimentalUnitApi
-import LocalAppColors
-import LocalAppTypography
+import designsystem.LocalAppColors
+import designsystem.LocalAppTypography
 
 @ExperimentalUnitApi
 @Composable

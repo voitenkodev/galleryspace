@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import GallerySpaceComponent
+import designsystem.GallerySpaceComponent
 import designsystem.common.almostWhite
 
 @Composable
