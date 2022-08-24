@@ -1,6 +1,6 @@
 package screens
 
-import designsystem.GallerySpaceComponent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.*
@@ -18,11 +18,13 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import designsystem.controls.RatingBar
+import designsystem.GallerySpaceComponent
+import designsystem.components.Toolbar
 import designsystem.controls.*
 import loadImage
 import models.Art
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PreviewScreen() {
 
@@ -35,9 +37,11 @@ fun PreviewScreen() {
         ownerImage.value = loadImage(art.owner.imageUrl)
     }
 
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
+    LazyColumn {
+
+        stickyHeader {
+            Toolbar(add = {}, back = {}, menu = {})
+        }
 
         item {
             Picture(image = artImage.value)
@@ -96,11 +100,7 @@ fun PreviewScreen() {
             Info(modifier = Modifier.padding(horizontal = 16.dp), caption = "Owner") {
                 artImage.value?.let {
                     Image(
-                        bitmap = it,
-                        modifier = Modifier
-                            .size(36.dp)
-                            .clip(shape = RoundedCornerShape(50)),
-                        contentDescription = null
+                        bitmap = it, modifier = Modifier.size(36.dp).clip(shape = RoundedCornerShape(50)), contentDescription = null
                     )
                 }
                 BODY2Text(text = art.owner.name)
@@ -111,9 +111,7 @@ fun PreviewScreen() {
 
         item {
             Info(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                caption = "Description",
-                orientation = Orientation.Vertical
+                modifier = Modifier.padding(horizontal = 16.dp), caption = "Description", orientation = Orientation.Vertical
             ) {
                 BODY1Text(text = art.description)
             }
@@ -125,22 +123,14 @@ fun PreviewScreen() {
 
 @Composable
 fun Picture(image: ImageBitmap?) {
-    image?.let {
-        Box(modifier = Modifier.fillMaxWidth().aspectRatio(1f)) {
+    Box(modifier = Modifier.fillMaxWidth().aspectRatio(1f)) {
+        image?.let {
             Image(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .alpha(0.5f),
-                bitmap = it,
-                contentScale = ContentScale.Crop,
-                contentDescription = null
+                modifier = Modifier.fillMaxSize().alpha(0.5f), bitmap = it, contentScale = ContentScale.Crop, contentDescription = null
             )
 
             Image(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .padding(vertical = 16.dp)
-                    .wrapContentSize(),
+                modifier = Modifier.align(Alignment.Center).padding(vertical = 16.dp).wrapContentSize(),
                 bitmap = it,
                 contentDescription = null
             )
