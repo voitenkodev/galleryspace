@@ -22,7 +22,7 @@ import designsystem.controls.CAPTION1Text
 import designsystem.controls.Divider
 import designsystem.controls.H2Text
 import designsystem.modifiers.parallelepiped
-import loadImage
+import platform.loadImage
 import models.Art
 import models.Person
 

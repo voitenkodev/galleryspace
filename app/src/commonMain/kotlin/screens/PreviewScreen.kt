@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import designsystem.GallerySpaceComponent
 import designsystem.components.Toolbar
 import designsystem.controls.*
-import loadImage
+import platform.loadImage
 import models.Art
 
 @Composable
