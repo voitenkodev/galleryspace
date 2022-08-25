@@ -1,7 +1,5 @@
 package screens
 
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,7 +12,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.unit.dp
@@ -29,7 +26,6 @@ import loadImage
 import models.Art
 import models.Person
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun GalleryScreen() {
 
@@ -59,7 +55,6 @@ fun GalleryScreen() {
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class, ExperimentalComposeUiApi::class)
 @Composable
 fun PresentationItem(
     image: String,

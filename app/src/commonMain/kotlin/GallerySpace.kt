@@ -4,14 +4,14 @@ import androidx.compose.ui.unit.ExperimentalUnitApi
 import designsystem.GallerySpaceComponent
 import designsystem.common.GallerySpaceTheme
 import screens.GalleryScreen
+import screens.PreviewScreen
 
-@OptIn(ExperimentalUnitApi::class)
 @Composable
 fun GallerySpace() {
     GallerySpaceTheme {
         Surface(color = GallerySpaceComponent.colors.primary) {
-            GalleryScreen()
-//            PreviewScreen()
+//            GalleryScreen()
+            PreviewScreen()
         }
     }
 }

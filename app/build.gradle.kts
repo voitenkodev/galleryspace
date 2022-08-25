@@ -1,5 +1,4 @@
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
+@Suppress("DSL_SCOPE_VIOLATION") plugins {
     alias(libs.plugins.android.app)
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
@@ -22,17 +21,35 @@ kotlin {
     iosX64("uikitX64").binaries.executable {
         entryPoint = "main"
         freeCompilerArgs += listOf(
-            "-linker-option", "-framework", "-linker-option", "Metal",
-            "-linker-option", "-framework", "-linker-option", "CoreText",
-            "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+            "-linker-option",
+            "-framework",
+            "-linker-option",
+            "Metal",
+            "-linker-option",
+            "-framework",
+            "-linker-option",
+            "CoreText",
+            "-linker-option",
+            "-framework",
+            "-linker-option",
+            "CoreGraphics"
         )
     }
     iosArm64("uikitArm64").binaries.executable {
         entryPoint = "main"
         freeCompilerArgs += listOf(
-            "-linker-option", "-framework", "-linker-option", "Metal",
-            "-linker-option", "-framework", "-linker-option", "CoreText",
-            "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+            "-linker-option",
+            "-framework",
+            "-linker-option",
+            "Metal",
+            "-linker-option",
+            "-framework",
+            "-linker-option",
+            "CoreText",
+            "-linker-option",
+            "-framework",
+            "-linker-option",
+            "CoreGraphics"
         )
         freeCompilerArgs += "-Xdisable-phases=VerifyBitcode" // TODO: the current compose binary surprises LLVM, so disable checks for now.
     }
@@ -89,6 +106,15 @@ kotlin {
         val uikitMain by creating { dependsOn(iosMain) }
         val uikitX64Main by getting { dependsOn(uikitMain) }
         val uikitArm64Main by getting { dependsOn(uikitMain) }
+    }
+
+    kotlin.sourceSets.all {
+        languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+        languageSettings.optIn("androidx.compose.ui.unit.ExperimentalUnitApi")
+        languageSettings.optIn("androidx.compose.foundation.ExperimentalFoundationApi")
+        languageSettings.optIn("androidx.compose.ui.ExperimentalComposeUiApi")
+        languageSettings.optIn("androidx.compose.material.ExperimentalMaterialApi")
+        languageSettings.optIn("androidx.compose.animation.ExperimentalAnimationApi")
     }
 }
 

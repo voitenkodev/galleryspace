@@ -11,8 +11,6 @@ import androidx.compose.ui.graphics.drawscope.DrawStyle
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
 fun Modifier.parallelepiped(
     angleX: Float,
     angleY: Float,

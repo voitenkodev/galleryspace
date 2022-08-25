@@ -60,33 +60,31 @@ fun RatingBar(
     }
 }
 
-private val starShape = GenericShape { size, _ ->
-    addPath(starPath(size.height))
-}
+private val starShape = GenericShape { size, _ -> addPath(starPath(size.height)) }
 
 private val starPath = { size: Float ->
     Path().apply {
-//        val outerRadius: Float = size / 1.8f
-//        val innerRadius: Double = outerRadius / 2.5
-//        var rot: Double = Math.PI / 2 * 3
-//        val cx: Float = size / 2
-//        val cy: Float = size / 20 * 11
-//        var x: Float
-//        var y: Float
-//        val step = Math.PI / 5
-//
-//        moveTo(cx, cy - outerRadius)
-//        repeat(5) {
-//            x = (cx + kotlin.math.cos(rot) * outerRadius).toFloat()
-//            y = (cy + kotlin.math.sin(rot) * outerRadius).toFloat()
-//            lineTo(x, y)
-//            rot += step
-//
-//            x = (cx + kotlin.math.cos(rot) * innerRadius).toFloat()
-//            y = (cy + kotlin.math.sin(rot) * innerRadius).toFloat()
-//            lineTo(x, y)
-//            rot += step
-//        }
-//        close()
+        val outerRadius: Float = size / 1.8f
+        val innerRadius: Double = outerRadius / 2.5
+        var rot: Double = kotlin.math.PI / 2 * 3
+        val cx: Float = size / 2
+        val cy: Float = size / 20 * 11
+        var x: Float
+        var y: Float
+        val step = kotlin.math.PI / 5
+
+        moveTo(cx, cy - outerRadius)
+        repeat(5) {
+            x = (cx + kotlin.math.cos(rot) * outerRadius).toFloat()
+            y = (cy + kotlin.math.sin(rot) * outerRadius).toFloat()
+            lineTo(x, y)
+            rot += step
+
+            x = (cx + kotlin.math.cos(rot) * innerRadius).toFloat()
+            y = (cy + kotlin.math.sin(rot) * innerRadius).toFloat()
+            lineTo(x, y)
+            rot += step
+        }
+        close()
     }
 }

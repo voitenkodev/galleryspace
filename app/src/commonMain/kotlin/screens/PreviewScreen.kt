@@ -1,6 +1,5 @@
 package screens
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.*
@@ -24,7 +23,6 @@ import designsystem.controls.*
 import loadImage
 import models.Art
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PreviewScreen() {
 

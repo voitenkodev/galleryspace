@@ -35,7 +35,6 @@ data class GallerySpaceColor(
     val priceDown: Color,
 )
 
-
 internal val black = Color(0xff000000)
 internal val white = Color(0xffffffff)
 
