@@ -1,6 +1,6 @@
 [versions]
-compose-vers = "1.2.0-alpha01-dev755"
-kotlin-vers = "1.7.0"
+compose-vers = "1.2.0-alpha01-dev770"
+kotlin-vers = "1.7.10"
 coroutines-vers = "1.6.4"
 logger-vers = "1.0.0"
 serialization-vers = "1.3.2"

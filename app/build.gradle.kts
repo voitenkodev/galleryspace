@@ -21,35 +21,17 @@ kotlin {
     iosX64("uikitX64").binaries.executable {
         entryPoint = "main"
         freeCompilerArgs += listOf(
-            "-linker-option",
-            "-framework",
-            "-linker-option",
-            "Metal",
-            "-linker-option",
-            "-framework",
-            "-linker-option",
-            "CoreText",
-            "-linker-option",
-            "-framework",
-            "-linker-option",
-            "CoreGraphics"
+            "-linker-option", "-framework", "-linker-option", "Metal",
+            "-linker-option", "-framework", "-linker-option", "CoreText",
+            "-linker-option", "-framework", "-linker-option", "CoreGraphics"
         )
     }
     iosArm64("uikitArm64").binaries.executable {
         entryPoint = "main"
         freeCompilerArgs += listOf(
-            "-linker-option",
-            "-framework",
-            "-linker-option",
-            "Metal",
-            "-linker-option",
-            "-framework",
-            "-linker-option",
-            "CoreText",
-            "-linker-option",
-            "-framework",
-            "-linker-option",
-            "CoreGraphics"
+            "-linker-option", "-framework", "-linker-option", "Metal",
+            "-linker-option", "-framework", "-linker-option", "CoreText",
+            "-linker-option", "-framework", "-linker-option", "CoreGraphics"
         )
         freeCompilerArgs += "-Xdisable-phases=VerifyBitcode" // TODO: the current compose binary surprises LLVM, so disable checks for now.
     }
